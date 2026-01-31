@@ -9,12 +9,17 @@ import os
 card_position = [
     (550, 600)
 ]
-# 截图区域 (left, top, width, height)
-capture_region = (1091, 214, 372, 560)
+# 游戏内卡组栏截图区域 (left, top, width, height)
+# capture_region = (1091, 214, 372, 560)
+# 立绘截图区域 (left, top, width, height)
+# capture_region = (1025, 365, 508, 708)
+# 图鉴截图区域 (left, top, width, height)
+capture_region = (1019, 10, 517, 780)
+
 # 卡牌名称
 card_name = "card_001"
 # 保存图片的文件夹名
-save_dir = "assets/card_ce"
+save_dir = "assets/card_upgrade"
 # 操作间隙（秒，根据电脑反应速度适度调整）
 delay_between = 0.3
 

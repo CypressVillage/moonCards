@@ -1,7 +1,8 @@
 from PIL import Image
 
+imgDir = "assets/assets_extract/"
 # 打开图片
-img = Image.open("cover.png")
+img = Image.open(f"{imgDir}jd.png")
 
 # 放大倍数，比如3倍
 scale = 3
@@ -14,4 +15,5 @@ new_height = int(img.height * scale)
 resized_img = img.resize((new_width, new_height), Image.LANCZOS)
 
 # 保存结果
-resized_img.save("cover_enlarged.png")
+resized_img.save(f"{imgDir}jd_3.png")
+    
