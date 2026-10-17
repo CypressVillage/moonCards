@@ -1,0 +1,113 @@
+[
+  {
+    "name": "月光法典",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/card_001.png",
+    "relatedCards": []
+  },
+  {
+    "name": "灵巧护符",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/card_002.png",
+    "relatedCards": []
+  },
+  {
+    "name": "恶魔刀刃",
+    "diary": false,
+    "level": 1,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/card_003.png",
+    "relatedCards": []
+  },
+  {
+    "name": "法力",
+    "diary": false,
+    "level": 1,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_upgrade/法力1.png",
+    "relatedCards": ["小小法力"]
+  },
+  {
+    "name": "法力",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_upgrade/法力2.png",
+    "relatedCards": ["小小法力"]
+  },
+  {
+    "name": "小小法力",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base_extra/egg_小小法力.png",
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
+    "name": "机械炸药",
+    "diary": false,
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_upgrade/机械炸药1.png",
+    "relatedCards": []
+  },
+  {
+    "name": "机械炸药",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_upgrade/机械炸药2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "恐惧",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base_extra/extra_恐惧.png",
+    "relatedCards": []
+  },
+  {
+    "name": "致命餐叉",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/card_001.png",
+    "relatedCards": []
+  },
+  {
+    "name": "弹簧拳套",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/card_002.png",
+    "relatedCards": []
+  }
+]

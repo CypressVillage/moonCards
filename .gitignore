@@ -11,3 +11,8 @@ wheels/
 
 # ruff cache
 .ruff_cache
+
+# Static web app
+node_modules/
+public/assets/
+public/thumbnails/
