@@ -37,7 +37,9 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_upgrade/法力1.png",
-    "relatedCards": ["小小法力"]
+    "relatedCards": [
+      "小小法力"
+    ]
   },
   {
     "name": "法力",
@@ -47,7 +49,9 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_upgrade/法力2.png",
-    "relatedCards": ["小小法力"]
+    "relatedCards": [
+      "小小法力"
+    ]
   },
   {
     "name": "小小法力",
@@ -97,7 +101,7 @@
     "classes": [],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_diary/card_001.png",
+    "image": "assets/card_diary/致命餐叉.png",
     "relatedCards": []
   },
   {
@@ -107,7 +111,837 @@
     "classes": [],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_diary/card_002.png",
+    "image": "assets/card_diary/弹簧拳套.png",
+    "relatedCards": []
+  },
+  {
+    "name": "沉睡的发条骑士",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/沉睡的发条骑士.png",
+    "relatedCards": []
+  },
+  {
+    "name": "玩具长枪",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/玩具长枪2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "冰焰火把",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/冰焰火把.png",
+    "relatedCards": []
+  },
+  {
+    "name": "女巫扫帚",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/女巫扫帚.png",
+    "relatedCards": []
+  },
+  {
+    "name": "飓风法杖",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/飓风法杖.png",
+    "relatedCards": []
+  },
+  {
+    "name": "饥饿魔典",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/饥饿魔典.png",
+    "relatedCards": []
+  },
+  {
+    "name": "任务告示",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/任务告示.png",
+    "relatedCards": []
+  },
+  {
+    "name": "潜行者手套",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/潜行者手套.png",
+    "relatedCards": []
+  },
+  {
+    "name": "考古工具",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/考古工具.png",
+    "relatedCards": []
+  },
+  {
+    "name": "利刃",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/利刃.png",
+    "relatedCards": []
+  },
+  {
+    "name": "袖剑",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/袖剑2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "雪克壶",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/雪克壶.png",
+    "relatedCards": []
+  },
+  {
+    "name": "美味食谱",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/美味食谱.png",
+    "relatedCards": []
+  },
+  {
+    "name": "调合烧杯",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/调合烧杯.png",
+    "relatedCards": []
+  },
+  {
+    "name": "酿酒桶",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/酿酒桶.png",
+    "relatedCards": []
+  },
+  {
+    "name": "惊吓箱",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/惊吓箱.png",
+    "relatedCards": []
+  },
+  {
+    "name": "扑克风车",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/扑克风车.png",
+    "relatedCards": []
+  },
+  {
+    "name": "奇异魔方",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/奇异魔方.png",
+    "relatedCards": []
+  },
+  {
+    "name": "投影灯",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/投影灯.png",
+    "relatedCards": []
+  },
+  {
+    "name": "爆炸玩偶",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/爆炸玩偶.png",
+    "relatedCards": []
+  },
+  {
+    "name": "魔力手帕",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/魔力手帕.png",
+    "relatedCards": []
+  },
+  {
+    "name": "幻术匕首",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/幻术匕首.png",
+    "relatedCards": []
+  },
+  {
+    "name": "齿轮装置",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_diary/齿轮装置.png",
+    "relatedCards": []
+  },
+  {
+    "name": "翻找",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_diary/翻找.png",
+    "relatedCards": []
+  },
+  {
+    "name": "刺痛",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_diary/刺痛.png",
+    "relatedCards": []
+  },
+  {
+    "name": "锋利厨刀",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_diary/锋利厨刀.png",
+    "relatedCards": []
+  },
+  {
+    "name": "扑克弹弓",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_diary/扑克弹弓.png",
+    "relatedCards": []
+  },
+  {
+    "name": "切斩",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_diary/切斩.png",
+    "relatedCards": []
+  },
+  {
+    "name": "未鉴定的药瓶",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_diary/未鉴定的药瓶2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "老猫的唤风法杖",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_diary/老猫的唤风法杖.png",
+    "relatedCards": []
+  },
+  {
+    "name": "冰激凌把戏",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_diary/冰激凌把戏.png",
+    "relatedCards": []
+  },
+  {
+    "name": "奇幻戏法",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_diary/奇幻戏法.png",
+    "relatedCards": []
+  },
+  {
+    "name": "发条召唤",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/发条召唤.png",
+    "relatedCards": []
+  },
+  {
+    "name": "幻影拳击",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/幻影拳击.png",
+    "relatedCards": []
+  },
+  {
+    "name": "中场休息",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/中场休息.png",
+    "relatedCards": []
+  },
+  {
+    "name": "冠军披风",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/冠军披风.png",
+    "relatedCards": []
+  },
+  {
+    "name": "拧发条",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/拧发条.png",
+    "relatedCards": []
+  },
+  {
+    "name": "飞刀",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/飞刀.png",
+    "relatedCards": []
+  },
+  {
+    "name": "吟游诗人",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/吟游诗人.png",
+    "relatedCards": []
+  },
+  {
+    "name": "清扫时刻",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/清扫时刻.png",
+    "relatedCards": []
+  },
+  {
+    "name": "叉状闪电",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/叉状闪电.png",
+    "relatedCards": []
+  },
+  {
+    "name": "夜幕奇袭",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_diary/夜幕奇袭.png",
+    "relatedCards": []
+  },
+  {
+    "name": "敏捷射击",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_diary/敏捷射击.png",
+    "relatedCards": []
+  },
+  {
+    "name": "怪物脚印",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/怪物脚印.png",
+    "relatedCards": []
+  },
+  {
+    "name": "利刃穿心",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/利刃穿心.png",
+    "relatedCards": []
+  },
+  {
+    "name": "淘金",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/淘金.png",
+    "relatedCards": []
+  },
+  {
+    "name": "满载而归",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/满载而归.png",
+    "relatedCards": []
+  },
+  {
+    "name": "远古法杖",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/远古法杖.png",
+    "relatedCards": []
+  },
+  {
+    "name": "远古青铜罐",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/远古青铜罐.png",
+    "relatedCards": []
+  },
+  {
+    "name": "远古十字架",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/远古十字架.png",
+    "relatedCards": []
+  },
+  {
+    "name": "远古长矛",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/远古长矛.png",
+    "relatedCards": []
+  },
+  {
+    "name": "远古魔术棒",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/远古魔术棒.png",
+    "relatedCards": []
+  },
+  {
+    "name": "远古图腾",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/远古图腾.png",
+    "relatedCards": []
+  },
+  {
+    "name": "惊奇古物",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/惊奇古物.png",
+    "relatedCards": []
+  },
+  {
+    "name": "学识渊博",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/学识渊博.png",
+    "relatedCards": []
+  },
+  {
+    "name": "当头棒喝",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_diary/当头棒喝.png",
+    "relatedCards": []
+  },
+  {
+    "name": "奋发",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/奋发.png",
+    "relatedCards": []
+  },
+  {
+    "name": "宝石匕首",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/宝石匕首2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "金匕首",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/金匕首2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "藏宝图",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/藏宝图.png",
+    "relatedCards": []
+  },
+  {
+    "name": "吹嘘",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/吹嘘.png",
+    "relatedCards": []
+  },
+  {
+    "name": "拓印",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_diary/拓印.png",
+    "relatedCards": []
+  },
+  {
+    "name": "旅行包裹",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/旅行包裹2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "花式调酒",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/花式调酒.png",
+    "relatedCards": []
+  },
+  {
+    "name": "装置打造",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/装置打造.png",
+    "relatedCards": []
+  },
+  {
+    "name": "实验发明",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/实验发明.png",
+    "relatedCards": []
+  },
+  {
+    "name": "实验工具",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/实验工具.png",
+    "relatedCards": []
+  },
+  {
+    "name": "魔术假面",
+    "diary": true,
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_diary/魔术假面2.png",
+    "relatedCards": []
+  },
+  {
+    "name": "学徒笔记",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_diary/学徒笔记.png",
+    "relatedCards": []
+  },
+  {
+    "name": "寒冰咒文书",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_diary/寒冰咒文书.png",
+    "relatedCards": []
+  },
+  {
+    "name": "风暴咒文书",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_diary/风暴咒文书.png",
+    "relatedCards": []
+  },
+  {
+    "name": "星象咒文书",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_diary/星象咒文书.png",
+    "relatedCards": []
+  },
+  {
+    "name": "美味料理",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_diary/美味料理.png",
+    "relatedCards": []
+  },
+  {
+    "name": "危险实验",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_diary/危险实验.png",
+    "relatedCards": []
+  },
+  {
+    "name": "开胃特饮",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_diary/开胃特饮.png",
+    "relatedCards": []
+  },
+  {
+    "name": "熬汤",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_diary/熬汤.png",
+    "relatedCards": []
+  },
+  {
+    "name": "冰薄荷",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_diary/冰薄荷.png",
+    "relatedCards": []
+  },
+  {
+    "name": "无限口袋",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 6,
+    "image": "assets/card_diary/无限口袋.png",
+    "relatedCards": []
+  },
+  {
+    "name": "故技重施",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_diary/故技重施.png",
+    "relatedCards": []
+  },
+  {
+    "name": "藏牌",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_diary/藏牌.png",
+    "relatedCards": []
+  },
+  {
+    "name": "涂毒刺针",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_diary/涂毒刺针.png",
+    "relatedCards": []
+  },
+  {
+    "name": "连携攻击",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_diary/连携攻击.png",
+    "relatedCards": []
+  },
+  {
+    "name": "底牌",
+    "diary": true,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_diary/底牌.png",
     "relatedCards": []
   }
 ]
