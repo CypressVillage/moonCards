@@ -7025,6 +7025,586 @@
     "relatedCards": []
   },
   {
+    "name": "索敌绳套",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/索敌绳套.png",
+    "relatedCards": []
+  },
+  {
+    "name": "砺锋石",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/砺锋石.png",
+    "relatedCards": []
+  },
+  {
+    "name": "沸腾号角",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/沸腾号角.png",
+    "relatedCards": []
+  },
+  {
+    "name": "追迹罗盘",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/追迹罗盘.png",
+    "relatedCards": []
+  },
+  {
+    "name": "猩红吊坠",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/猩红吊坠.png",
+    "relatedCards": []
+  },
+  {
+    "name": "淬毒箭头",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/淬毒箭头.png",
+    "relatedCards": []
+  },
+  {
+    "name": "训练假人",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/训练假人.png",
+    "relatedCards": []
+  },
+  {
+    "name": "钉刺",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/钉刺.png",
+    "relatedCards": []
+  },
+  {
+    "name": "狩魔手记",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/狩魔手记.png",
+    "relatedCards": []
+  },
+  {
+    "name": "普通攻击3（猎人）",
+    "diary": false,
+    "level": 3,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/普通攻击3（猎人）.png",
+    "relatedCards": []
+  },
+  {
+    "name": "左侧连袭",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/左侧连袭.png",
+    "relatedCards": []
+  },
+  {
+    "name": "右侧旋斩",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/右侧旋斩.png",
+    "relatedCards": []
+  },
+  {
+    "name": "飞刃",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/飞刃.png",
+    "relatedCards": []
+  },
+  {
+    "name": "伏击",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/伏击.png",
+    "relatedCards": []
+  },
+  {
+    "name": "战技磨练",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/战技磨练.png",
+    "relatedCards": []
+  },
+  {
+    "name": "奋身跃斩",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/奋身跃斩.png",
+    "relatedCards": []
+  },
+  {
+    "name": "天罗地网",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/天罗地网.png",
+    "relatedCards": []
+  },
+  {
+    "name": "穿心弩",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/穿心弩.png",
+    "relatedCards": []
+  },
+  {
+    "name": "百战成锋",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/百战成锋.png",
+    "relatedCards": []
+  },
+  {
+    "name": "淬火",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/淬火.png",
+    "relatedCards": []
+  },
+  {
+    "name": "燥热杀意",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/燥热杀意.png",
+    "relatedCards": []
+  },
+  {
+    "name": "狩猎姿态",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_hunter/狩猎姿态.png",
+    "relatedCards": []
+  },
+  {
+    "name": "凝神",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_hunter/凝神.png",
+    "relatedCards": []
+  },
+  {
+    "name": "备战",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_hunter/备战.png",
+    "relatedCards": []
+  },
+  {
+    "name": "特训",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_hunter/特训.png",
+    "relatedCards": []
+  },
+  {
+    "name": "初试锋芒",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_hunter/初试锋芒.png",
+    "relatedCards": []
+  },
+  {
+    "name": "迂回",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_hunter/迂回.png",
+    "relatedCards": []
+  },
+  {
+    "name": "狭路相逢",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_hunter/狭路相逢.png",
+    "relatedCards": []
+  },
+  {
+    "name": "招架挥斩",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_hunter/招架挥斩.png",
+    "relatedCards": []
+  },
+  {
+    "name": "整装待发",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_hunter/整装待发.png",
+    "relatedCards": []
+  },
+  {
+    "name": "穿梭连斩",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_hunter/穿梭连斩.png",
+    "relatedCards": []
+  },
+  {
+    "name": "追杀标记",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_hunter/追杀标记.png",
+    "relatedCards": []
+  },
+  {
+    "name": "狂化之息",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_hunter/狂化之息.png",
+    "relatedCards": []
+  },
+  {
+    "name": "诱敌",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 7,
+    "image": "assets/card_hunter/诱敌.png",
+    "relatedCards": []
+  },
+  {
+    "name": "身经百战",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 6,
+    "image": "assets/card_hunter/身经百战.png",
+    "relatedCards": []
+  },
+  {
+    "name": "袭剿",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_hunter/袭剿.png",
+    "relatedCards": []
+  },
+  {
+    "name": "战斗冲动",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "咒术",
+    "cost": 6,
+    "image": "assets/card_hunter/战斗冲动.png",
+    "relatedCards": []
+  },
+  {
+    "name": "逼近",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_hunter/逼近.png",
+    "relatedCards": []
+  },
+  {
+    "name": "暗器袋",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_hunter/暗器袋.png",
+    "relatedCards": []
+  },
+  {
+    "name": "全能猎手",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 7,
+    "image": "assets/card_hunter/全能猎手.png",
+    "relatedCards": []
+  },
+  {
+    "name": "砥砺之心",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_hunter/砥砺之心.png",
+    "relatedCards": []
+  },
+  {
+    "name": "猎杀时刻",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 8,
+    "image": "assets/card_hunter/猎杀时刻.png",
+    "relatedCards": []
+  },
+  {
+    "name": "法力积淀",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_hunter/法力积淀.png",
+    "relatedCards": []
+  },
+  {
+    "name": "休整",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_hunter/休整.png",
+    "relatedCards": []
+  },
+  {
+    "name": "狂热涌动",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_hunter/狂热涌动.png",
+    "relatedCards": []
+  },
+  {
+    "name": "魔法启迪",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_hunter/魔法启迪.png",
+    "relatedCards": []
+  },
+  {
+    "name": "全神贯注",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_hunter/全神贯注.png",
+    "relatedCards": []
+  },
+  {
+    "name": "寻迹追踪",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_hunter/寻迹追踪.png",
+    "relatedCards": []
+  },
+  {
+    "name": "借势奇袭",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_hunter/借势奇袭.png",
+    "relatedCards": []
+  },
+  {
+    "name": "弩箭陷阱",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_hunter/弩箭陷阱.png",
+    "relatedCards": []
+  },
+  {
+    "name": "普通攻击1（猎人）",
+    "diary": false,
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/普通攻击1（猎人）.png",
+    "relatedCards": []
+  },
+  {
+    "name": "普通攻击2（猎人）",
+    "diary": false,
+    "level": 2,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/普通攻击2（猎人）.png",
+    "relatedCards": []
+  },
+  {
+    "name": "割肉刀",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/割肉刀.png",
+    "relatedCards": []
+  },
+  {
+    "name": "精准格挡",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_hunter/精准格挡.png",
+    "relatedCards": []
+  },
+  {
+    "name": "狂化",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_hunter/狂化.png",
+    "relatedCards": []
+  },
+  {
+    "name": "未送达的信",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_hunter/未送达的信.png",
+    "relatedCards": []
+  },
+  {
+    "name": "信件背包",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_hunter/信件背包.png",
+    "relatedCards": []
+  },
+  {
+    "name": "追猎",
+    "diary": false,
+    "level": null,
+    "classes": [],
+    "type": "特殊",
+    "cost": null,
+    "image": "assets/card_hunter/追猎.png",
+    "relatedCards": []
+  },
+  {
     "name": "致命餐叉",
     "diary": true,
     "level": null,
