@@ -59,8 +59,8 @@ export function filterGroups(cards: Card[], filters: Filters): CardGroup[] {
       groups.set(key, group);
     }
     group.cards.push(card);
-    // Hidden cards are discoverable by an explicit name search, but do not occupy a default slot.
-    if ((!card.hidden || filters.query.trim()) && matchesCard(card, filters)) group.matches.push(card);
+    // Hidden cards remain accessible through related-card selectors, not catalog searches.
+    if (!card.hidden && matchesCard(card, filters)) group.matches.push(card);
   }
   return [...groups.values()].filter((group) => group.matches.length > 0);
 }

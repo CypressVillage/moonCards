@@ -7,11 +7,11 @@ import {
 } from './catalog.ts';
 import type { Card, CardGroup, Filters } from './catalog.ts';
 import './style.css';
+import { CardEditor } from './editor.tsx';
 
 const cards = rawCards as Card[];
 const heroFront = cards.find((card) => !card.hidden && card.type === '装备') ?? cards[0];
 const heroBack = cards.find((card) => !card.hidden && card.type === '攻击') ?? cards[1] ?? cards[0];
-const PAGE_SIZE = 24;
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;
 const thumbnailUrl = (card: Card) => assetUrl(`thumbnails/${card.image.replace(/\.[^.]+$/, '.webp')}`);
 const variantsByName = new Map<string, Card[]>();
@@ -118,7 +118,6 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
 
 function App() {
   const [filters, setFilters] = useState<Filters>(() => readFilters(window.location.search));
-  const [page, setPage] = useState(1);
   const [sort, setSort] = useState('default');
   const [detail, setDetail] = useState<{ root: CardGroup; card: Card } | null>(null);
   const signature = writeFilters(filters);
@@ -128,12 +127,12 @@ function App() {
     window.history.replaceState(null, '', url);
   }, [signature]);
   useEffect(() => {
-    const onPop = () => { setFilters(readFilters(window.location.search)); setPage(1); };
+    const onPop = () => { setFilters(readFilters(window.location.search)); };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
-  const update = (key: keyof Filters, value: string) => { setFilters((previous) => ({ ...previous, [key]: value })); setPage(1); };
-  const reset = () => { setFilters({ ...emptyFilters }); setPage(1); };
+  const update = (key: keyof Filters, value: string) => { setFilters((previous) => ({ ...previous, [key]: value })); };
+  const reset = () => { setFilters({ ...emptyFilters }); };
   const groups = useMemo(() => {
     const result = filterGroups(cards, filters);
     if (sort === 'name') result.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
@@ -151,16 +150,13 @@ function App() {
   if (filters.level && !levels.includes(filters.level)) levels.push(filters.level);
   const classicCount = filterGroups(cards, { ...emptyFilters, mode: 'classic' }).length;
   const diaryCount = filterGroups(cards, { ...emptyFilters, mode: 'diary' }).length;
-  const pages = Math.max(1, Math.ceil(groups.length / PAGE_SIZE));
-  const currentPage = Math.min(page, pages);
-  const displayed = groups.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
   const hasFilters = signature.length > 0;
 
   return <>
     <header className="site-header"><div className="header-inner">
       <a className="brand" href={import.meta.env.BASE_URL} aria-label="林间图鉴首页"><span className="brand-symbol"><Icon name="moon" size={25} /></span><span>林间图鉴<small>NIGHT OF FULL MOON</small></span></a>
       <nav aria-label="主导航"><a className="nav-active" href="#catalog">卡牌图鉴</a><a href="#about">关于图鉴 <span>↗</span></a></nav>
-      <span className="header-label">非官方 · 持续收录中</span>
+      <span className="header-label">非官方 · 持续收录中</span><a className="editor-entry" href="?editor">编辑卡牌</a>
     </div></header>
     <main>
       <section className="hero">
@@ -193,11 +189,10 @@ function App() {
           </div>
         </div>
         <div className="results-toolbar"><p aria-live="polite">找到 <strong>{groups.length}</strong> 个卡位<span>同名等级已合并 · 点击卡面查看大图</span></p>
-          <label className="sort-label">排列<select aria-label="卡牌排列" value={sort} onChange={(event) => { setSort(event.target.value); setPage(1); }}><option value="default">收录顺序</option><option value="name">名称顺序</option></select></label>
+          <label className="sort-label">排列<select aria-label="卡牌排列" value={sort} onChange={(event) => { setSort(event.target.value); }}><option value="default">收录顺序</option><option value="name">名称顺序</option></select></label>
         </div>
-        {displayed.length ? <div className="card-grid">{displayed.map((group) => <CardTile key={`${group.key}:${signature}`} group={group} filters={filters} onOpen={(root, card) => setDetail({ root, card })} />)}</div>
+        {groups.length ? <div className="card-grid">{groups.map((group) => <CardTile key={`${group.key}:${signature}`} group={group} filters={filters} onOpen={(root, card) => setDetail({ root, card })} />)}</div>
           : <div className="empty-state"><Icon name="search" size={36} /><h3>这片森林里，暂时没有找到它。</h3><p>试试其他名称，或放宽筛选条件。</p><button type="button" onClick={reset}>清除筛选</button></div>}
-        {pages > 1 && <nav className="pagination" aria-label="结果分页"><button type="button" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>← 上一页</button><span>{currentPage} / {pages}</span><button type="button" disabled={currentPage === pages} onClick={() => setPage(currentPage + 1)}>下一页 →</button></nav>}
         <aside className="collection-note"><Icon name="book" size={19} /><p><strong>这还是一本正在编写的图鉴。</strong> 当前仅展示少量示例，职业与部分能耗尚待补全。关联切换仅作功能演示，不代表已核实的游戏生成关系。</p><span>持续收录中</span></aside>
       </section>
     </main>
@@ -206,4 +201,4 @@ function App() {
   </>;
 }
 
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
+createRoot(document.getElementById('root')!).render(<React.StrictMode>{new URLSearchParams(window.location.search).has('editor') ? <CardEditor initialCards={cards} /> : <App />}</React.StrictMode>);

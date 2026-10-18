@@ -3,11 +3,19 @@ import assert from 'node:assert/strict';
 import { emptyFilters, filterGroups, highestLevel, readFilters, relatedNames, writeFilters } from '../src/catalog.ts';
 import type { Card } from '../src/catalog.ts';
 // @ts-expect-error The validation script is intentionally shared as plain JavaScript.
-import { validateCards } from '../scripts/validate-cards.mjs';
+import { validateCards, cardTypes } from '../scripts/validate-cards.mjs';
 
 const makeCard = (overrides: Partial<Card> = {}): Card => ({
   name: '测试卡', diary: false, level: 1, classes: ['职业A', '职业B'],
   type: '攻击', cost: 1, image: 'assets/test.png', relatedCards: [], ...overrides,
+});
+
+test('类型选项固定为八种正常类型，拒绝乱码及任意未知类型', () => {
+  assert.deepEqual(cardTypes, ['装备', '攻击', '法力', '行动', '咒术', '祷告', '反制', '特殊']);
+  for (const type of cardTypes) assert.deepEqual(validateCards([makeCard({ type })]), []);
+  for (const type of ['��动', '咒���', '未知类型', '']) {
+    assert.match(validateCards([makeCard({ type })]).join(), /卡牌类型必须是/);
+  }
 });
 
 test('同名等级合并，多职业不复制卡位，模式不串组', () => {
@@ -37,10 +45,10 @@ test('零费、未知能耗、无星级不混淆', () => {
   assert.equal(filterGroups(cards, { ...emptyFilters, cost: 'null', level: 'null' })[0].name, '无星卡');
 });
 
-test('隐藏附属卡不占默认卡位，但可通过名称检索', () => {
+test('隐藏附属卡不占默认卡位，也不出现在名称搜索中', () => {
   const cards = [makeCard(), makeCard({ name: '附属卡', hidden: true })];
   assert.equal(filterGroups(cards, emptyFilters).length, 1);
-  assert.equal(filterGroups(cards, { ...emptyFilters, query: '附属' })[0].name, '附属卡');
+  assert.equal(filterGroups(cards, { ...emptyFilters, query: '附属' }).length, 0);
 });
 
 test('搜索忽略大小写和两侧空格', () => {

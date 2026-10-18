@@ -1,3 +1,5 @@
+export const cardTypes = ['装备', '攻击', '法力', '行动', '咒术', '祷告', '反制', '特殊'];
+
 export function validateCards(cards) {
   const errors = [];
   if (!Array.isArray(cards)) return ['cards.json 必须是数组'];
@@ -18,7 +20,7 @@ export function validateCards(cards) {
       errors.push(`${prefix} level 必须是正整数或 null`);
     }
     if (!stringArray(card.classes)) errors.push(`${prefix} classes 必须是字符串数组`);
-    if (!nonempty(card.type)) errors.push(`${prefix} 缺少卡牌类型`);
+    if (!cardTypes.includes(card.type)) errors.push(`${prefix} 卡牌类型必须是：${cardTypes.join('、')}`);
     if (!(card.cost === null || card.cost === 'X' ||
       (Number.isInteger(card.cost) && card.cost >= 0))) {
       errors.push(`${prefix} cost 必须是非负整数、"X" 或 null`);
