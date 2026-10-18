@@ -1,6 +1,9 @@
+// @ts-expect-error Shared browser/Node group definitions are plain JavaScript.
+import { relatedScope } from '../scripts/card-groups.mjs';
+
 export interface Card {
   name: string;
-  diary: boolean;
+  group: string;
   level: number | null;
   classes: string[];
   type: string;
@@ -12,7 +15,7 @@ export interface Card {
 
 export interface Filters {
   query: string;
-  mode: string;
+  group: string;
   profession: string;
   type: string;
   cost: string;
@@ -22,19 +25,26 @@ export interface Filters {
 export interface CardGroup {
   key: string;
   name: string;
-  diary: boolean;
+  group: string;
   cards: Card[];
   matches: Card[];
 }
 
 export const emptyFilters: Filters = {
-  query: '', mode: 'all', profession: '', type: '', cost: '', level: '',
+  query: '', group: 'all', profession: '', type: '', cost: '', level: '',
 };
 
 export const professionOrder = ['女骑士', '游侠', '小女巫', '修女', '魔术师', '药剂师', '狼人', '契约师', '机械师', '调灵师', '猎魔人', '小猪妖'];
 
-export const groupKey = (card: Pick<Card, 'diary' | 'name'>) => JSON.stringify([card.diary, card.name]);
-export const recordKey = (card: Card) => JSON.stringify([card.diary, card.name, card.level]);
+export const groupKey = (card: Pick<Card, 'group' | 'name'>) => JSON.stringify([card.group, card.name]);
+export const recordKey = (card: Card) => JSON.stringify([card.group, card.name, card.level]);
+export const canRelate = (left: string, right: string) => relatedScope(left) === relatedScope(right);
+
+export function relatedVariants(cards: Card[], source: Pick<Card, 'group'>, name: string): Card[] {
+  const candidates = cards.filter((card) => card.name === name && canRelate(source.group, card.group));
+  const sameGroup = candidates.filter((card) => card.group === source.group);
+  return sameGroup.length ? sameGroup : candidates;
+}
 export const sortLevels = (cards: Card[]) => [...cards].sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
 export const highestLevel = (cards: Card[]) => sortLevels(cards).at(-1)!;
 export const levelLabel = (level: number | null) => level === null ? '无星级' : `${level} 星`;
@@ -43,7 +53,7 @@ export const costLabel = (cost: Card['cost']) => cost === null ? '未标注 / �
 export function matchesCard(card: Card, filters: Filters) {
   const query = filters.query.trim().toLocaleLowerCase();
   return (!query || card.name.toLocaleLowerCase().includes(query))
-    && (filters.mode === 'all' || card.diary === (filters.mode === 'diary'))
+    && (filters.group === 'all' || card.group === filters.group)
     && (!filters.profession || (filters.profession === '__unknown'
       ? card.classes.length === 0 : card.classes.includes(filters.profession)))
     && (!filters.type || card.type === filters.type)
@@ -57,7 +67,7 @@ export function filterGroups(cards: Card[], filters: Filters): CardGroup[] {
     const key = groupKey(card);
     let group = groups.get(key);
     if (!group) {
-      group = { key, name: card.name, diary: card.diary, cards: [], matches: [] };
+      group = { key, name: card.name, group: card.group, cards: [], matches: [] };
       groups.set(key, group);
     }
     group.cards.push(card);
@@ -73,6 +83,8 @@ export function relatedNames(group: CardGroup) {
 
 export function readFilters(search: string): Filters {
   const params = new URLSearchParams(search);
+  // Keep existing shared links useful after replacing the old mode filter.
+  if (!params.has('group') && params.has('mode')) params.set('group', params.get('mode') === 'classic' ? 'base' : params.get('mode')!);
   return Object.fromEntries(Object.entries(emptyFilters).map(([key, fallback]) =>
     [key, params.get(key) ?? fallback])) as unknown as Filters;
 }

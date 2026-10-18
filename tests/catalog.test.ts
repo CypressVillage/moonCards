@@ -6,7 +6,7 @@ import type { Card } from '../src/catalog.ts';
 import { validateCards, cardTypes } from '../scripts/validate-cards.mjs';
 
 const makeCard = (overrides: Partial<Card> = {}): Card => ({
-  name: '测试卡', diary: false, level: 1, classes: ['职业A', '职业B'],
+  name: '测试卡', group: 'base', level: 1, classes: ['职业A', '职业B'],
   type: '攻击', cost: 1, image: 'assets/test.png', relatedCards: [], ...overrides,
 });
 
@@ -25,7 +25,7 @@ test('类型选项固定为八种正常类型，拒绝乱码及任意未知类�
 });
 
 test('同名等级合并，多职业不复制卡位，模式不串组', () => {
-  const groups = filterGroups([makeCard(), makeCard({ level: 2 }), makeCard({ diary: true })], emptyFilters);
+  const groups = filterGroups([makeCard(), makeCard({ level: 2 }), makeCard({ group: 'diary' })], emptyFilters);
   assert.equal(groups.length, 2);
   assert.equal(groups[0].cards.length, 2);
   assert.equal(highestLevel(groups[0].matches).level, 2);
@@ -40,8 +40,8 @@ test('筛选必须由同一条版本记录同时满足', () => {
 });
 
 test('职业、模式、类型组合筛选', () => {
-  const cards = [makeCard(), makeCard({ name: '日记卡', diary: true })];
-  assert.equal(filterGroups(cards, { ...emptyFilters, profession: '职业B', mode: 'diary', type: '攻击' })[0].name, '日记卡');
+  const cards = [makeCard(), makeCard({ name: '日记卡', group: 'diary' })];
+  assert.equal(filterGroups(cards, { ...emptyFilters, profession: '职业B', group: 'diary', type: '攻击' })[0].name, '日记卡');
   assert.equal(filterGroups(cards, { ...emptyFilters, profession: '职业C' }).length, 0);
 });
 
@@ -67,7 +67,7 @@ test('关联名称去重，不递归展开关系链', () => {
 });
 
 test('URL 筛选往返保持中文和特殊字符', () => {
-  const filters = { ...emptyFilters, query: '法力 & 卡', mode: 'diary', cost: '0' };
+  const filters = { ...emptyFilters, query: '法力 & 卡', group: 'diary', cost: '0' };
   assert.deepEqual(readFilters(writeFilters(filters)), filters);
   assert.equal(writeFilters(emptyFilters), '');
 });
@@ -83,10 +83,11 @@ test('数据校验拒绝重复身份和错误字段', () => {
   assert.match(validateCards([makeCard({ image: 'assets/../secret.png' })]).join(), /image/);
 });
 
-test('关联只允许指向同一模式的现有卡牌', () => {
+test('关联按分组隔离，但保留 base 与 base_extra 的跨文件关联', () => {
   const primary = makeCard({ relatedCards: ['附属卡'] });
-  assert.match(validateCards([primary, makeCard({ name: '附属卡', diary: true })]).join(), /同模式/);
+  assert.match(validateCards([primary, makeCard({ name: '附属卡', group: 'diary' })]).join(), /可关联分组/);
   assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡' })]), []);
+  assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡', group: 'base_extra' })]), []);
 });
 
 test('各等级的隐藏状态必须保持一致', () => {

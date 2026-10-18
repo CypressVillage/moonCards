@@ -1,0 +1,82 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtemp, mkdir, readFile, writeFile, rm, readdir } from 'node:fs/promises';
+import { emptyFilters, filterGroups, relatedVariants, readFilters } from '../src/catalog.ts';
+import type { Card } from '../src/catalog.ts';
+// @ts-expect-error Shared Node store is plain JavaScript.
+import { readCardStore } from '../scripts/card-store.mjs';
+// @ts-expect-error Shared migration is plain JavaScript.
+import { splitLegacyCards } from '../scripts/migrate-card-groups.mjs';
+// @ts-expect-error Shared validator is plain JavaScript.
+import { validateCards } from '../scripts/validate-cards.mjs';
+
+const card = (group: string, name = '同名卡', level = 1): Card => ({ group, name, level, classes: [], type: '攻击', cost: 1, image: `assets/card_${group}/${name}${level}.png`, relatedCards: [] });
+
+test('旧数据仅按现有图片目录拆分，保留元数据和组内顺序', () => {
+  const legacy = [
+    { ...card('base', 'B'), diary: false }, { ...card('diary', '日记'), diary: true },
+    { ...card('base_extra', '附属'), diary: false }, { ...card('base', 'A'), diary: false },
+  ].map(({ group, ...entry }) => entry);
+  const migrated = splitLegacyCards(legacy);
+  assert.deepEqual(Object.keys(migrated), ['base', 'base_extra', 'diary']);
+  assert.deepEqual(migrated.base.map((entry: Card) => entry.name), ['B', 'A']);
+  assert.equal(Object.values(migrated).flat().length, legacy.length);
+  assert.ok(Object.values(migrated).flat().every((entry) => !('diary' in (entry as Card))));
+  assert.throws(() => splitLegacyCards([{ ...legacy[0], image: 'assets/card_skill/未收录.png' }]), /此次迁移不包含/);
+});
+
+test('任意新增组可独立筛选，同名同星不跨组重复或合并', () => {
+  const cards = [card('base'), card('base_extra'), card('diary'), card('skill')];
+  assert.equal(filterGroups(cards, emptyFilters).length, 4);
+  for (const group of ['base', 'base_extra', 'diary', 'skill']) {
+    const result = filterGroups(cards, { ...emptyFilters, group });
+    assert.equal(result.length, 1);
+    assert.equal(result[0].group, group);
+  }
+  assert.deepEqual(validateCards(cards), []);
+  assert.match(validateCards([{ ...cards[0], diary: false }]).join(), /不再使用 diary/);
+  assert.match(validateCards([{ ...cards[0], group: '../base' }]).join(), /group/);
+  assert.equal(readFilters('?mode=classic').group, 'base');
+  assert.equal(readFilters('?group=skill').group, 'skill');
+});
+
+test('跨文件关联保留经典附属卡，优先同组且不串到日记', () => {
+  const cards = [card('base_extra', '小小法力'), card('diary', '小小法力')];
+  assert.equal(relatedVariants(cards, { group: 'base' }, '小小法力')[0].group, 'base_extra');
+  const same = card('base', '小小法力');
+  assert.deepEqual(relatedVariants([...cards, same], { group: 'base' }, '小小法力'), [same]);
+  assert.deepEqual(relatedVariants(cards, { group: 'skill' }, '小小法力'), []);
+});
+
+test('分组文件自动发现，拒绝文件名、group 和图片文件夹不一致', async () => {
+  const root = await mkdtemp('/tmp/opencode/card-groups-');
+  await mkdir(`${root}/data/cards`, { recursive: true });
+  try {
+    for (const group of ['diary', 'skill', 'base_extra', 'base']) {
+      await writeFile(`${root}/data/cards/${group}.json`, JSON.stringify([card(group)]));
+    }
+    const store = await readCardStore(root);
+    assert.deepEqual(store.groups.map((group: { id: string }) => group.id), ['base', 'diary', 'base_extra', 'skill']);
+    assert.equal(store.groups[3].label, 'skill');
+    assert.equal(store.cards.length, 4);
+    await writeFile(`${root}/data/cards/skill.json`, JSON.stringify([card('base')]));
+    await assert.rejects(readCardStore(root), /group: "skill"/);
+    await writeFile(`${root}/data/cards/skill.json`, JSON.stringify([{ ...card('skill'), image: 'assets/card_base/其他.png' }]));
+    await assert.rejects(readCardStore(root), /只能引用/);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test('实际 JSON 的 group 和目录一致，没有 diary 布尔字段（允许以后扩充新组）', async () => {
+  const directory = new URL('../data/cards/', import.meta.url);
+  const files = (await readdir(directory)).filter((file) => file.endsWith('.json'));
+  for (const required of ['base.json', 'base_extra.json', 'diary.json']) assert.ok(files.includes(required));
+  const all: Card[] = [];
+  for (const file of files) {
+    const group = file.slice(0, -5);
+    const cards: Card[] = JSON.parse(await readFile(new URL(file, directory), 'utf8'));
+    assert.ok(cards.every((entry) => entry.group === group && entry.image.startsWith(`assets/card_${group}/`) && !('diary' in entry)));
+    all.push(...cards);
+  }
+  assert.ok(all.length > 0);
+  assert.deepEqual(validateCards(all), []);
+});

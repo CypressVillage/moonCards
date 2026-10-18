@@ -1,15 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import rawCards from '../data/cards.json';
+import { cards, cardCategories } from './card-data.ts';
+// @ts-expect-error Shared browser/Node group labels are plain JavaScript.
+import { groupLabel } from '../scripts/card-groups.mjs';
 import {
   costLabel, emptyFilters, filterGroups, groupKey, highestLevel, levelLabel,
-  matchesCard, professionOrder, readFilters, recordKey, relatedNames, sortLevels, writeFilters,
+  matchesCard, professionOrder, readFilters, recordKey, relatedNames, relatedVariants, sortLevels, writeFilters,
 } from './catalog.ts';
 import type { Card, CardGroup, Filters } from './catalog.ts';
 import './style.css';
 import { CardEditor } from './editor.tsx';
+import { installFocusMode } from './focus.ts';
 
-const cards = rawCards as Card[];
+const removeFocusMode = installFocusMode(document);
+if (import.meta.hot) import.meta.hot.dispose(removeFocusMode);
+
 const heroFront = cards.find((card) => !card.hidden && card.type === '装备') ?? cards[0];
 const heroBack = cards.find((card) => !card.hidden && card.type === '攻击') ?? cards[1] ?? cards[0];
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;
@@ -50,7 +55,7 @@ function Selectors({ root, selected, onSelect }: { root: CardGroup; selected: Ca
       {[root.name, ...related].map((name) => <button key={name} type="button" className={selected.name === name ? 'active' : ''}
         aria-pressed={selected.name === name}
         onClick={() => {
-          const options = variantsByName.get(groupKey({ name, diary: root.diary }));
+          const options = relatedVariants(cards, root, name);
           if (options?.length) onSelect(highestLevel(name === root.name ? root.matches : options));
         }}>{name === root.name ? '本卡' : name}</button>)}
     </div>}
@@ -64,7 +69,7 @@ function Selectors({ root, selected, onSelect }: { root: CardGroup; selected: Ca
 
 function DownloadLink({ card, full = false }: { card: Card; full?: boolean }) {
   const extension = card.image.split('.').at(-1);
-  const filename = `${card.diary ? '日记' : '经典'}-${card.name}${card.level === null ? '' : `-${card.level}星`}.${extension}`;
+  const filename = `${groupLabel(card.group)}-${card.name}${card.level === null ? '' : `-${card.level}星`}.${extension}`;
   return <a className={full ? 'download-full' : 'download-icon'} href={assetUrl(card.image)} download={filename}
     aria-label={`下载${card.name}${levelLabel(card.level)}原图`}><Icon name="download" size={17} />{full && '下载原图'}</a>;
 }
@@ -72,7 +77,7 @@ function DownloadLink({ card, full = false }: { card: Card; full?: boolean }) {
 function CardTile({ group, filters, onOpen }: { group: CardGroup; filters: Filters; onOpen: (root: CardGroup, card: Card) => void }) {
   const [selected, setSelected] = useState(() => highestLevel(group.matches));
   return <article className="card-tile">
-    <div className="tile-meta"><span>{selected.type}牌</span><span>{selected.diary ? '小红帽日记' : '经典模式'}</span></div>
+    <div className="tile-meta"><span>{selected.type}牌</span><span>{groupLabel(selected.group)}</span></div>
     <button className="card-image-button" type="button" onClick={() => onOpen(group, selected)} aria-label={`查看${selected.name}详情`}>
       <CardImage card={selected} /><span className="image-hint">查看大图 <Icon name="arrow" size={15} /></span>
     </button>
@@ -100,7 +105,7 @@ function DetailDialog({ root, initial, onClose }: { root: CardGroup; initial: Ca
       <div className="detail-image"><CardImage card={selected} large /></div>
       <div className="detail-content">
         <p className="eyebrow">CARD ARCHIVE / 卡牌档案</p>
-        <span className="detail-mode">{selected.diary ? '小红帽日记' : '经典模式'}</span>
+        <span className="detail-mode">{groupLabel(selected.group)}</span>
         <h2 id="detail-title">{selected.name}</h2>
         <dl><div><dt>卡牌类型</dt><dd>{selected.type}牌</dd></div><div><dt>卡牌等级</dt><dd>{levelLabel(selected.level)}</dd></div>
           <div><dt>能耗</dt><dd>{costLabel(selected.cost)}</dd></div><div><dt>可获得职业</dt><dd>{selected.classes.join(' / ') || '待补充'}</dd></div></dl>
@@ -138,7 +143,7 @@ function App() {
     if (sort === 'name') result.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
     return result;
   }, [filters, sort]);
-  const modeCards = cards.filter((card) => filters.mode === 'all' || card.diary === (filters.mode === 'diary'));
+  const modeCards = cards.filter((card) => filters.group === 'all' || card.group === filters.group);
   const classes = [...professionOrder];
   const types = [...new Set(modeCards.map((card) => card.type))];
   const costs = [...new Set(modeCards.map((card) => String(card.cost)))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
@@ -148,8 +153,8 @@ function App() {
   if (filters.type && !types.includes(filters.type)) types.push(filters.type);
   if (filters.cost && !costs.includes(filters.cost)) costs.push(filters.cost);
   if (filters.level && !levels.includes(filters.level)) levels.push(filters.level);
-  const classicCount = filterGroups(cards, { ...emptyFilters, mode: 'classic' }).length;
-  const diaryCount = filterGroups(cards, { ...emptyFilters, mode: 'diary' }).length;
+  const totalCount = filterGroups(cards, emptyFilters).length;
+  const categories = cardCategories.map((category) => ({ ...category, count: filterGroups(cards, { ...emptyFilters, group: category.id }).length }));
   const hasFilters = signature.length > 0;
 
   return <>
@@ -169,14 +174,14 @@ function App() {
           {heroFront && <img className="hero-card hero-card-front" src={thumbnailUrl(heroFront)} alt="" width="517" height="780" />}
           <span className="art-caption">A LITTLE MAGIC, A LONG JOURNEY.</span>
         </div>
-        <div className="hero-bottom"><span><span className="status-dot" /> 示例图鉴已开启</span><span>{classicCount + diaryCount} 个卡位 <i>/</i> {cards.length} 条版本记录 <i>/</i> 2 种模式</span></div>
+        <div className="hero-bottom"><span><span className="status-dot" /> 图鉴已开启</span><span>{totalCount} 个卡位 <i>/</i> {cards.length} 条版本记录 <i>/</i> {categories.length} 个分组</span></div>
       </section>
 
       <section className="catalog-section" id="catalog" aria-labelledby="catalog-heading">
         <div className="section-heading"><div><p className="eyebrow">THE COLLECTION</p><h2 id="catalog-heading">卡牌收藏室<span>01 —</span></h2></div><p>每张卡牌，都有自己的故事。</p></div>
-        <div className="mode-tabs" role="group" aria-label="游戏模式">
-          {[['all', '全部卡牌', classicCount + diaryCount], ['classic', '经典模式', classicCount], ['diary', '小红帽日记', diaryCount]].map(([value, label, count]) =>
-            <button type="button" key={value} aria-pressed={filters.mode === value} className={filters.mode === value ? 'active' : ''} onClick={() => update('mode', String(value))}>{label}<span>{count}</span></button>)}
+        <div className="mode-tabs" role="group" aria-label="卡牌分组">
+          {[{ id: 'all', label: '全部卡牌', count: totalCount }, ...categories].map(({ id, label, count }) =>
+            <button type="button" key={id} aria-pressed={filters.group === id} className={filters.group === id ? 'active' : ''} onClick={() => update('group', id)}>{label}<span>{count}</span></button>)}
         </div>
         <div className="filter-box">
           <label className="search-field"><Icon name="search" /><input type="search" placeholder="寻找一张卡牌，输入名称…" aria-label="搜索卡牌名称" value={filters.query} onChange={(event) => update('query', event.target.value)} /><span>按名称检索</span></label>
@@ -201,4 +206,4 @@ function App() {
   </>;
 }
 
-createRoot(document.getElementById('root')!).render(<React.StrictMode>{new URLSearchParams(window.location.search).has('editor') ? <CardEditor initialCards={cards} /> : <App />}</React.StrictMode>);
+createRoot(document.getElementById('root')!).render(<React.StrictMode>{new URLSearchParams(window.location.search).has('editor') ? <CardEditor initialCards={cards} categories={cardCategories} /> : <App />}</React.StrictMode>);

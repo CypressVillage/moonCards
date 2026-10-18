@@ -1,0 +1,90 @@
+[
+  {
+    "name": "精准格挡",
+    "level": null,
+    "classes": [],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_base_extra/精准格挡.png",
+    "relatedCards": [],
+    "hidden": false,
+    "group": "base_extra"
+  },
+  {
+    "name": "割肉刀",
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base_extra/割肉刀.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base_extra"
+  },
+  {
+    "name": "狂化",
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base_extra/狂化.png",
+    "relatedCards": [],
+    "hidden": false,
+    "group": "base_extra"
+  },
+  {
+    "name": "未送达的信",
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base_extra/未送达的信.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base_extra"
+  },
+  {
+    "name": "信件背包",
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base_extra/信件背包.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base_extra"
+  },
+  {
+    "name": "追猎",
+    "level": null,
+    "classes": [],
+    "type": "特殊",
+    "cost": null,
+    "image": "assets/card_base_extra/追猎.png",
+    "relatedCards": [],
+    "hidden": false,
+    "group": "base_extra"
+  },
+  {
+    "name": "小小法力",
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base_extra/egg_小小法力.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base_extra"
+  },
+  {
+    "name": "恐惧",
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base_extra/恐惧.png",
+    "relatedCards": [],
+    "hidden": false,
+    "group": "base_extra"
+  }
+]

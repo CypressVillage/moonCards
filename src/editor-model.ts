@@ -1,4 +1,4 @@
-import { groupKey, recordKey } from './catalog.ts';
+import { canRelate, groupKey, recordKey } from './catalog.ts';
 import type { Card } from './catalog.ts';
 
 export function moveCard(cards: Card[], from: number, to: number): Card[] {
@@ -16,22 +16,21 @@ export function editCard(cards: Card[], index: number, patch: Partial<Card>): Ca
   });
 }
 
-export function editCardIdentity(cards: Card[], index: number, patch: Pick<Partial<Card>, 'name' | 'diary'>): Card[] {
+export function editCardIdentity(cards: Card[], index: number, patch: Pick<Partial<Card>, 'name'>): Card[] {
   const original = cards[index];
   const name = (patch.name ?? original.name).trim();
-  const diary = patch.diary ?? original.diary;
   if (!name) throw new Error('卡牌名称不能为空');
   const originalKey = groupKey(original);
-  const updated = { ...original, name, diary };
+  const updated = { ...original, name };
   if (cards.some((card, position) => position !== index && recordKey(card) === recordKey(updated))) {
     throw new Error(`已存在相同类别、名称和星级的记录：${name}（${original.level === null ? '无星级' : `${original.level}星`}）。不同星级可以使用相同名称。`);
   }
   // Keep references to the old name while any other level still uses it.
-  const renameReferences = diary === original.diary && name !== original.name
+  const renameReferences = name !== original.name
     && !cards.some((card, position) => position !== index && groupKey(card) === originalKey);
   return cards.map((card, position) => {
     const result = position === index ? updated : card;
-    const relatedCards = renameReferences && card.diary === original.diary && card.relatedCards.includes(original.name)
+    const relatedCards = renameReferences && card.group === original.group && card.relatedCards.includes(original.name)
       ? [...new Set(card.relatedCards.map((related) => related === original.name ? name : related))].filter((related) => related !== result.name)
       : card.relatedCards;
     return relatedCards === result.relatedCards ? result : { ...result, relatedCards };
@@ -40,7 +39,7 @@ export function editCardIdentity(cards: Card[], index: number, patch: Pick<Parti
 
 export function searchRelatedCards(cards: Card[], card: Card, query: string): string[] {
   const term = query.trim().toLocaleLowerCase();
-  return [...new Set(cards.filter((candidate) => candidate.diary === card.diary
+  return [...new Set(cards.filter((candidate) => canRelate(candidate.group, card.group)
     && candidate.name !== card.name && !card.relatedCards.includes(candidate.name)
     && candidate.name.toLocaleLowerCase().includes(term)).map((candidate) => candidate.name))];
 }

@@ -1,11 +1,12 @@
-import { readFile, mkdir, copyFile, access, rm } from 'node:fs/promises';
+import { mkdir, copyFile, access, rm } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { validateCards } from './validate-cards.mjs';
+import { readCardStore } from './card-store.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const cards = JSON.parse(await readFile(resolve(root, 'data/cards.json'), 'utf8'));
+const { cards } = await readCardStore(root);
 const errors = validateCards(cards);
 const images = [...new Set(cards.map((card) => card?.image).filter((image) => typeof image === 'string'))];
 // Do not access paths until structural validation has succeeded.
