@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyFilters, filterGroups, highestLevel, readFilters, relatedNames, writeFilters } from '../src/catalog.ts';
+import { emptyFilters, filterGroups, highestLevel, professionOrder, readFilters, relatedNames, writeFilters } from '../src/catalog.ts';
 import type { Card } from '../src/catalog.ts';
 // @ts-expect-error The validation script is intentionally shared as plain JavaScript.
 import { validateCards, cardTypes } from '../scripts/validate-cards.mjs';
@@ -8,6 +8,12 @@ import { validateCards, cardTypes } from '../scripts/validate-cards.mjs';
 const makeCard = (overrides: Partial<Card> = {}): Card => ({
   name: '测试卡', diary: false, level: 1, classes: ['职业A', '职业B'],
   type: '攻击', cost: 1, image: 'assets/test.png', relatedCards: [], ...overrides,
+});
+
+test('职业筛选使用固定顺序并直接显示原始职业名称', () => {
+  assert.deepEqual(professionOrder, ['女骑士', '游侠', '小女巫', '修女', '魔术师', '药剂师', '狼人', '契约师', '机械师', '调灵师', '猎魔人', '小猪妖']);
+  assert.equal(professionOrder[0], '女骑士');
+  assert.equal(filterGroups([makeCard({ classes: ['女骑士'] })], { ...emptyFilters, profession: professionOrder[0] }).length, 1);
 });
 
 test('类型选项固定为八种正常类型，拒绝乱码及任意未知类型', () => {

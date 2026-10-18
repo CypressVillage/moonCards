@@ -1227,7 +1227,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/索敌绳套.png",
+    "image": "assets/card_base/索敌绳套.png",
     "relatedCards": []
   },
   {
@@ -1239,7 +1239,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/砺锋石.png",
+    "image": "assets/card_base/砺锋石.png",
     "relatedCards": []
   },
   {
@@ -1251,7 +1251,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/沸腾号角.png",
+    "image": "assets/card_base/沸腾号角.png",
     "relatedCards": []
   },
   {
@@ -1263,7 +1263,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/追迹罗盘.png",
+    "image": "assets/card_base/追迹罗盘.png",
     "relatedCards": [
       "追猎"
     ]
@@ -1277,7 +1277,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/猩红吊坠.png",
+    "image": "assets/card_base/猩红吊坠.png",
     "relatedCards": []
   },
   {
@@ -1289,7 +1289,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/淬毒箭头.png",
+    "image": "assets/card_base/淬毒箭头.png",
     "relatedCards": []
   },
   {
@@ -1301,7 +1301,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/训练假人.png",
+    "image": "assets/card_base/训练假人.png",
     "relatedCards": []
   },
   {
@@ -1313,7 +1313,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/钉刺.png",
+    "image": "assets/card_base/钉刺.png",
     "relatedCards": []
   },
   {
@@ -1325,7 +1325,7 @@
     ],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/狩魔手记.png",
+    "image": "assets/card_base/狩魔手记.png",
     "relatedCards": []
   },
   {
@@ -2259,7 +2259,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_upgrade/机械炸药1.png",
+    "image": "assets/card_base/机械炸药1.png",
     "relatedCards": []
   },
   {
@@ -2271,7 +2271,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_upgrade/机械炸药2.png",
+    "image": "assets/card_base/机械炸药2.png",
     "relatedCards": []
   },
   {
@@ -2499,7 +2499,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/普通攻击1（猎人）.png",
+    "image": "assets/card_base/普通攻击1（猎人）.png",
     "relatedCards": []
   },
   {
@@ -2511,7 +2511,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/普通攻击2（猎人）.png",
+    "image": "assets/card_base/普通攻击2（猎人）.png",
     "relatedCards": []
   },
   {
@@ -2523,7 +2523,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/普通攻击3（猎人）.png",
+    "image": "assets/card_base/普通攻击3（猎人）.png",
     "relatedCards": []
   },
   {
@@ -2535,7 +2535,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/左侧连袭.png",
+    "image": "assets/card_base/左侧连袭.png",
     "relatedCards": []
   },
   {
@@ -2547,7 +2547,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/右侧旋斩.png",
+    "image": "assets/card_base/右侧旋斩.png",
     "relatedCards": []
   },
   {
@@ -2559,7 +2559,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/飞刃.png",
+    "image": "assets/card_base/飞刃.png",
     "relatedCards": []
   },
   {
@@ -2571,7 +2571,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/伏击.png",
+    "image": "assets/card_base/伏击.png",
     "relatedCards": []
   },
   {
@@ -2583,7 +2583,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/战技磨练.png",
+    "image": "assets/card_base/战技磨练.png",
     "relatedCards": []
   },
   {
@@ -2595,7 +2595,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/奋身跃斩.png",
+    "image": "assets/card_base/奋身跃斩.png",
     "relatedCards": []
   },
   {
@@ -2607,7 +2607,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/天罗地网.png",
+    "image": "assets/card_base/天罗地网.png",
     "relatedCards": []
   },
   {
@@ -2619,7 +2619,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/穿心弩.png",
+    "image": "assets/card_base/穿心弩.png",
     "relatedCards": []
   },
   {
@@ -2631,7 +2631,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/百战成锋.png",
+    "image": "assets/card_base/百战成锋.png",
     "relatedCards": []
   },
   {
@@ -2643,7 +2643,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/淬火.png",
+    "image": "assets/card_base/淬火.png",
     "relatedCards": []
   },
   {
@@ -2655,7 +2655,7 @@
     ],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/燥热杀意.png",
+    "image": "assets/card_base/燥热杀意.png",
     "relatedCards": []
   },
   {
@@ -5817,7 +5817,7 @@
     ],
     "type": "行动",
     "cost": 1,
-    "image": "assets/card_hunter/狩猎姿态.png",
+    "image": "assets/card_base/狩猎姿态.png",
     "relatedCards": []
   },
   {
@@ -5829,7 +5829,7 @@
     ],
     "type": "行动",
     "cost": 0,
-    "image": "assets/card_hunter/凝神.png",
+    "image": "assets/card_base/凝神.png",
     "relatedCards": []
   },
   {
@@ -5841,7 +5841,7 @@
     ],
     "type": "行动",
     "cost": 1,
-    "image": "assets/card_hunter/备战.png",
+    "image": "assets/card_base/备战.png",
     "relatedCards": []
   },
   {
@@ -5853,7 +5853,7 @@
     ],
     "type": "行动",
     "cost": 2,
-    "image": "assets/card_hunter/特训.png",
+    "image": "assets/card_base/特训.png",
     "relatedCards": []
   },
   {
@@ -8130,7 +8130,7 @@
     ],
     "type": "咒术",
     "cost": 3,
-    "image": "assets/card_hunter/初试锋芒.png",
+    "image": "assets/card_base/初试锋芒.png",
     "relatedCards": []
   },
   {
@@ -8142,7 +8142,7 @@
     ],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_hunter/迂回.png",
+    "image": "assets/card_base/迂回.png",
     "relatedCards": []
   },
   {
@@ -8154,7 +8154,7 @@
     ],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_hunter/狭路相逢.png",
+    "image": "assets/card_base/狭路相逢.png",
     "relatedCards": []
   },
   {
@@ -8166,7 +8166,7 @@
     ],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_hunter/招架挥斩.png",
+    "image": "assets/card_base/招架挥斩.png",
     "relatedCards": []
   },
   {
@@ -8178,7 +8178,7 @@
     ],
     "type": "咒术",
     "cost": 3,
-    "image": "assets/card_hunter/整装待发.png",
+    "image": "assets/card_base/整装待发.png",
     "relatedCards": []
   },
   {
@@ -8190,7 +8190,7 @@
     ],
     "type": "咒术",
     "cost": 4,
-    "image": "assets/card_hunter/穿梭连斩.png",
+    "image": "assets/card_base/穿梭连斩.png",
     "relatedCards": []
   },
   {
@@ -8202,7 +8202,7 @@
     ],
     "type": "咒术",
     "cost": 5,
-    "image": "assets/card_hunter/追杀标记.png",
+    "image": "assets/card_base/追杀标记.png",
     "relatedCards": [
       "追猎"
     ]
@@ -8216,7 +8216,7 @@
     ],
     "type": "咒术",
     "cost": 4,
-    "image": "assets/card_hunter/狂化之息.png",
+    "image": "assets/card_base/狂化之息.png",
     "relatedCards": [
       "狂化"
     ]
@@ -8230,7 +8230,7 @@
     ],
     "type": "咒术",
     "cost": 7,
-    "image": "assets/card_hunter/诱敌.png",
+    "image": "assets/card_base/诱敌.png",
     "relatedCards": [
       "精准格挡"
     ]
@@ -8244,7 +8244,7 @@
     ],
     "type": "咒术",
     "cost": 6,
-    "image": "assets/card_hunter/身经百战.png",
+    "image": "assets/card_base/身经百战.png",
     "relatedCards": []
   },
   {
@@ -8256,7 +8256,7 @@
     ],
     "type": "咒术",
     "cost": 5,
-    "image": "assets/card_hunter/袭剿.png",
+    "image": "assets/card_base/袭剿.png",
     "relatedCards": []
   },
   {
@@ -8268,7 +8268,7 @@
     ],
     "type": "咒术",
     "cost": 6,
-    "image": "assets/card_hunter/战斗冲动.png",
+    "image": "assets/card_base/战斗冲动.png",
     "relatedCards": []
   },
   {
@@ -8280,7 +8280,7 @@
     ],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_hunter/逼近.png",
+    "image": "assets/card_base/逼近.png",
     "relatedCards": []
   },
   {
@@ -8292,7 +8292,7 @@
     ],
     "type": "咒术",
     "cost": 4,
-    "image": "assets/card_hunter/暗器袋.png",
+    "image": "assets/card_base/暗器袋.png",
     "relatedCards": [
       "飞刃"
     ]
@@ -8306,7 +8306,7 @@
     ],
     "type": "咒术",
     "cost": 7,
-    "image": "assets/card_hunter/全能猎手.png",
+    "image": "assets/card_base/全能猎手.png",
     "relatedCards": []
   },
   {
@@ -8318,7 +8318,7 @@
     ],
     "type": "咒术",
     "cost": 5,
-    "image": "assets/card_hunter/砥砺之心.png",
+    "image": "assets/card_base/砥砺之心.png",
     "relatedCards": []
   },
   {
@@ -8330,7 +8330,7 @@
     ],
     "type": "咒术",
     "cost": 8,
-    "image": "assets/card_hunter/猎杀时刻.png",
+    "image": "assets/card_base/猎杀时刻.png",
     "relatedCards": []
   },
   {
@@ -8348,10 +8348,8 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_upgrade/法力1.png",
-    "relatedCards": [
-      "小小法力"
-    ]
+    "image": "assets/card_base/法力1.png",
+    "relatedCards": []
   },
   {
     "name": "法力",
@@ -8368,10 +8366,8 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_upgrade/法力2.png",
-    "relatedCards": [
-      "小小法力"
-    ]
+    "image": "assets/card_base/法力2.png",
+    "relatedCards": []
   },
   {
     "name": "法力",
@@ -8978,7 +8974,7 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_hunter/法力积淀.png",
+    "image": "assets/card_base/法力积淀.png",
     "relatedCards": []
   },
   {
@@ -8990,7 +8986,7 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_hunter/休整.png",
+    "image": "assets/card_base/休整.png",
     "relatedCards": []
   },
   {
@@ -9002,7 +8998,7 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_hunter/狂热涌动.png",
+    "image": "assets/card_base/狂热涌动.png",
     "relatedCards": []
   },
   {
@@ -9014,7 +9010,7 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_hunter/魔法启迪.png",
+    "image": "assets/card_base/魔法启迪.png",
     "relatedCards": []
   },
   {
@@ -9026,7 +9022,7 @@
     ],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_hunter/全神贯注.png",
+    "image": "assets/card_base/全神贯注.png",
     "relatedCards": []
   },
   {
@@ -9211,7 +9207,7 @@
     ],
     "type": "反制",
     "cost": null,
-    "image": "assets/card_hunter/寻迹追踪.png",
+    "image": "assets/card_base/寻迹追踪.png",
     "relatedCards": []
   },
   {
@@ -9223,7 +9219,7 @@
     ],
     "type": "反制",
     "cost": null,
-    "image": "assets/card_hunter/借势奇袭.png",
+    "image": "assets/card_base/借势奇袭.png",
     "relatedCards": []
   },
   {
@@ -9235,7 +9231,7 @@
     ],
     "type": "反制",
     "cost": null,
-    "image": "assets/card_hunter/弩箭陷阱.png",
+    "image": "assets/card_base/弩箭陷阱.png",
     "relatedCards": []
   },
   {
@@ -9397,7 +9393,7 @@
     "classes": [],
     "type": "反制",
     "cost": null,
-    "image": "assets/card_hunter/精准格挡.png",
+    "image": "assets/card_base_extra/精准格挡.png",
     "relatedCards": [],
     "hidden": true
   },
@@ -9408,7 +9404,7 @@
     "classes": [],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/割肉刀.png",
+    "image": "assets/card_base_extra/割肉刀.png",
     "relatedCards": [],
     "hidden": true
   },
@@ -9419,7 +9415,7 @@
     "classes": [],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_hunter/狂化.png",
+    "image": "assets/card_base_extra/狂化.png",
     "relatedCards": [],
     "hidden": true
   },
@@ -9430,7 +9426,7 @@
     "classes": [],
     "type": "攻击",
     "cost": null,
-    "image": "assets/card_hunter/未送达的信.png",
+    "image": "assets/card_base_extra/未送达的信.png",
     "relatedCards": [],
     "hidden": true
   },
@@ -9441,7 +9437,7 @@
     "classes": [],
     "type": "装备",
     "cost": null,
-    "image": "assets/card_hunter/信件背包.png",
+    "image": "assets/card_base_extra/信件背包.png",
     "relatedCards": [],
     "hidden": true
   },
@@ -9452,7 +9448,7 @@
     "classes": [],
     "type": "特殊",
     "cost": null,
-    "image": "assets/card_hunter/追猎.png",
+    "image": "assets/card_base_extra/追猎.png",
     "relatedCards": [],
     "hidden": true
   },
@@ -10324,7 +10320,7 @@
     "classes": [],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_base_extra/extra_恐惧.png",
+    "image": "assets/card_base_extra/恐惧.png",
     "relatedCards": [],
     "hidden": true
   }

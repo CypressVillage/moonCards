@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Card } from './catalog.ts';
-import { levelLabel } from './catalog.ts';
+import { levelLabel, professionOrder } from './catalog.ts';
 import { editCard, editCardIdentity, moveCard, searchRelatedCards } from './editor-model.ts';
 // @ts-expect-error Shared browser/Node validator is plain JavaScript.
 import { validateCards, cardTypes as allowedCardTypes } from '../scripts/validate-cards.mjs';
 import './editor.css';
 
 const endpoint = `${import.meta.env.BASE_URL}__card-editor/cards`;
-const professions = ['女骑士', '游侠', '小女巫', '修女', '魔术师', '药剂师', '狼人', '契约师', '机械师', '调灵师', '猎魔人', '小猪妖'];
+const professions = professionOrder;
 const levels = [{ label: '无', value: null }, { label: '一星', value: 1 }, { label: '二星', value: 2 }, { label: '三星', value: 3 }];
 const cardTypes: string[] = allowedCardTypes;
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;

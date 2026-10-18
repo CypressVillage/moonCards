@@ -31,6 +31,8 @@ export const emptyFilters: Filters = {
   query: '', mode: 'all', profession: '', type: '', cost: '', level: '',
 };
 
+export const professionOrder = ['女骑士', '游侠', '小女巫', '修女', '魔术师', '药剂师', '狼人', '契约师', '机械师', '调灵师', '猎魔人', '小猪妖'];
+
 export const groupKey = (card: Pick<Card, 'diary' | 'name'>) => JSON.stringify([card.diary, card.name]);
 export const recordKey = (card: Card) => JSON.stringify([card.diary, card.name, card.level]);
 export const sortLevels = (cards: Card[]) => [...cards].sort((a, b) => (a.level ?? 0) - (b.level ?? 0));

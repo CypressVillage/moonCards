@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import rawCards from '../data/cards.json';
 import {
   costLabel, emptyFilters, filterGroups, groupKey, highestLevel, levelLabel,
-  matchesCard, readFilters, recordKey, relatedNames, sortLevels, writeFilters,
+  matchesCard, professionOrder, readFilters, recordKey, relatedNames, sortLevels, writeFilters,
 } from './catalog.ts';
 import type { Card, CardGroup, Filters } from './catalog.ts';
 import './style.css';
@@ -139,7 +139,7 @@ function App() {
     return result;
   }, [filters, sort]);
   const modeCards = cards.filter((card) => filters.mode === 'all' || card.diary === (filters.mode === 'diary'));
-  const classes = [...new Set(modeCards.flatMap((card) => card.classes))].sort((a, b) => a.localeCompare(b, 'zh-CN'));
+  const classes = [...professionOrder];
   const types = [...new Set(modeCards.map((card) => card.type))];
   const costs = [...new Set(modeCards.map((card) => String(card.cost)))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const levels = [...new Set(modeCards.map((card) => String(card.level)))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
@@ -181,7 +181,7 @@ function App() {
         <div className="filter-box">
           <label className="search-field"><Icon name="search" /><input type="search" placeholder="寻找一张卡牌，输入名称…" aria-label="搜索卡牌名称" value={filters.query} onChange={(event) => update('query', event.target.value)} /><span>按名称检索</span></label>
           <div className="filter-row"><span className="filter-row-label"><Icon name="filter" size={17} /> 筛选</span>
-            <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name}>{name}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
+            <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{name}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
             <FilterSelect label="类型" value={filters.type} onChange={(value) => update('type', value)}><option value="">全部类型</option>{types.map((type) => <option key={type} value={type}>{type}牌</option>)}</FilterSelect>
             <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '未标注 / 不适用' : `${cost} 费`}</option>)}</FilterSelect>
             <FilterSelect label="等级" value={filters.level} onChange={(value) => update('level', value)}><option value="">全部等级</option>{levels.map((level) => <option key={level} value={level}>{level === 'null' ? '无星级' : `${level} 星`}</option>)}</FilterSelect>
