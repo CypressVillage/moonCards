@@ -90,3 +90,23 @@ test('实际 JSON 的 group 和目录一致，没有 diary 布尔字段（允许
   assert.ok(all.length > 0);
   assert.deepEqual(validateCards(all), []);
 });
+
+test('分组配置支持可编辑模式和旧显示名，拒绝错误模式或空名称', async () => {
+  const root = await mkdtemp('/tmp/opencode/group-settings-');
+  await mkdir(`${root}/data/cards`, { recursive: true });
+  try {
+    await writeFile(`${root}/data/cards/base.json`, JSON.stringify([card('base')]));
+    await writeFile(`${root}/data/groups.json`, JSON.stringify({ base: { label: '任意日记目录', mode: 'diary' } }));
+    let store = await readCardStore(root);
+    assert.equal(store.groups[0].mode, 'diary');
+    assert.equal(store.groups[0].label, '任意日记目录');
+    await writeFile(`${root}/data/groups.json`, JSON.stringify({ base: '旧显示名' }));
+    store = await readCardStore(root);
+    assert.equal(store.groups[0].mode, 'classic');
+    assert.equal(store.groups[0].label, '旧显示名');
+    for (const entry of [{ label: '名称', mode: 'wrong' }, { label: '', mode: 'diary' }, { label: '名称', mode: true }]) {
+      await writeFile(`${root}/data/groups.json`, JSON.stringify({ base: entry }));
+      await assert.rejects(readCardStore(root), /分组配置格式错误/);
+    }
+  } finally { await rm(root, { recursive: true, force: true }); }
+});

@@ -1,9 +1,10 @@
 import { randomUUID } from 'node:crypto';
 import { validateCards } from './validate-cards.mjs';
-import { validGroupId } from './card-groups.mjs';
+import { describeGroup, validGroupId } from './card-groups.mjs';
 import { readCardStore } from './card-store.mjs';
 import { performAssetAction, readAssetImage, scanCardAssets } from './card-assets.mjs';
 import { commitChanges, fingerprint, jsonText, managedPath, optionalRead, problem, recoverTransactions } from './managed-files.mjs';
+import { validateCardBatch } from './card-save.mjs';
 
 const revision = (text) => fingerprint(text);
 
@@ -65,14 +66,15 @@ export function cardEditorApi(root) {
         const current = snapshot.store.groups.find((group) => group.id === groupId);
         if (!snapshot.groups.some((group) => group.id === groupId)) return reply(404, { error: '卡牌分组不存在' });
         return reply(200, {
-          cards: current?.cards ?? [], catalogCards: snapshot.store.cards, revision: revision(current?.text ?? null), saveToken, editorApiVersion: 4,
+          cards: current?.cards ?? [], catalogCards: snapshot.store.cards, revision: revision(current?.text ?? null), saveToken, editorApiVersion: 5,
           groups: snapshot.groups, assets: snapshot.assets.filter((asset) => asset.group === groupId), assetVersion: snapshot.version,
         });
       }
       const store = await readCardStore(root);
       const current = store.groups.find((group) => group.id === groupId);
-      if (!current) return reply(400, { error: '该目录尚未建档，请先从未收录图片添加卡牌' });
-      const file = await managedPath(root, current.file);
+      if (!current && !(await scanCardAssets(root)).groups.some((group) => group.id === groupId && group.folderExists)) return reply(404, { error: '卡牌目录不存在' });
+      const relativeFile = current?.file ?? describeGroup(groupId).file;
+      const file = await managedPath(root, relativeFile);
       if (req.method !== 'POST') return reply(405, { error: '不支持的请求方法' });
       // A per-server token protects writes without trusting proxy-rewritten Host,
       // Origin, forwarded headers, or the client's network address.
@@ -91,30 +93,17 @@ export function cardEditorApi(root) {
         const errors = validateCards([...latest.cards.filter((card) => card.group !== groupId), ...payload.cards]);
         if (errors.length) return reply(400, { error: errors.join('\n') });
         const previousBytes = await optionalRead(file);
-        const previous = previousBytes?.toString('utf8');
-        if (previousBytes === null || payload.revision !== revision(previousBytes)) return reply(409, { error: '文件已被其他程序修改，请先导出当前修改备份，再重新载入。' });
-        const originalCards = JSON.parse(previous);
-        if (payload.cards.length !== originalCards.length) {
-          return reply(400, { error: `记录数量不一致：页面 ${payload.cards.length} 条，文件 ${originalCards.length} 条。请先导出备份，再重新载入；此次未写入文件。` });
-        }
-        // Names are editable metadata, never record identities.
-        // Compare image multiplicities, not order, name, category, or star level.
-        const imageCounts = (cards) => {
-          const counts = new Map();
-          for (const card of cards) counts.set(card.image, (counts.get(card.image) ?? 0) + 1);
-          return counts;
-        };
-        const expected = imageCounts(originalCards);
-        const actual = imageCounts(payload.cards);
-        const changedImages = [...new Set([...expected.keys(), ...actual.keys()])]
-          .filter((image) => expected.get(image) !== actual.get(image));
-        if (changedImages.length) {
-          return reply(400, { error: `图片记录不一致（名称和类别修改是允许的）：\n${changedImages.slice(0, 6).map((image) => `${image}：文件 ${expected.get(image) ?? 0} 条，页面 ${actual.get(image) ?? 0} 条`).join('\n')}\n请先导出备份，再重新载入；此次未写入文件。` });
-        }
+        if (payload.revision !== revision(previousBytes)) return reply(409, { error: '文件已被其他程序修改，请先导出当前修改备份，再重新载入。' });
+        const originalCards = previousBytes === null ? [] : JSON.parse(previousBytes.toString('utf8'));
+        if (previousBytes === null && !payload.cards.length) return reply(400, { error: '请先添加待收录卡牌，不会创建空 JSON' });
+        const newImages = await validateCardBatch(root, groupId, originalCards, payload.cards);
         if (payload.dryRun === true) return reply(200, { valid: true });
+        for (const image of newImages) {
+          if (fingerprint(await optionalRead(await managedPath(root, image.path))) !== fingerprint(image.bytes)) throw problem(`待收录图片已变化，请核对后重试：${image.path}`, 409);
+        }
         const text = jsonText(payload.cards);
-        await commitChanges(root, [{ path: current.file, before: previousBytes, after: Buffer.from(text) }]);
-        return reply(200, { revision: revision(text) });
+        await commitChanges(root, [{ path: relativeFile, before: previousBytes, after: Buffer.from(text) }]);
+        return reply(200, { revision: revision(text), added: payload.cards.length - originalCards.length });
       } finally { saving = false; }
     } catch (error) { return reply(error.status ?? 500, { error: `无法读写卡牌文件：${error.message}` }); }
   };

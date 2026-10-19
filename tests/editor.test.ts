@@ -3,12 +3,34 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
-import { moveCard, editCard, editCardIdentity, searchRelatedCards } from '../src/editor-model.ts';
+import { appendRegistrationDraft, moveCard, editCard, editCardIdentity, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from '../src/editor-model.ts';
 import type { Card } from '../src/catalog.ts';
 // @ts-expect-error Shared Node middleware is plain JavaScript.
 import { cardEditorApi } from '../scripts/card-editor-api.mjs';
 
 const card = (name: string, level = 1): Card => ({ name, level, group: 'base', classes: [], type: '攻击', cost: null, image: `assets/card_base/${name}${level}.png`, relatedCards: [] });
+
+test('连续收录只追加草稿，保留已有修改，可排序、继续编辑和单独撤回', () => {
+  const saved = [card('A'), card('B')];
+  const changed = editCard(saved, 0, { cost: 2 });
+  const candidate = { ...card('新卡'), classes: ['女骑士'] };
+  const first = appendRegistrationDraft(changed, candidate);
+  candidate.classes.push('游侠');
+  let drafts = appendRegistrationDraft(first, card('第二张'));
+  assert.deepEqual(drafts[2].classes, ['女骑士']);
+  assert.equal(drafts[0].cost, 2);
+  assert.deepEqual([...pendingRegistrationImages(drafts, saved)], [card('新卡').image, card('第二张').image]);
+  assert.equal(saved.length, 2);
+  assert.equal(saved[0].cost, null);
+  drafts = moveCard(drafts, 3, 0);
+  drafts = withdrawRegistrationDraft(drafts, card('新卡').image, saved);
+  assert.deepEqual(drafts.map((entry) => entry.name), ['第二张', 'A', 'B']);
+  assert.equal(drafts[1].cost, 2);
+  assert.throws(() => appendRegistrationDraft(drafts, card('第二张')), /重复收录/);
+  assert.throws(() => appendRegistrationDraft(drafts, { ...card('A'), image: 'assets/card_base/另一张.png' }), /相同分组/);
+  assert.throws(() => withdrawRegistrationDraft(drafts, saved[0].image, saved), /不能删除已保存/);
+  assert.equal(pendingRegistrationImages(drafts, drafts).size, 0);
+});
 
 test('排序移动精确对应 JSON 记录顺序，不改变内容', () => {
   const cards = [card('A'), card('B'), card('C')];
@@ -111,7 +133,7 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     const loaded = await read.json();
     saveToken = loaded.saveToken;
     assert.ok(saveToken);
-    assert.equal(loaded.editorApiVersion, 4);
+    assert.equal(loaded.editorApiVersion, 5);
     assert.deepEqual(loaded.groups.map((group: { id: string }) => group.id), ['base', 'diary', 'base_extra']);
     assert.equal(loaded.cards.length, 2);
     assert.equal(loaded.catalogCards.length, 4);

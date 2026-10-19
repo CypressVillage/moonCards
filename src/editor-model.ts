@@ -16,6 +16,22 @@ export function editCard(cards: Card[], index: number, patch: Partial<Card>): Ca
   });
 }
 
+export function appendRegistrationDraft(cards: Card[], candidate: Card): Card[] {
+  if (cards.some((card) => card.image === candidate.image)) throw new Error('该图片已在当前卡牌列表中，不要重复收录');
+  if (cards.some((card) => recordKey(card) === recordKey(candidate))) throw new Error('已存在相同分组、名称和星级的记录');
+  return [...cards, structuredClone(candidate)];
+}
+
+export function pendingRegistrationImages(cards: Card[], savedCards: Card[]): Set<string> {
+  const savedImages = new Set(savedCards.map((card) => card.image));
+  return new Set(cards.filter((card) => !savedImages.has(card.image)).map((card) => card.image));
+}
+
+export function withdrawRegistrationDraft(cards: Card[], image: string, savedCards: Card[]): Card[] {
+  if (savedCards.some((card) => card.image === image)) throw new Error('只能撤回待收录草稿，不能删除已保存卡牌');
+  return cards.filter((card) => card.image !== image);
+}
+
 export function editCardIdentity(cards: Card[], index: number, patch: Pick<Partial<Card>, 'name'>): Card[] {
   const original = cards[index];
   const name = (patch.name ?? original.name).trim();

@@ -31,11 +31,11 @@ test('编辑器使用分组标题及编辑图标，状态、搜索、上传按�
       ],
     }));
     assert.doesNotMatch(html, /class="editor-notice"|LOCAL CARD WORKSHOP|已读取本地/);
-    assert.equal((html.match(/aria-label="修改分组显示名"/g) ?? []).length, 1);
+    assert.equal((html.match(/aria-label="编辑分组设置"/g) ?? []).length, 1);
     assert.match(html, /class="editor-group-name"><h2[^>]*>经典模式<\/h2><button/);
     const actions = html.match(/class="editor-actions">([\s\S]*?)<\/div>/)?.[1];
     assert.ok(actions);
-    assert.doesNotMatch(actions, /修改分组显示名/);
+    assert.doesNotMatch(actions, /编辑分组设置/);
     assert.match(html, /已收录记录 <strong>1<\/strong>/);
     assert.match(html, /未收录图片 <strong>3<\/strong>/);
     assert.match(html, /title="切换文件夹"/);
@@ -49,6 +49,23 @@ test('编辑器使用分组标题及编辑图标，状态、搜索、上传按�
     assert.match(controls, /type="file"[^>]*multiple=""/);
     assert.match(html, /关联卡牌（全部分组，可多选）/);
     assert.match(html, /其他 JSON 卡牌<span title="小红帽日记">/);
+    window.location.search = '?editor&group=custom';
+    const diaryHtml = renderToStaticMarkup(createElement(CardEditor, {
+      initialCards: [{ name: '日记卡', group: 'custom', level: null, classes: ['女骑士', '游侠', '修女'], type: '攻击', cost: null, relatedCards: [], image: 'assets/card_custom/日记卡.png' }],
+      categories: [{ id: 'custom', label: '自定日记目录', mode: 'diary', folder: 'assets/card_custom', file: 'data/cards/custom.json', folderExists: true }],
+    }));
+    assert.match(diaryHtml, /<input(?=[^>]*type="checkbox")(?=[^>]*value="女骑士")(?=[^>]*checked="")[^>]*\/>小骑士/);
+    assert.match(diaryHtml, /<input(?=[^>]*type="checkbox")(?=[^>]*value="游侠")(?=[^>]*checked="")[^>]*\/>小游侠/);
+    assert.doesNotMatch(diaryHtml, /value="小骑士"/);
+    assert.match(diaryHtml, /其他已有职业（保留原值）：修女/);
+    const { GroupSettingsDialog } = await server.ssrLoadModule('/src/group-settings.tsx');
+    const settingsHtml = renderToStaticMarkup(createElement(GroupSettingsDialog, {
+      group: { id: 'custom', label: '自定日记目录', mode: 'diary', folder: 'assets/card_custom', file: 'data/cards/custom.json' },
+      busy: false, message: '', onClose: () => {}, onSave: async () => true,
+    }));
+    assert.match(settingsHtml, /aria-label="日记文件夹"[^>]*checked=""/);
+    assert.match(settingsHtml, /aria-label="分组显示名称"/);
+    assert.match(settingsHtml, /保存分组设置/);
   } finally {
     await server?.close();
     await rm(cache, { recursive: true, force: true });

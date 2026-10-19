@@ -34,7 +34,7 @@ export const emptyFilters: Filters = {
   query: '', group: 'all', profession: '', type: '', cost: '', level: '',
 };
 
-export const professionOrder = ['女骑士', '游侠', '小女巫', '修女', '魔术师', '药剂师', '狼人', '契约师', '机械师', '调灵师', '猎魔人', '小猪妖'];
+export { professionOrder } from './professions.ts';
 
 export const groupKey = (card: Pick<Card, 'group' | 'name'>) => JSON.stringify([card.group, card.name]);
 export const recordKey = (card: Card) => JSON.stringify([card.group, card.name, card.level]);

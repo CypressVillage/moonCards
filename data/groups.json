@@ -1,7 +1,7 @@
 {
-  "base": "经典模式",
-  "diary": "小红帽日记",
-  "base_extra": "经典附属卡",
-  "monster": "怪物卡牌",
-  "ce_41": "愚人节彩蛋"
+  "base": { "label": "经典模式", "mode": "classic" },
+  "diary": { "label": "小红帽日记", "mode": "diary" },
+  "base_extra": { "label": "经典附属卡", "mode": "classic" },
+  "monster": { "label": "怪物卡牌", "mode": "classic" },
+  "ce_41": { "label": "愚人节彩蛋", "mode": "classic" }
 }

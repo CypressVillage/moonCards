@@ -2,7 +2,9 @@
   {
     "name": "致命餐叉",
     "level": null,
-    "classes": [],
+    "classes": [
+      "女骑士"
+    ],
     "type": "装备",
     "cost": null,
     "image": "assets/card_diary/致命餐叉.png",

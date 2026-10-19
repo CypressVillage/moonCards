@@ -21,8 +21,8 @@ export function UnregisteredGallery({ assets, onOpen, busy }: { assets: CardAsse
   </section>;
 }
 
-export function UploadImages({ group, disabled, disabledReason, onAction, onError }: {
-  group: string; disabled: boolean; disabledReason?: string; onAction: (action: AssetAction) => Promise<boolean>; onError: (error: string) => void;
+export function UploadImages({ group, disabled, disabledReason, onReadingChange, onAction, onError }: {
+  group: string; disabled: boolean; disabledReason?: string; onReadingChange?: (reading: boolean) => void; onAction: (action: AssetAction) => Promise<boolean>; onError: (error: string) => void;
 }) {
   const input = useRef<HTMLInputElement>(null);
   const [reading, setReading] = useState(false);
@@ -32,6 +32,7 @@ export function UploadImages({ group, disabled, disabledReason, onAction, onErro
       onError('一次最多上传 20 张；单张不超过 20 MB，总大小不超过 40 MB。'); return;
     }
     setReading(true);
+    onReadingChange?.(true);
     try {
       const encoded = [];
       for (const file of files) {
@@ -45,7 +46,7 @@ export function UploadImages({ group, disabled, disabledReason, onAction, onErro
       }
       await onAction({ action: 'upload', group, files: encoded });
     } catch (error) { onError(String(error)); }
-    finally { setReading(false); if (input.current) input.current.value = ''; }
+    finally { setReading(false); onReadingChange?.(false); if (input.current) input.current.value = ''; }
   }
   const help = `${disabledReason ? `${disabledReason}。` : ''}上传到 card_${group}；支持 PNG、JPEG、WebP。一次最多 20 张，单张 20 MB，总计 40 MB。上传后为未收录图片，原图不加工。`;
   return <div className={`asset-upload-zone compact${disabled ? ' disabled' : ''}`} title={help} onDragOver={(event) => {
@@ -87,6 +88,6 @@ export function AssetDialog({ asset, groups, busy, message, onClose, onAction, o
       <button disabled={busy || !target} onClick={() => void perform({ action: 'move', path: asset.path, targetGroup: target })}>移动源图片及其卡牌记录</button>
       <p className="editor-hint">同名文件不会覆盖。已收录图片的全部引用一并迁移，目标组追加记录；有关联失效或同名同星冲突时阻止操作，请先修正。</p>
     </fieldset>}
-    <div className="editor-actions editor-dialog-actions"><button disabled={busy} onClick={onClose}>返回缩略图</button>{asset.status === 'unregistered' && <button className="editor-save" disabled={busy} onClick={() => onRegister(asset)}>填写元数据，添加为新卡牌</button>}</div>
+    <div className="editor-actions editor-dialog-actions"><button disabled={busy} onClick={onClose}>返回缩略图</button>{asset.status === 'unregistered' && <button className="editor-save" disabled={busy} onClick={() => onRegister(asset)}>填写元数据，加入待收录</button>}</div>
   </dialog>;
 }

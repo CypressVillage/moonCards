@@ -1,9 +1,16 @@
-import labels from '../data/groups.json' with { type: 'json' };
+import settings from '../data/groups.json' with { type: 'json' };
 // Preserve the original main-page categories, then append additional groups.
 const preferredOrder = ['base', 'diary', 'base_extra'];
 
 export const validGroupId = (id) => typeof id === 'string' && /^[a-z][a-z0-9_]*$/.test(id) && id !== 'all';
-export const groupLabel = (id, overrides = labels) => Object.hasOwn(overrides, id) ? overrides[id] : id;
+export function groupLabel(id, overrides = settings) {
+  const entry = Object.hasOwn(overrides, id) ? overrides[id] : undefined;
+  return typeof entry === 'string' ? entry : entry?.label ?? id;
+}
+export function groupMode(id, overrides = settings) {
+  const entry = Object.hasOwn(overrides, id) ? overrides[id] : undefined;
+  return entry?.mode === 'diary' ? 'diary' : 'classic';
+}
 export function resolveRelatedCards(cards, sourceGroup, name) {
   const candidates = cards.filter((card) => card.name === name);
   const own = candidates.filter((card) => card.group === sourceGroup);
@@ -16,7 +23,7 @@ export function resolveRelatedCards(cards, sourceGroup, name) {
   const [firstGroup] = sortGroupIds([...new Set(candidates.map((card) => card.group))]);
   return candidates.filter((card) => card.group === firstGroup);
 }
-export const describeGroup = (id, overrides = labels) => ({ id, label: groupLabel(id, overrides), folder: `assets/card_${id}`, file: `data/cards/${id}.json` });
+export const describeGroup = (id, overrides = settings) => ({ id, label: groupLabel(id, overrides), mode: groupMode(id, overrides), folder: `assets/card_${id}`, file: `data/cards/${id}.json` });
 export function sortGroupIds(ids) {
   const rank = (id) => preferredOrder.includes(id) ? preferredOrder.indexOf(id) : preferredOrder.length;
   return [...ids].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));

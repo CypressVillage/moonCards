@@ -1,9 +1,10 @@
 import type { Card } from './catalog.ts';
+import type { GroupMode } from './professions.ts';
 // @ts-expect-error Shared browser/Node group definitions are plain JavaScript.
 import { describeGroup, sortGroupIds } from '../scripts/card-groups.mjs';
 
 export interface CardCategory {
-  id: string; label: string; folder: string; file: string;
+  id: string; label: string; folder: string; file: string; mode?: GroupMode;
   hasMetadata?: boolean; folderExists?: boolean; registered?: number; unregistered?: number; missing?: number; recordCount?: number;
 }
 

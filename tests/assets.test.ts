@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, readdir, rm, access, symlink, unlink } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import type { Card } from '../src/catalog.ts';
+import { appendRegistrationDraft, editCard, moveCard } from '../src/editor-model.ts';
 // @ts-expect-error Shared Node asset service is plain JavaScript.
 import { scanCardAssets, performAssetAction, readAssetImage, MAX_IMAGE_BYTES } from '../scripts/card-assets.mjs';
 // @ts-expect-error Shared Node transaction implementation is plain JavaScript.
@@ -137,6 +138,30 @@ test('关联名称仍存在但跨组移动将指向另一张同名卡时，拒�
   await assert.rejects(access(`${root}/assets/card_diary/共享.png`));
 }));
 
+test('日记文件夹设置只写配置，可取消且改显示名不会丢失模式，职业原值不变', async () => fixture(async (root) => {
+  const baseFile = `${root}/data/cards/base.json`;
+  const records = JSON.parse(await readFile(baseFile, 'utf8')).map((entry: Card) => ({ ...entry, classes: ['女骑士', '游侠', '修女'] }));
+  await writeFile(baseFile, JSON.stringify(records));
+  const metadata = ['base', 'base_extra', 'diary'];
+  const before = await Promise.all(metadata.map((id) => readFile(`${root}/data/cards/${id}.json`)));
+  await action(root, { action: 'group-settings', group: 'base', label: '经典目录使用日记称呼', mode: 'diary' });
+  let snapshot = await scanCardAssets(root);
+  assert.equal(snapshot.groups.find((group: { id: string }) => group.id === 'base').mode, 'diary');
+  assert.equal(JSON.parse(await readFile(`${root}/data/groups.json`, 'utf8')).base.mode, 'diary');
+  await action(root, { action: 'label', group: 'base', label: '只改显示名' });
+  assert.equal(JSON.parse(await readFile(`${root}/data/groups.json`, 'utf8')).base.mode, 'diary');
+  const settingsBefore = await readFile(`${root}/data/groups.json`);
+  await assert.rejects(action(root, { action: 'group-settings', group: 'base', label: '无效模式', mode: 'wrong' }), /classic 或 diary/);
+  assert.deepEqual(await readFile(`${root}/data/groups.json`), settingsBefore);
+  await action(root, { action: 'group-settings', group: 'base', label: '只改显示名', mode: 'classic' });
+  snapshot = await scanCardAssets(root);
+  assert.equal(snapshot.groups.find((group: { id: string }) => group.id === 'base').mode, 'classic');
+  await action(root, { action: 'group-settings', group: 'skill', label: '新日记目录', mode: 'diary' });
+  await assert.rejects(access(`${root}/data/cards/skill.json`));
+  for (const [index, id] of metadata.entries()) assert.deepEqual(await readFile(`${root}/data/cards/${id}.json`), before[index]);
+  assert.deepEqual(await readFile(`${root}/${source}`), png);
+}));
+
 test('上传拒绝伪装文件、路径、过大图片及同名文件，批次不部分写入', async () => fixture(async (root) => {
   for (const file of [{ name: '../越界.png', base64: png.toString('base64') }, { name: '伪装.png', base64: Buffer.from('not an image').toString('base64') }, { name: '格式错误.jpg', base64: png.toString('base64') }]) {
     await assert.rejects(action(root, { action: 'upload', group: 'base', files: [file] }));
@@ -213,6 +238,14 @@ test('本地 HTTP 扫描、原图预览和收录；缺失令牌或跨站操作�
     assert.equal((await post(snapshot.saveToken, 'cross-site')).status, 403);
     assert.equal((await post(snapshot.saveToken)).status, 200);
     assert.equal(JSON.parse(await readFile(`${root}/data/cards/skill.json`, 'utf8'))[0].name, '新卡');
+    const latest = await (await fetch(`${origin}/__card-editor/assets`)).json();
+    const before = await readFile(`${root}/data/cards/base.json`);
+    const settingsResponse = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': latest.saveToken },
+      body: JSON.stringify({ action: 'group-settings', group: 'base', label: '可编辑日记组', mode: 'diary', version: latest.version }) });
+    assert.equal(settingsResponse.status, 200);
+    const updated = await (await fetch(`${origin}/__card-editor/cards?group=base`)).json();
+    assert.equal(updated.groups.find((group: { id: string }) => group.id === 'base').mode, 'diary');
+    assert.deepEqual(await readFile(`${root}/data/cards/base.json`), before);
   } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
 }));
 
@@ -226,4 +259,67 @@ test('其他进程仍存活的事务不会被启动恢复误回滚，写入会�
   assert.deepEqual(await readFile(`${root}/${destination}`), png);
   await assert.rejects(commitChanges(root, [{ path: 'data/groups.json', before: null, after: Buffer.from('{}') }]), /另一个开发服务进程/);
   await assert.rejects(access(`${root}/data/groups.json`));
+}));
+
+test('暂存多张新卡不写文件，统一保存时与旧卡修改、排序和草稿关联一次写入', async () => fixture(async (root) => {
+  await writeFile(`${root}/assets/card_base/第二张.png`, png);
+  const file = `${root}/data/cards/base.json`;
+  const before = await readFile(file);
+  const sibling = await readFile(`${root}/data/cards/diary.json`);
+  const middleware = cardEditorApi(root);
+  const server = createServer((req, res) => void middleware(req, res, () => { res.writeHead(404); res.end(); }));
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address(); assert.ok(address && typeof address !== 'string');
+  const origin = `http://127.0.0.1:${address.port}`;
+  const url = `${origin}/__card-editor/cards?group=base`;
+  try {
+    const loaded = await (await fetch(url)).json();
+    let drafts = editCard(loaded.cards, 0, { cost: 3 });
+    drafts = appendRegistrationDraft(drafts, card('base', '新卡一', null, 'assets/card_base/未收录.png'));
+    drafts = appendRegistrationDraft(drafts, card('base', '新卡二', null, 'assets/card_base/第二张.png'));
+    drafts = editCard(drafts, 2, { relatedCards: ['新卡二'] });
+    drafts = moveCard(drafts, 3, 0);
+    assert.deepEqual(await readFile(file), before);
+    const post = (cards: Card[], dryRun = false, revision = loaded.revision) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': loaded.saveToken }, body: JSON.stringify({ cards, revision, dryRun }) });
+    assert.equal((await post(drafts.filter((entry) => !(entry.name === 'A' && entry.level === 1)))).status, 400);
+    assert.equal((await post([...drafts, card('base', '已有图片多加一条', 3, source)])).status, 400);
+    assert.deepEqual(await readFile(file), before);
+    assert.equal((await post(drafts, true)).status, 200);
+    assert.deepEqual(await readFile(file), before);
+    const response = await post(drafts);
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).added, 2);
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), drafts);
+    assert.deepEqual(await readFile(`${root}/data/cards/diary.json`), sibling);
+    assert.deepEqual(await readFile(`${root}/assets/card_base/未收录.png`), png);
+    const persisted = await readFile(file);
+    assert.equal((await post(drafts)).status, 409);
+    assert.deepEqual(await readFile(file), persisted);
+  } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
+}));
+
+test('首次建档也只在统一保存时创建 JSON，缺图或无效图片使整批保存失败', async () => fixture(async (root) => {
+  const middleware = cardEditorApi(root);
+  const server = createServer((req, res) => void middleware(req, res, () => { res.writeHead(404); res.end(); }));
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address(); assert.ok(address && typeof address !== 'string');
+  const origin = `http://127.0.0.1:${address.port}`;
+  const url = `${origin}/__card-editor/cards?group=skill`;
+  try {
+    const loaded = await (await fetch(url)).json();
+    const drafts = appendRegistrationDraft(loaded.cards, card('skill', '新技能', null, 'assets/card_skill/技能.png'));
+    const file = `${root}/data/cards/skill.json`;
+    const post = (cards: Card[], dryRun = false) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': loaded.saveToken }, body: JSON.stringify({ cards, revision: loaded.revision, dryRun }) });
+    await assert.rejects(access(file));
+    assert.equal((await post([], false)).status, 400);
+    assert.equal((await post([...drafts, card('skill', '缺失')])).status, 404);
+    await writeFile(`${root}/assets/card_skill/伪装.png`, Buffer.from('not an image'));
+    assert.equal((await post([...drafts, card('skill', '伪装')])).status, 400);
+    assert.equal((await post([...drafts, { ...drafts[0], name: '重复图片' }])).status, 400);
+    await assert.rejects(access(file));
+    assert.equal((await post(drafts, true)).status, 200);
+    await assert.rejects(access(file));
+    assert.equal((await post(drafts)).status, 200);
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), drafts);
+  } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
 }));

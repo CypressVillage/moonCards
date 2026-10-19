@@ -2,15 +2,16 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { cards, cardCategories } from './card-data.ts';
 // @ts-expect-error Shared browser/Node group labels are plain JavaScript.
-import { groupLabel } from '../scripts/card-groups.mjs';
+import { groupLabel, groupMode } from '../scripts/card-groups.mjs';
 import {
   costLabel, emptyFilters, filterGroups, groupKey, highestLevel, levelLabel,
-  matchesCard, professionOrder, readFilters, recordKey, relatedNames, relatedVariants, sortLevels, writeFilters,
+  matchesCard, readFilters, recordKey, relatedNames, relatedVariants, sortLevels, writeFilters,
 } from './catalog.ts';
 import type { Card, CardGroup, Filters } from './catalog.ts';
 import './style.css';
 import { CardEditor } from './editor.tsx';
 import { installFocusMode } from './focus.ts';
+import { professionChoices, professionLabel, professionText } from './professions.ts';
 
 const removeFocusMode = installFocusMode(document);
 if (import.meta.hot) import.meta.hot.dispose(removeFocusMode);
@@ -82,7 +83,7 @@ function CardTile({ group, filters, onOpen }: { group: CardGroup; filters: Filte
       <CardImage card={selected} /><span className="image-hint">查看大图 <Icon name="arrow" size={15} /></span>
     </button>
     <div className="card-title-row"><h3>{selected.name}</h3><DownloadLink card={selected} /></div>
-    <p className="card-profession">{selected.classes.length ? selected.classes.join(' / ') : '职业待补充'}<span>·</span>{costLabel(selected.cost)}</p>
+    <p className="card-profession">{professionText(selected.classes, groupMode(selected.group)) || '职业待补充'}<span>·</span>{costLabel(selected.cost)}</p>
     <Selectors root={group} selected={selected} onSelect={setSelected} />
     {!matchesCard(selected, filters) && <p className="outside-filter">当前切换版本不符合筛选条件</p>}
   </article>;
@@ -108,7 +109,7 @@ function DetailDialog({ root, initial, onClose }: { root: CardGroup; initial: Ca
         <span className="detail-mode">{groupLabel(selected.group)}</span>
         <h2 id="detail-title">{selected.name}</h2>
         <dl><div><dt>卡牌类型</dt><dd>{selected.type}牌</dd></div><div><dt>卡牌等级</dt><dd>{levelLabel(selected.level)}</dd></div>
-          <div><dt>能耗</dt><dd>{costLabel(selected.cost)}</dd></div><div><dt>可获得职业</dt><dd>{selected.classes.join(' / ') || '待补充'}</dd></div></dl>
+          <div><dt>能耗</dt><dd>{costLabel(selected.cost)}</dd></div><div><dt>可获得职业</dt><dd>{professionText(selected.classes, groupMode(selected.group)) || '待补充'}</dd></div></dl>
         <Selectors root={root} selected={selected} onSelect={setSelected} />
         <DownloadLink card={selected} full />
         <p className="detail-note">下载保留原始图片尺寸，可用于个人整理及打印。卡牌图片版权归游戏权利方所有。</p>
@@ -144,7 +145,8 @@ function App() {
     return result;
   }, [filters, sort]);
   const modeCards = cards.filter((card) => filters.group === 'all' || card.group === filters.group);
-  const classes = [...professionOrder];
+  const professionMode = filters.group === 'all' ? 'classic' : groupMode(filters.group);
+  const classes = [...professionChoices(professionMode)];
   const types = [...new Set(modeCards.map((card) => card.type))];
   const costs = [...new Set(modeCards.map((card) => String(card.cost)))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const levels = [...new Set(modeCards.map((card) => String(card.level)))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
@@ -186,7 +188,7 @@ function App() {
         <div className="filter-box">
           <label className="search-field"><Icon name="search" /><input type="search" placeholder="寻找一张卡牌，输入名称…" aria-label="搜索卡牌名称" value={filters.query} onChange={(event) => update('query', event.target.value)} /><span>按名称检索</span></label>
           <div className="filter-row"><span className="filter-row-label"><Icon name="filter" size={17} /> 筛选</span>
-            <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{name}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
+            <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{professionLabel(name, professionMode)}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
             <FilterSelect label="类型" value={filters.type} onChange={(value) => update('type', value)}><option value="">全部类型</option>{types.map((type) => <option key={type} value={type}>{type}牌</option>)}</FilterSelect>
             <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '无能耗' : `${cost} 费`}</option>)}</FilterSelect>
             <FilterSelect label="等级" value={filters.level} onChange={(value) => update('level', value)}><option value="">全部等级</option>{levels.map((level) => <option key={level} value={level}>{level === 'null' ? '无星级' : `${level} 星`}</option>)}</FilterSelect>

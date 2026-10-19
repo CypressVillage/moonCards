@@ -1,7 +1,7 @@
 import { readdir, lstat, readFile } from 'node:fs/promises';
 import { basename, extname } from 'node:path';
 import sharp from 'sharp';
-import { readCardStore, readGroupLabels } from './card-store.mjs';
+import { readCardStore, readGroupSettings } from './card-store.mjs';
 import { describeGroup, resolveRelatedCards, sortGroupIds, validGroupId } from './card-groups.mjs';
 import { validateCards } from './validate-cards.mjs';
 import { commitChanges, fingerprint, jsonText, managedPath, optionalRead, problem, safeProjectPath } from './managed-files.mjs';
@@ -12,10 +12,10 @@ const MAX_BATCH_BYTES = 40 * 1024 * 1024;
 
 export async function scanCardAssets(root) {
   const store = await readCardStore(root);
-  const settings = await readGroupLabels(root);
+  const settings = await readGroupSettings(root);
   const references = new Map();
   for (const card of store.cards) references.set(card.image, [...(references.get(card.image) ?? []), card]);
-  const groups = new Map(store.groups.map((group) => [group.id, { ...describeGroup(group.id, settings.labels), hasMetadata: true, folderExists: false }]));
+  const groups = new Map(store.groups.map((group) => [group.id, { ...describeGroup(group.id, settings.groups), hasMetadata: true, folderExists: false }]));
   let folders = [];
   try { folders = await readdir(await safeProjectPath(root, 'assets'), { withFileTypes: true }); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
@@ -35,7 +35,7 @@ export async function scanCardAssets(root) {
   for (const folder of folders) {
     const id = folder.name.replace(/^card_/, '');
     if (!folder.name.startsWith('card_') || !folder.isDirectory() || !validGroupId(id)) continue;
-    groups.set(id, { ...describeGroup(id, settings.labels), hasMetadata: store.groups.some((group) => group.id === id), folderExists: true });
+    groups.set(id, { ...describeGroup(id, settings.groups), hasMetadata: store.groups.some((group) => group.id === id), folderExists: true });
     await visit(`assets/${folder.name}`, id);
   }
   const found = new Set(assets.map((asset) => asset.path));
@@ -72,6 +72,14 @@ async function validateImage(bytes, name) {
   if (metadata.format !== expected || !metadata.width || !metadata.height) throw problem('图片实际格式与扩展名不一致');
 }
 
+export async function validateRegistrationImage(root, path, group) {
+  if (typeof path !== 'string' || !path.startsWith(`assets/card_${group}/`)) throw problem(`图片必须属于当前文件夹：${String(path)}`);
+  const bytes = await optionalRead(await managedPath(root, path));
+  if (bytes === null) throw problem(`待收录图片不存在：${path}`, 404);
+  await validateImage(bytes, basename(path));
+  return { path, bytes };
+}
+
 export async function readAssetImage(root, path) {
   const group = typeof path === 'string' ? path.split('/')[1]?.replace(/^card_/, '') : null;
   if (typeof path !== 'string' || !/^assets\/card_[a-z][a-z0-9_]*\//.test(path) || !validGroupId(group)) throw problem('非法图片路径', 403);
@@ -97,8 +105,7 @@ export async function prepareAssetAction(root, payload) {
     if (source.references) throw problem('该图片已经收录，请编辑已有卡牌');
     const card = payload.card;
     if (!card || card.image !== source.path || card.group !== source.group) throw problem('卡牌分组和图片必须与源文件一致');
-    const bytes = await readFile(await managedPath(root, source.path));
-    await validateImage(bytes, source.name);
+    await validateRegistrationImage(root, source.path, source.group);
     updated.set(source.group, [...(updated.get(source.group) ?? []), card]);
     summary.push(`收录图片：${source.path}`, `添加「${card.name}」到 data/cards/${source.group}.json 末尾；不修改源图片`);
   } else if (payload.action === 'rename' || payload.action === 'move') {
@@ -131,13 +138,17 @@ export async function prepareAssetAction(root, payload) {
     }
     if (moved.length) updated.set(targetGroup, [...(updated.get(targetGroup) ?? []), ...moved]);
     summary.push(`${payload.action === 'rename' ? '重命名' : '移动'}：${source.path} → ${target}`, `同步 ${source.references} 条图片引用；卡牌名称不变`);
-  } else if (payload.action === 'label') {
-    if (!snapshot.groups.some((group) => group.id === payload.group)) throw problem('分组不存在');
+  } else if (payload.action === 'label' || payload.action === 'group-settings') {
+    const current = snapshot.groups.find((group) => group.id === payload.group);
+    if (!current) throw problem('分组不存在');
     const label = typeof payload.label === 'string' ? payload.label.trim() : '';
     if (!label || label.length > 60 || /[\x00-\x1f\x7f]/.test(label)) throw problem('分组显示名称须为 1～60 个正常字符');
-    const labels = snapshot.settings.labels ?? Object.fromEntries(snapshot.groups.map((group) => [group.id, group.label]));
-    await addChange('data/groups.json', jsonText({ ...labels, [payload.group]: label }));
-    summary.push(`修改显示名：${payload.group} → ${label}；目录、group ID 和卡牌文件不变`, '更新 data/groups.json');
+    const mode = payload.action === 'group-settings' ? payload.mode : current.mode;
+    if (!['classic', 'diary'].includes(mode)) throw problem('分组模式必须是 classic 或 diary');
+    const config = snapshot.settings.groups ?? Object.fromEntries(snapshot.groups.map((group) => [group.id, { label: group.label, mode: group.mode }]));
+    const existing = config[payload.group];
+    await addChange('data/groups.json', jsonText({ ...config, [payload.group]: { ...(typeof existing === 'object' && existing !== null ? existing : {}), label, mode } }));
+    summary.push(`更新分组设置：${payload.group} → ${label}（${mode === 'diary' ? '日记职业称呼' : '经典职业称呼'}）`, '仅更新 data/groups.json；目录、group ID、卡牌记录及统一职业值不变');
   } else if (payload.action === 'upload') {
     const category = snapshot.groups.find((group) => group.id === payload.group && group.folderExists);
     if (!category) throw problem('请先选择已存在的卡牌目录');

@@ -9588,5 +9588,31 @@
     "image": "assets/card_base/商品订单.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "普通攻击（调灵师）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击1（调灵师）.png",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（机械师）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击1（机械师）.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   }
 ]
