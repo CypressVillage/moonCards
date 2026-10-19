@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
-import { appendRegistrationDraft, moveCard, editCard, editCardIdentity, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from '../src/editor-model.ts';
+import { appendRegistrationDraft, moveCard, editCard, editCardIdentity, filterEditorCards, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from '../src/editor-model.ts';
 import type { Card } from '../src/catalog.ts';
 // @ts-expect-error Shared Node middleware is plain JavaScript.
 import { cardEditorApi } from '../scripts/card-editor-api.mjs';
@@ -30,6 +30,17 @@ test('连续收录只追加草稿，保留已有修改，可排序、继续编�
   assert.throws(() => appendRegistrationDraft(drafts, { ...card('A'), image: 'assets/card_base/另一张.png' }), /相同分组/);
   assert.throws(() => withdrawRegistrationDraft(drafts, saved[0].image, saved), /不能删除已保存/);
   assert.equal(pendingRegistrationImages(drafts, drafts).size, 0);
+});
+
+test('新收录卡牌立即属于已收录列表，持久化状态不参与筛选，查询和索引保持不变', () => {
+  const saved = [card('A')];
+  const collected = appendRegistrationDraft(saved, card('新卡'));
+  assert.deepEqual(filterEditorCards(collected, '', 'registered').map(({ entry }) => entry.name), ['A', '新卡']);
+  assert.deepEqual(filterEditorCards(collected, ' 新卡 ', 'registered').map(({ index }) => index), [1]);
+  assert.deepEqual(filterEditorCards(collected, '新卡', 'unregistered'), []);
+  assert.deepEqual(filterEditorCards(collected, '', 'registered', new Set([saved[0].image])).map(({ entry }) => entry.name), ['A', '新卡']);
+  assert.deepEqual(filterEditorCards(collected, '', 'missing', new Set([saved[0].image])).map(({ entry }) => entry.name), ['A']);
+  assert.equal(saved.length, 1);
 });
 
 test('排序移动精确对应 JSON 记录顺序，不改变内容', () => {

@@ -61,6 +61,26 @@ test('源图缺失仍保留 JSON 记录并明确标注，不静默删除', async
   await assert.rejects(action(root, { action: 'rename', path: source, name: '新名.png' }), /源图片不存在/);
 }));
 
+test('删除源图片有原字节备份，未收录图片移除，已收录元数据和关联不被自动删除', async () => fixture(async (root) => {
+  const before = await readFile(`${root}/data/cards/base.json`);
+  await action(root, { action: 'delete', path: 'assets/card_base/未收录.png' });
+  await assert.rejects(access(`${root}/assets/card_base/未收录.png`));
+  assert.deepEqual(await readFile(`${root}/data/cards/base.json`), before);
+  await action(root, { action: 'delete', path: source });
+  await assert.rejects(access(`${root}/${source}`));
+  assert.deepEqual(await readFile(`${root}/data/cards/base.json`), before);
+  const snapshot = await scanCardAssets(root);
+  const missing = snapshot.assets.find((asset: { path: string }) => asset.path === source);
+  assert.equal(missing.status, 'missing');
+  assert.equal(missing.references, 2);
+  const directory = `${root}/.card-editor/transactions`;
+  const journals = await Promise.all((await readdir(directory)).map(async (file) => JSON.parse(await readFile(`${directory}/${file}`, 'utf8'))));
+  const backup = journals.flatMap((journal) => journal.entries).find((entry) => entry.path === source);
+  assert.deepEqual(Buffer.from(backup.before, 'base64'), png);
+  assert.equal(backup.after, null);
+  await assert.rejects(action(root, { action: 'delete', path: source }), /源图片不存在/);
+}));
+
 test('显式收录才创建目标 JSON；预检查不写入，其他文件和图片字节不变', async () => fixture(async (root) => {
   const original = await readFile(`${root}/data/cards/base.json`);
   const payload = { action: 'register', path: 'assets/card_skill/技能.png', card: card('skill', '自定卡名', null, 'assets/card_skill/技能.png') };
@@ -246,6 +266,16 @@ test('本地 HTTP 扫描、原图预览和收录；缺失令牌或跨站操作�
     const updated = await (await fetch(`${origin}/__card-editor/cards?group=base`)).json();
     assert.equal(updated.groups.find((group: { id: string }) => group.id === 'base').mode, 'diary');
     assert.deepEqual(await readFile(`${root}/data/cards/base.json`), before);
+    const deleteSnapshot = await (await fetch(`${origin}/__card-editor/assets`)).json();
+    const skillMetadata = await readFile(`${root}/data/cards/skill.json`);
+    const deleteBody = JSON.stringify({ action: 'delete', path: 'assets/card_skill/技能.png', version: deleteSnapshot.version });
+    const deniedDelete = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': 'wrong-token' }, body: deleteBody });
+    assert.equal(deniedDelete.status, 403);
+    assert.deepEqual(await readFile(`${root}/assets/card_skill/技能.png`), png);
+    const deleted = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': deleteSnapshot.saveToken }, body: deleteBody });
+    assert.equal(deleted.status, 200);
+    await assert.rejects(access(`${root}/assets/card_skill/技能.png`));
+    assert.deepEqual(await readFile(`${root}/data/cards/skill.json`), skillMetadata);
   } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
 }));
 

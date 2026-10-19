@@ -29,7 +29,7 @@
     "cost": null,
     "image": "assets/card_base_extra/egg_小小法力.png",
     "relatedCards": [],
-    "hidden": true,
+    "hidden": false,
     "group": "base_extra"
   },
   {

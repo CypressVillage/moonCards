@@ -48,7 +48,7 @@ test('编辑器使用分组标题及编辑图标，状态、搜索、上传按�
     assert.match(controls, /class="editor-visually-hidden" id="upload-help-base"/);
     assert.match(controls, /type="file"[^>]*multiple=""/);
     assert.match(html, /关联卡牌（全部分组，可多选）/);
-    assert.match(html, /其他 JSON 卡牌<span title="小红帽日记">/);
+    assert.doesNotMatch(html, /value="pending"|待收录|class="editor-related-results"|class="editor-related-matches"|所属分组：/);
     window.location.search = '?editor&group=custom';
     const diaryHtml = renderToStaticMarkup(createElement(CardEditor, {
       initialCards: [{ name: '日记卡', group: 'custom', level: null, classes: ['女骑士', '游侠', '修女'], type: '攻击', cost: null, relatedCards: [], image: 'assets/card_custom/日记卡.png' }],
@@ -66,6 +66,18 @@ test('编辑器使用分组标题及编辑图标，状态、搜索、上传按�
     assert.match(settingsHtml, /aria-label="日记文件夹"[^>]*checked=""/);
     assert.match(settingsHtml, /aria-label="分组显示名称"/);
     assert.match(settingsHtml, /保存分组设置/);
+    const { AssetDialog } = await server.ssrLoadModule('/src/asset-manager.tsx');
+    const imageHtml = renderToStaticMarkup(createElement(AssetDialog, {
+      asset: { path: 'assets/card_base/测试.png', group: 'base', name: '测试.png', status: 'registered', references: 2, size: 100, mtime: 0 },
+      groups: [{ id: 'base', label: '经典模式', folderExists: true }, { id: 'diary', label: '日记', folderExists: true }],
+      busy: false, message: '', onClose: () => {}, onAction: async () => false, onRegister: () => {},
+    }));
+    assert.equal((imageHtml.match(/class="asset-file-row"/g) ?? []).length, 2);
+    assert.match(imageHtml, /aria-label="图片文件名"/);
+    assert.match(imageHtml, /重命名并同步引用/);
+    assert.match(imageHtml, /aria-label="图片移动目标文件夹"/);
+    assert.match(imageHtml, /class="asset-delete-button"/);
+    assert.match(imageHtml, /2 条元数据保留并显示缺图/);
   } finally {
     await server?.close();
     await rm(cache, { recursive: true, force: true });

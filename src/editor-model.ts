@@ -28,8 +28,15 @@ export function pendingRegistrationImages(cards: Card[], savedCards: Card[]): Se
 }
 
 export function withdrawRegistrationDraft(cards: Card[], image: string, savedCards: Card[]): Card[] {
-  if (savedCards.some((card) => card.image === image)) throw new Error('只能撤回待收录草稿，不能删除已保存卡牌');
+  if (savedCards.some((card) => card.image === image)) throw new Error('只能撤销本次新增的收录，不能删除已保存卡牌');
   return cards.filter((card) => card.image !== image);
+}
+
+export function filterEditorCards(cards: Card[], query: string, status: string, missingImages: Set<string> = new Set()) {
+  const term = query.trim().toLocaleLowerCase();
+  return cards.map((entry, index) => ({ entry, index })).filter(({ entry }) =>
+    (entry.name.toLocaleLowerCase().includes(term) || entry.image.split('/').at(-1)!.toLocaleLowerCase().includes(term))
+    && (status === 'all' || status === 'registered' || (status === 'missing' && missingImages.has(entry.image))));
 }
 
 export function editCardIdentity(cards: Card[], index: number, patch: Pick<Partial<Card>, 'name'>): Card[] {

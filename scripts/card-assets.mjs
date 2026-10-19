@@ -138,6 +138,11 @@ export async function prepareAssetAction(root, payload) {
     }
     if (moved.length) updated.set(targetGroup, [...(updated.get(targetGroup) ?? []), ...moved]);
     summary.push(`${payload.action === 'rename' ? '重命名' : '移动'}：${source.path} → ${target}`, `同步 ${source.references} 条图片引用；卡牌名称不变`);
+  } else if (payload.action === 'delete') {
+    requireSource();
+    const bytes = await readFile(await managedPath(root, source.path));
+    changes.push({ path: source.path, before: bytes, after: null });
+    summary.push(`删除源图片：${source.path}`, source.references ? `保留 ${source.references} 条元数据和关联，界面将标注源图缺失；不自动删除卡牌记录` : '未收录图片已移除，不创建或修改卡牌 JSON', '原文件字节备份保存在 .card-editor/transactions/');
   } else if (payload.action === 'label' || payload.action === 'group-settings') {
     const current = snapshot.groups.find((group) => group.id === payload.group);
     if (!current) throw problem('分组不存在');

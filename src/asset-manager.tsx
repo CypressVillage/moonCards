@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CardCategory } from './card-data.ts';
+import { isErrorMessage } from './editor-feedback.ts';
 
 export interface CardAsset {
   path: string; group: string; name: string; status: 'registered' | 'unregistered' | 'missing';
@@ -79,15 +80,14 @@ export function AssetDialog({ asset, groups, busy, message, onClose, onAction, o
     <p className="editor-hint">{asset.status === 'unregistered' ? '未收录图片' : asset.status === 'missing' ? '源图片缺失' : `已收录 · ${asset.references} 条记录引用此图片`}</p>
     {asset.status !== 'missing' && <img className="asset-original-preview" src={sourcePreviewUrl(asset.path)} alt={asset.name} />}
     <code className="asset-path">{asset.path}</code>
-    {message && <p className="editor-message" role="status">{message}</p>}
+    {message && <p className={isErrorMessage(message) ? 'editor-errors' : 'editor-message'} role={isErrorMessage(message) ? 'alert' : 'status'}>{message}</p>}
     {asset.status === 'missing' ? <p className="editor-errors">源文件不存在，元数据仍被保留。请先恢复图片并重新扫描，不会自动删除记录。</p> : <fieldset className="asset-file-fields" disabled={busy}>
-      <legend>点击操作按钮后立即执行；保留冲突检查和备份，不会改变图片内容</legend>
-      <label>图片文件名（不是卡牌名称，保留扩展名）<input aria-label="图片文件名" value={name} onChange={(event) => setName(event.target.value)} /></label>
-      <button disabled={busy || name === asset.name} onClick={() => void perform({ action: 'rename', path: asset.path, name })}>重命名源图片并同步引用</button>
-      <label>移动到文件夹<select aria-label="图片移动目标文件夹" value={target} onChange={(event) => setTarget(event.target.value)}><option value="">选择目标文件夹…</option>{groups.filter((group) => group.id !== asset.group && group.folderExists).map((group) => <option key={group.id} value={group.id}>{group.label} · card_{group.id}</option>)}</select></label>
-      <button disabled={busy || !target} onClick={() => void perform({ action: 'move', path: asset.path, targetGroup: target })}>移动源图片及其卡牌记录</button>
+      <legend>文件操作点击后立即执行，保留冲突检查和备份</legend>
+      <div className="asset-file-row"><label>图片文件名（保留扩展名）<input aria-label="图片文件名" value={name} onChange={(event) => setName(event.target.value)} /></label><button type="button" disabled={busy || name === asset.name} onClick={() => void perform({ action: 'rename', path: asset.path, name })}>重命名并同步引用</button></div>
+      <div className="asset-file-row"><label>移动到文件夹<select aria-label="图片移动目标文件夹" value={target} onChange={(event) => setTarget(event.target.value)}><option value="">选择目标文件夹…</option>{groups.filter((group) => group.id !== asset.group && group.folderExists).map((group) => <option key={group.id} value={group.id}>{group.label} · card_{group.id}</option>)}</select></label><button type="button" disabled={busy || !target} onClick={() => void perform({ action: 'move', path: asset.path, targetGroup: target })}>移动图片</button></div>
       <p className="editor-hint">同名文件不会覆盖。已收录图片的全部引用一并迁移，目标组追加记录；有关联失效或同名同星冲突时阻止操作，请先修正。</p>
+      <div className="asset-delete-row"><p className="editor-hint">{asset.references ? `删除只移除源图片，${asset.references} 条元数据保留并显示缺图。` : '删除源图片，不影响任何已收录记录。'}备份保存在 .card-editor/，不会自动清除。</p><button className="asset-delete-button" type="button" disabled={busy} onClick={() => void perform({ action: 'delete', path: asset.path })}>删除源图片</button></div>
     </fieldset>}
-    <div className="editor-actions editor-dialog-actions"><button disabled={busy} onClick={onClose}>返回缩略图</button>{asset.status === 'unregistered' && <button className="editor-save" disabled={busy} onClick={() => onRegister(asset)}>填写元数据，加入待收录</button>}</div>
+    <div className="editor-actions editor-dialog-actions"><button disabled={busy} onClick={onClose}>返回缩略图</button>{asset.status === 'unregistered' && <button className="editor-save" disabled={busy} onClick={() => onRegister(asset)}>填写元数据，收录卡牌</button>}</div>
   </dialog>;
 }

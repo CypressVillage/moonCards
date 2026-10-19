@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { isErrorMessage, isTransientMessage } from '../src/editor-feedback.ts';
 
 test('成功反馈可临时显示，不将报错当成可自动消失的成功提示', () => {
-  for (const message of ['已保存到本地 data/cards/base.json，其他组文件未修改', '已导出 JSON；尚未写入项目文件。', '操作完成：\n移动图片', '操作完成：\n移动 assets/card_base/失败.png', '已加入待收录草稿，尚未保存 JSON', '已撤回待收录草稿，源图片未删除']) {
+  for (const message of ['已保存到本地 data/cards/base.json，其他组文件未修改', '已导出 JSON；尚未写入项目文件。', '操作完成：\n移动图片', '操作完成：\n移动 assets/card_base/失败.png', '已收录到当前编辑列表，尚未保存 JSON', '已撤销本次收录，源图片未删除']) {
     assert.equal(isTransientMessage(message), true);
     assert.equal(isErrorMessage(message), false);
   }

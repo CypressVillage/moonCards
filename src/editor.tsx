@@ -4,7 +4,7 @@ import type { CardCategory } from './card-data.ts';
 // @ts-expect-error Shared group definitions are plain JavaScript.
 import { describeGroup, validGroupId } from '../scripts/card-groups.mjs';
 import { levelLabel, relatedVariants } from './catalog.ts';
-import { appendRegistrationDraft, editCard, editCardIdentity, moveCard, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from './editor-model.ts';
+import { appendRegistrationDraft, editCard, editCardIdentity, filterEditorCards, moveCard, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from './editor-model.ts';
 // @ts-expect-error Shared browser/Node validator is plain JavaScript.
 import { validateCards, cardTypes as allowedCardTypes } from '../scripts/validate-cards.mjs';
 import './editor.css';
@@ -34,7 +34,7 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
   const [candidateDirty, setCandidateDirty] = useState(false);
   const [cards, setCards] = useState<Card[]>(() => structuredClone(initialCards.filter((card) => card.group === initialGroup)));
   const savedCards = catalogCards.filter((card) => card.group === groupId);
-  const pendingImages = pendingRegistrationImages(cards, savedCards);
+  const unsavedImages = pendingRegistrationImages(cards, savedCards);
   const [selected, setSelected] = useState(0);
   const [query, setQuery] = useState('');
   const [relatedQuery, setRelatedQuery] = useState('');
@@ -173,22 +173,22 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       level: null, classes: [], type: '', cost: null, relatedCards: [], hidden: false });
     setCandidateDirty(false); setRelatedQuery(''); setMessage('请选择卡牌类型并核对元数据；不会从文件名推断星级。'); setDetailOpen(true);
   }
-  function stageRegistration() {
+  function collectCard() {
     if (!candidate || formErrors.length) return;
     try {
       if (candidate.group !== groupId) throw new Error('只能添加当前分组的卡牌');
       const next = appendRegistrationDraft(cards, candidate);
       setCards(next); setSelected(next.length - 1); setDirty(true);
-      setCandidate(null); setCandidateDirty(false); setDetailOpen(false); setStatusFilter('all');
-      setMessage('已加入待收录草稿，尚未保存 JSON。可继续添加，最后统一保存。');
+      setCandidate(null); setCandidateDirty(false); setDetailOpen(false);
+      setMessage('已收录到当前编辑列表，尚未保存 JSON。可继续收录，最后统一保存。');
     } catch (error) { setMessage(`收录失败：${String(error)}`); }
   }
   function withdrawDraft() {
-    if (!card || !pendingImages.has(card.image)) return;
+    if (!card || !unsavedImages.has(card.image)) return;
     const next = withdrawRegistrationDraft(cards, card.image, savedCards);
     setCards(next); setSelected(Math.max(0, Math.min(selected, next.length - 1)));
-    setDirty(JSON.stringify(next) !== JSON.stringify(savedCards)); setDetailOpen(false); setStatusFilter('all');
-    setMessage('已撤回待收录草稿，源图片未删除，其他修改仍保留。');
+    setDirty(JSON.stringify(next) !== JSON.stringify(savedCards)); setDetailOpen(false);
+    setMessage('已撤销本次收录，源图片未删除，其他修改仍保留。');
   }
   function closeDetail() {
     if (candidateDirty && !window.confirm('放弃尚未收录的新卡牌草稿？源图片不会删除。')) return;
@@ -202,12 +202,13 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
   }
   useEffect(() => { setRelatedQuery(''); }, [selected, groupId]);
   const relationshipCatalog = [...catalogCards.filter((entry) => entry.group !== groupId), ...cards];
-  const related = card ? searchRelatedCards(relationshipCatalog, card, relatedQuery) : [];
+  const related = card && relatedQuery.trim() ? searchRelatedCards(relationshipCatalog, card, relatedQuery) : [];
   const byPath = new Map(assets.map((asset) => [asset.path, asset]));
   const matchesQuery = (name: string) => name.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
   const listedImages = new Set(cards.map((card) => card.image));
-  const visibleCards = cards.map((entry, index) => ({ entry, index })).filter(({ entry }) => (matchesQuery(entry.name) || matchesQuery(entry.image.split('/').at(-1)!))
-    && (statusFilter === 'all' || (statusFilter === 'pending' && pendingImages.has(entry.image)) || (statusFilter === 'registered' && !pendingImages.has(entry.image) && byPath.get(entry.image)?.status !== 'missing') || (statusFilter === 'missing' && byPath.get(entry.image)?.status === 'missing')));
+  const visibleStatus = statusFilter === 'pending' ? 'registered' : statusFilter;
+  const missingImages = new Set(assets.filter((asset) => asset.status === 'missing').map((asset) => asset.path));
+  const visibleCards = filterEditorCards(cards, query, visibleStatus, missingImages);
   const remainingAssets = assets.filter((asset) => asset.status === 'unregistered' && !listedImages.has(asset.path));
   const unregistered = remainingAssets.filter((asset) => matchesQuery(asset.name) && ['all', 'unregistered'].includes(statusFilter));
   function editGroupSettings() {
@@ -225,23 +226,23 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       <section aria-labelledby="editor-group-title">
         <div className="editor-group-header">
           <div className="editor-group-name"><h2 id="editor-group-title" title={currentGroup.label}>{currentGroup.label}</h2>{local && <button className="editor-group-rename" type="button" aria-label="编辑分组设置" title={dirty ? '请先保存元数据修改' : '分组设置：显示名称和日记文件夹'} disabled={busy || dirty} onClick={editGroupSettings}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z" /><path d="m14 5 5 5" /></svg></button>}</div>
-          <p className="editor-group-meta" title={`${currentGroup.folder} · ${currentGroup.file}`}><code>card_{groupId}</code>{professionMode === 'diary' && <span>日记职业称呼</span>}<span>已收录记录 <strong>{savedCards.length}</strong></span>{pendingImages.size > 0 && <span className="editor-pending-count">待收录 <strong>{pendingImages.size}</strong></span>}{local && <><span>未收录图片 <strong>{assetVersion ? remainingAssets.length : currentGroup.unregistered ?? 0}</strong></span>{(currentGroup.missing ?? 0) > 0 && <span className="editor-missing-count">缺图 <strong>{currentGroup.missing}</strong></span>}</>}</p>
+          <p className="editor-group-meta" title={`${currentGroup.folder} · ${currentGroup.file}`}><code>card_{groupId}</code>{professionMode === 'diary' && <span>日记职业称呼</span>}<span>已收录记录 <strong>{cards.length}</strong></span>{local && <><span>未收录图片 <strong>{assetVersion ? remainingAssets.length : currentGroup.unregistered ?? 0}</strong></span>{(currentGroup.missing ?? 0) > 0 && <span className="editor-missing-count">缺图 <strong>{currentGroup.missing}</strong></span>}</>}</p>
           <label className="editor-folder-switch"><span className="editor-visually-hidden">切换文件夹</span><select aria-label="按文件夹选择编辑分组" title="切换文件夹" value={groupId} disabled={busy} onChange={(event) => selectGroup(event.target.value)}>{availableGroups.map((group) => <option key={group.id} value={group.id}>{group.label} · card_{group.id}</option>)}</select></label>
         </div>
         <div className="editor-controls">
-          <label className="editor-status-filter">收录状态<select aria-label="图片收录状态" value={local ? statusFilter : 'registered'} disabled={!local} onChange={(event) => setStatusFilter(event.target.value)}>{local && <option value="all">全部图片</option>}<option value="registered">已收录</option>{local && <><option value="pending">待收录（未保存）</option><option value="unregistered">未收录</option><option value="missing">源图缺失</option></>}</select></label>
+          <label className="editor-status-filter">收录状态<select aria-label="图片收录状态" value={local ? visibleStatus : 'registered'} disabled={!local} onChange={(event) => setStatusFilter(event.target.value)}>{local && <option value="all">全部图片</option>}<option value="registered">已收录</option>{local && <><option value="unregistered">未收录</option><option value="missing">源图缺失</option></>}</select></label>
           <label className="editor-gallery-search">查找卡牌 / 文件名<input type="search" aria-label="查找卡牌或图片文件名" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="输入卡牌名称或图片文件名" /></label>
           <div className="editor-upload-field"><span className="editor-control-label">上传到当前文件夹</span>{local ? <UploadImages group={groupId} disabled={busy || dirty || !currentGroup.folderExists} disabledReason={dirty ? '请先保存元数据修改' : busy ? '正在处理，请稍后' : !currentGroup.folderExists ? '源文件夹不存在，暂时不能上传' : undefined} onReadingChange={setBusy} onAction={runAssetAction} onError={(error) => setMessage(`上传失败：${error}`)} /> : <div className="asset-upload-zone compact disabled" title="上传图片需要在本地运行 npm run dev"><button type="button" disabled>仅本地开发支持上传</button></div>}</div>
         </div>
         {message && !detailOpen && !managedAsset && !groupSettingsOpen && <div className={`editor-feedback${isTransientMessage(message) ? ' is-transient' : ''}${isErrorMessage(message) ? ' is-error' : ''}`} role={isErrorMessage(message) ? 'alert' : 'status'}><span>{message}</span><button type="button" aria-label="关闭提示" onClick={() => setMessage('')}>×</button></div>}
-        {visibleCards.length > 0 && <h2 className="asset-section-heading">{pendingImages.size ? '卡牌记录与待收录草稿' : '已收录记录'} <small>{visibleCards.length} 条 · 拖动调整顺序，最后统一保存</small></h2>}
+        {visibleCards.length > 0 && <h2 className="asset-section-heading">已收录记录 <small>{visibleCards.length} 条 · 拖动调整顺序，最后统一保存</small></h2>}
         <div className="editor-thumbnail-grid">{visibleCards.map(({ entry, index }) =>
-          <article key={entry.image + index} draggable={!busy} className={`editor-thumbnail${pendingImages.has(entry.image) ? ' is-pending' : ''}${dragging === index ? ' is-dragging' : ''}${dropTarget === index && dragging !== index ? ' is-drop-target' : ''}`}
+          <article key={entry.image + index} draggable={!busy} className={`editor-thumbnail${dragging === index ? ' is-dragging' : ''}${dropTarget === index && dragging !== index ? ' is-drop-target' : ''}`}
             onDragStart={(event) => { drag.current = index; setDragging(index); event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData('text/plain', String(index)); }}
             onDragEnd={() => { drag.current = null; setDragging(null); setDropTarget(null); }}
             onDragOver={(event) => { if (busy || drag.current === null) return; event.preventDefault(); event.dataTransfer.dropEffect = 'move'; setDropTarget(index); }}
             onDrop={(event) => { event.preventDefault(); if (!busy && drag.current !== null) move(drag.current, index); drag.current = null; setDragging(null); setDropTarget(null); }}>
-            <div className="editor-thumbnail-meta"><span>#{index + 1}</span><span>{pendingImages.has(entry.image) ? '待收录 · 未保存' : entry.hidden ? '隐藏' : entry.group} <span aria-hidden="true">⠿</span></span></div>
+            <div className="editor-thumbnail-meta"><span>#{index + 1}</span><span>{entry.hidden ? '隐藏' : entry.group} <span aria-hidden="true">⠿</span></span></div>
             <button disabled={busy} className="editor-thumbnail-open" aria-label={`编辑${entry.name}·${levelLabel(entry.level)}·第${index + 1}条`} onClick={() => { if (drag.current !== null) return; setSelected(index); setDetailOpen(true); }}>
               {byPath.get(entry.image)?.status === 'missing' ? <div className="asset-missing-preview">源图片缺失<br />元数据已保留</div> : <img src={previewUrl(entry.image)} alt={entry.name} loading="lazy" decoding="async" width="517" height="780" draggable={false} />}
               <strong>{entry.name}</strong><small>{levelLabel(entry.level)} · {entry.type}{byPath.get(entry.image)?.status === 'missing' ? ' · 图片缺失' : ''}</small>
@@ -253,13 +254,12 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       </section>
       {card && <dialog ref={dialog} className="editor-detail editor-dialog" aria-labelledby="editor-card-title" onCancel={(event) => { event.preventDefault(); if (!busy) closeDetail(); }} onClick={(event) => { if (!busy && event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeDetail(); } }}>
         <button className="editor-dialog-close" type="button" aria-label="关闭卡牌编辑" disabled={busy} onClick={closeDetail}>×</button>
-        <div className="editor-card-heading">{byPath.get(card.image)?.status !== 'missing' && <img src={previewUrl(card.image)} alt={card.name} />}<div><p>{candidate ? '未收录图片 · 新卡牌草稿' : pendingImages.has(card.image) ? '待收录草稿 · 尚未保存 JSON' : `组内第 ${selected + 1} 条 / ${cards.length}`}</p><h2 id="editor-card-title">{card.name}</h2><p>{currentGroup.label}</p><code>{card.image}</code></div></div>
+        <div className="editor-card-heading">{byPath.get(card.image)?.status !== 'missing' && <img src={previewUrl(card.image)} alt={card.name} />}<div><p>{candidate ? '未收录图片 · 新卡牌草稿' : `组内第 ${selected + 1} 条 / ${cards.length}`}</p><h2 id="editor-card-title">{card.name}</h2><p>{currentGroup.label}</p><code>{card.image}</code></div></div>
         {message && <p className="editor-message" role="status">{message}</p>}
         {formErrors.length > 0 && <div className="editor-errors" role="alert">{formErrors.slice(0, 8).map((error, index) => <p key={index}>{error}</p>)}</div>}
         <fieldset key={`${card.image}:${revision}`} disabled={busy} className="editor-fields"><legend>元数据</legend>
           {!candidate && <div className="editor-position"><button disabled={busy || selected === 0} onClick={() => move(selected, selected - 1)}>↑ 上移</button><button disabled={busy || selected === cards.length - 1} onClick={() => move(selected, selected + 1)}>↓ 下移</button><label>移至第 <input key={`position-${selected}`} type="number" min="1" max={cards.length} defaultValue={selected + 1} onBlur={(event) => { const value = Number(event.target.value); if (Number.isInteger(value) && value >= 1 && value <= cards.length) move(selected, value - 1); }} /> 条</label></div>}
           <label className="editor-wide">卡牌名称（仅修改当前记录，离开输入框时应用）<input key={`name-${selected}-${card.name}`} defaultValue={card.name} onChange={() => candidate ? setCandidateDirty(true) : setDirty(true)} onBlur={(event) => { const name = event.target.value.trim(); event.target.value = name === card.name || updateIdentity({ name }) ? name : card.name; }} onKeyDown={(event) => { if (event.key === 'Enter') event.currentTarget.blur(); }} /></label>
-          <p className="editor-wide editor-hint">所属分组：{groupId} · {currentGroup.folder} · {currentGroup.file}。分组随源目录确定；需要换组时，请在源图片管理中移动文件，不能只修改 group 字段。</p>
           <fieldset className="editor-options editor-wide"><legend>可获得职业（可多选，不勾选表示未标注）</legend><div className="editor-choice-grid">
             {professions.map((profession) => <label className="editor-choice" key={profession}><input type="checkbox" value={profession} checked={card.classes.includes(profession)} onChange={(event) => update({ classes: event.target.checked ? [...card.classes, profession] : card.classes.filter((name) => name !== profession) })} />{professionLabel(profession, professionMode)}</label>)}
           </div>{card.classes.some((name) => !professions.includes(name)) && <p className="editor-hint">其他已有职业（保留原值）：{card.classes.filter((name) => !professions.includes(name)).join('、')}</p>}</fieldset>
@@ -273,14 +273,14 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
           <label className="editor-check"><input type="checkbox" checked={!card.hidden} onChange={(event) => update({ hidden: !event.target.checked })} />在图鉴和搜索结果中显示</label>
           <div className="editor-wide"><p className="editor-field-label">关联卡牌（全部分组，可多选）</p><div className="related-selected">{card.relatedCards.map((name) => <button key={name} onClick={() => update({ relatedCards: card.relatedCards.filter((value) => value !== name) })}>{name} ×</button>)}{!card.relatedCards.length && <span>暂无关联卡牌</span>}</div>
             <input type="search" aria-label="搜索关联卡牌" placeholder="输入名称搜索所有 JSON 中的卡牌…" value={relatedQuery} onChange={(event) => setRelatedQuery(event.target.value)} />
-            <div className="editor-related-results" aria-label="关联卡牌搜索结果">{related.length ? related.map((name) => {
+            {relatedQuery.trim() && <div className="editor-related-matches" aria-label="关联卡牌搜索结果">{related.length ? related.map((name) => {
               const targetGroup = relatedVariants(relationshipCatalog, card, name)[0]?.group;
               const label = availableGroups.find((group) => group.id === targetGroup)?.label ?? targetGroup;
               return <button key={name} type="button" onClick={() => { update({ relatedCards: [...card.relatedCards, name] }); setRelatedQuery(''); }}>{name}<span title={label}>{label} · ＋ 添加</span></button>;
-            }) : <p>没有可添加的匹配卡牌</p>}</div></div>
+            }) : <p>没有可添加的匹配卡牌</p>}</div>}</div>
           <p className="editor-wide editor-hint">名称仅修改当前记录；分组、名称、星级全部相同才算重复。可见性同步本组同名卡牌的所有星级。重命名会在适用时更新本组引用，跨文件关联若失效需按校验提示先修正；图片路径保持不变。</p>
         </fieldset>
-        <div className="editor-actions editor-dialog-actions"><button type="button" disabled={busy} onClick={closeDetail}>{candidate ? '取消收录' : '完成编辑，返回缩略图'}</button>{local && !candidate && pendingImages.has(card.image) && <button type="button" disabled={busy} onClick={withdrawDraft}>撤回待收录</button>}{local && !candidate && byPath.has(card.image) && <button disabled={busy || dirty} onClick={() => { setDetailOpen(false); setManagedAsset(byPath.get(card.image)!); setMessage(''); }}>管理源图片文件</button>}{local ? candidate ? <button type="button" className="editor-save" onClick={stageRegistration} disabled={busy || formErrors.length > 0}>加入待收录，暂不保存</button> : <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>保存到本地 JSON</button> : <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>}</div>
+        <div className="editor-actions editor-dialog-actions"><button type="button" disabled={busy} onClick={closeDetail}>{candidate ? '取消收录' : '完成编辑，返回缩略图'}</button>{local && !candidate && unsavedImages.has(card.image) && <button type="button" disabled={busy} onClick={withdrawDraft}>撤销本次收录</button>}{local && !candidate && byPath.has(card.image) && <button disabled={busy || dirty} onClick={() => { setDetailOpen(false); setManagedAsset(byPath.get(card.image)!); setMessage(''); }}>管理源图片文件</button>}{local ? candidate ? <button type="button" className="editor-save" title="只加入当前编辑列表，最后统一保存 JSON" onClick={collectCard} disabled={busy || formErrors.length > 0}>收录卡牌</button> : <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>保存到本地 JSON</button> : <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>}</div>
       </dialog>}
       {local && managedAsset && <AssetDialog key={managedAsset.path} asset={managedAsset} groups={availableGroups} busy={busy} message={message} onClose={() => setManagedAsset(null)} onAction={runAssetAction} onRegister={beginRegistration} />}
       {local && groupSettingsOpen && <GroupSettingsDialog key={groupId} group={currentGroup} busy={busy} message={message} onClose={() => setGroupSettingsOpen(false)} onSave={(label, mode) => runAssetAction({ action: 'group-settings', group: groupId, label, mode })} />}

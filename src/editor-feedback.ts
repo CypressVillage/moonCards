@@ -1,5 +1,5 @@
 export function isTransientMessage(message: string): boolean {
-  return /^(已保存到本地|已导出 JSON|操作完成：|已加入待收录|已撤回待收录)/.test(message) && !isErrorMessage(message);
+  return /^(已保存到本地|已导出 JSON|操作完成：|已收录到当前编辑列表|已撤销本次收录)/.test(message) && !isErrorMessage(message);
 }
 
 export function isErrorMessage(message: string): boolean {
