@@ -5,7 +5,7 @@ import { cards, cardCategories } from './card-data.ts';
 import { groupLabel, groupMode } from '../scripts/card-groups.mjs';
 import {
   costLabel, emptyFilters, filterGroups, groupKey, highestLevel, levelLabel,
-  matchesCard, readFilters, recordKey, relatedNames, relatedVariants, sortLevels, writeFilters,
+  readFilters, recordKey, relatedNames, relatedVariants, selectedGroups, sortLevels, writeFilters,
 } from './catalog.ts';
 import type { Card, CardGroup, Filters } from './catalog.ts';
 import './style.css';
@@ -75,17 +75,16 @@ function DownloadLink({ card, full = false }: { card: Card; full?: boolean }) {
     aria-label={`下载${card.name}${levelLabel(card.level)}原图`}><Icon name="download" size={17} />{full && '下载原图'}</a>;
 }
 
-function CardTile({ group, filters, onOpen }: { group: CardGroup; filters: Filters; onOpen: (root: CardGroup, card: Card) => void }) {
+function CardTile({ group, onOpen }: { group: CardGroup; onOpen: (root: CardGroup, card: Card) => void }) {
   const [selected, setSelected] = useState(() => highestLevel(group.matches));
   return <article className="card-tile">
     <div className="tile-meta"><span>{selected.type}牌</span><span>{groupLabel(selected.group)}</span></div>
     <button className="card-image-button" type="button" onClick={() => onOpen(group, selected)} aria-label={`查看${selected.name}详情`}>
-      <CardImage card={selected} /><span className="image-hint">查看大图 <Icon name="arrow" size={15} /></span>
+      <CardImage card={selected} />
     </button>
     <div className="card-title-row"><h3>{selected.name}</h3><DownloadLink card={selected} /></div>
     <p className="card-profession">{professionText(selected.classes, groupMode(selected.group)) || '职业待补充'}<span>·</span>{costLabel(selected.cost)}</p>
     <Selectors root={group} selected={selected} onSelect={setSelected} />
-    {!matchesCard(selected, filters) && <p className="outside-filter">当前切换版本不符合筛选条件</p>}
   </article>;
 }
 
@@ -139,13 +138,21 @@ function App() {
   }, []);
   const update = (key: keyof Filters, value: string) => { setFilters((previous) => ({ ...previous, [key]: value })); };
   const reset = () => { setFilters({ ...emptyFilters }); };
+  const toggleGroup = (id: string) => {
+    setFilters((previous) => {
+      const selected = selectedGroups(previous);
+      const next = selected.includes(id) ? selected.filter((group) => group !== id) : [...selected, id];
+      return { ...previous, group: next.length > 1 ? next : next[0] ?? 'all' };
+    });
+  };
   const groups = useMemo(() => {
     const result = filterGroups(cards, filters);
     if (sort === 'name') result.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
     return result;
   }, [filters, sort]);
-  const modeCards = cards.filter((card) => filters.group === 'all' || card.group === filters.group);
-  const professionMode = filters.group === 'all' ? 'classic' : groupMode(filters.group);
+  const selected = selectedGroups(filters);
+  const modeCards = cards.filter((card) => selected.length === 0 || selected.includes(card.group));
+  const professionMode = selected.length > 0 && selected.every((group) => groupMode(group) === 'diary') ? 'diary' : 'classic';
   const classes = [...professionChoices(professionMode)];
   const types = [...new Set(modeCards.map((card) => card.type))];
   const costs = [...new Set(modeCards.map((card) => String(card.cost)))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
@@ -162,7 +169,7 @@ function App() {
   return <>
     <header className="site-header"><div className="header-inner">
       <a className="brand" href={import.meta.env.BASE_URL} aria-label="林间图鉴首页"><span className="brand-symbol"><Icon name="moon" size={25} /></span><span>林间图鉴<small>NIGHT OF FULL MOON</small></span></a>
-      <nav aria-label="主导航"><a className="nav-active" href="#catalog">卡牌图鉴</a><a href="#about">关于图鉴 <span>↗</span></a></nav>
+      <nav aria-label="主导航"><a className="nav-active" href="#catalog">卡牌图鉴</a></nav>
       <span className="header-label">非官方 · 持续收录中</span><a className="editor-entry" href="?editor">编辑卡牌</a>
     </div></header>
     <main>
@@ -181,26 +188,29 @@ function App() {
 
       <section className="catalog-section" id="catalog" aria-labelledby="catalog-heading">
         <div className="section-heading"><div><p className="eyebrow">THE COLLECTION</p><h2 id="catalog-heading">卡牌收藏室<span>01 —</span></h2></div><p>每张卡牌，都有自己的故事。</p></div>
-        <div className="mode-tabs" role="group" aria-label="卡牌分组">
-          {[{ id: 'all', label: '全部卡牌', count: totalCount }, ...categories].map(({ id, label, count }) =>
-            <button type="button" key={id} aria-pressed={filters.group === id} className={filters.group === id ? 'active' : ''} onClick={() => update('group', id)}>{label}<span>{count}</span></button>)}
-        </div>
         <div className="filter-box">
           <label className="search-field"><Icon name="search" /><input type="search" placeholder="寻找一张卡牌，输入名称…" aria-label="搜索卡牌名称" value={filters.query} onChange={(event) => update('query', event.target.value)} /><span>按名称检索</span></label>
-          <div className="filter-row"><span className="filter-row-label"><Icon name="filter" size={17} /> 筛选</span>
-            <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{professionLabel(name, professionMode)}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
-            <FilterSelect label="类型" value={filters.type} onChange={(value) => update('type', value)}><option value="">全部类型</option>{types.map((type) => <option key={type} value={type}>{type}牌</option>)}</FilterSelect>
-            <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '无能耗' : `${cost} 费`}</option>)}</FilterSelect>
-            <FilterSelect label="等级" value={filters.level} onChange={(value) => update('level', value)}><option value="">全部等级</option>{levels.map((level) => <option key={level} value={level}>{level === 'null' ? '无星级' : `${level} 星`}</option>)}</FilterSelect>
-            <button type="button" className="reset-button" onClick={reset} disabled={!hasFilters}>重置筛选 ↺</button>
+          <div className="filter-controls">
+            <div className="category-row"><span className="filter-row-label"><Icon name="filter" size={17} /> 筛选</span>
+              <div className="category-options" role="group" aria-label="类别选取">
+                <label className="category-option"><input type="checkbox" checked={selected.length === 0} onChange={() => update('group', 'all')} />全部卡牌<span>{totalCount}</span></label>
+                {categories.map(({ id, label, count }) => <label className="category-option" key={id}><input type="checkbox" checked={selected.includes(id)} onChange={() => toggleGroup(id)} />{label}<span>{count}</span></label>)}
+              </div>
+            </div>
+            <div className="filter-row">
+              <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{professionLabel(name, professionMode)}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
+              <FilterSelect label="类型" value={filters.type} onChange={(value) => update('type', value)}><option value="">全部类型</option>{types.map((type) => <option key={type} value={type}>{type}牌</option>)}</FilterSelect>
+              <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '无能耗' : `${cost} 费`}</option>)}</FilterSelect>
+              <FilterSelect label="等级" value={filters.level} onChange={(value) => update('level', value)}><option value="">全部等级</option>{levels.map((level) => <option key={level} value={level}>{level === 'null' ? '无星级' : `${level} 星`}</option>)}</FilterSelect>
+              <button type="button" className="reset-button" onClick={reset} disabled={!hasFilters}>重置筛选 ↺</button>
+            </div>
           </div>
         </div>
         <div className="results-toolbar"><p aria-live="polite">找到 <strong>{groups.length}</strong> 个卡位<span>同名等级已合并 · 点击卡面查看大图</span></p>
           <label className="sort-label">排列<select aria-label="卡牌排列" value={sort} onChange={(event) => { setSort(event.target.value); }}><option value="default">收录顺序</option><option value="name">名称顺序</option></select></label>
         </div>
-        {groups.length ? <div className="card-grid">{groups.map((group) => <CardTile key={`${group.key}:${signature}`} group={group} filters={filters} onOpen={(root, card) => setDetail({ root, card })} />)}</div>
+        {groups.length ? <div className="card-grid">{groups.map((group) => <CardTile key={`${group.key}:${signature}`} group={group} onOpen={(root, card) => setDetail({ root, card })} />)}</div>
           : <div className="empty-state"><Icon name="search" size={36} /><h3>这片森林里，暂时没有找到它。</h3><p>试试其他名称，或放宽筛选条件。</p><button type="button" onClick={reset}>清除筛选</button></div>}
-        <aside className="collection-note"><Icon name="book" size={19} /><p><strong>这还是一本正在编写的图鉴。</strong> 当前仅展示少量示例，职业与部分能耗尚待补全。关联切换仅作功能演示，不代表已核实的游戏生成关系。</p><span>持续收录中</span></aside>
       </section>
     </main>
     <footer id="about"><div className="footer-brand"><Icon name="moon" size={20} /><strong>林间图鉴</strong><span>愿每一次冒险，都有月光相伴。</span></div><p>《月圆之夜》非官方卡牌收藏与检索站。图片及游戏内容版权归原权利方所有。</p><p>个人整理 · 非商业用途 · 支持原图下载</p></footer>

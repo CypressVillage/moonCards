@@ -83,6 +83,23 @@ test('空目录可以正常检索', () => {
   assert.deepEqual(filterGroups([], emptyFilters), []);
 });
 
+test('类别多选取并集，并与其他筛选条件组合', () => {
+  const cards = [makeCard(), makeCard({ name: '日记卡', group: 'diary' }), makeCard({ name: '技能卡', group: 'skill' })];
+  assert.deepEqual(filterGroups(cards, { ...emptyFilters, group: ['base', 'diary'] }).map((card) => card.name), ['测试卡', '日记卡']);
+  assert.deepEqual(filterGroups(cards, { ...emptyFilters, group: ['base', 'diary'], query: '日记' }).map((card) => card.name), ['日记卡']);
+  assert.equal(filterGroups(cards, { ...emptyFilters, group: [], cost: '1' }).length, 3);
+});
+
+test('类别多选 URL 可往返，兼容单类别及旧模式链接', () => {
+  const filters = { ...emptyFilters, group: ['base', 'diary'], query: '测试' };
+  assert.deepEqual(readFilters(writeFilters(filters)), filters);
+  assert.equal(readFilters('?group=diary').group, 'diary');
+  assert.equal(readFilters('?mode=classic').group, 'base');
+  assert.equal(readFilters('?group=base&group=base').group, 'base');
+  assert.equal(readFilters('?group=').group, 'all');
+  assert.equal(writeFilters({ ...emptyFilters, group: [] }), '');
+});
+
 test('数据校验拒绝重复身份和错误字段', () => {
   assert.deepEqual(validateCards([makeCard()]), []);
   assert.match(validateCards([makeCard(), makeCard()]).join(), /重复/);

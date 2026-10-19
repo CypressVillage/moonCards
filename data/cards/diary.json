@@ -450,7 +450,9 @@
   {
     "name": "冠军披风",
     "level": null,
-    "classes": [],
+    "classes": [
+      "女骑士"
+    ],
     "type": "行动",
     "cost": 1,
     "image": "assets/card_diary/冠军披风.png",

@@ -12,3 +12,17 @@ main{max-width:1280px;margin:auto;padding:30px 44px 0}.hero{background:#183d36;c
 .editor-entry{flex-shrink:0;font-size:12px;color:var(--forest);border:1px solid #c9d2c5;border-radius:4px;padding:8px 12px}@media(max-width:800px){.header-inner{gap:14px}.editor-entry{font-size:11px;padding:7px 8px}}@media(max-width:520px){.header-inner{gap:10px}.header-inner nav{margin-left:auto}.editor-entry{font-size:10px;padding:6px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 :root[data-focus-mode="pointer"] :is(button,a,input,select):focus{outline:none}:root[data-focus-mode="keyboard"] :is(button,a,input,select):focus{outline:3px solid #b29253;outline-offset:4px}
+
+.filter-controls{padding:16px 20px;display:flex;flex-direction:column;gap:16px}
+.category-row{display:flex;align-items:flex-start;gap:16px}
+.category-row .filter-row-label{display:flex;flex-shrink:0;margin:0;min-width:48px;padding-top:5px}
+.category-options{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;min-width:0}
+.category-option{display:inline-flex;align-items:center;gap:7px;font-size:12px;line-height:26px;color:#6f8067;cursor:pointer}
+.category-option input{margin:0;width:15px;height:15px;accent-color:var(--forest);cursor:pointer;flex-shrink:0}
+.category-option:has(input:checked){color:var(--forest)}
+.category-option>span{font-size:10px;line-height:1.5;padding:1px 6px;border-radius:4px;background:#eceee5;color:#818879}
+.filter-controls .filter-row{padding:0 0 0 64px;flex-wrap:wrap}
+footer{width:calc(100% - 88px);margin:34px auto 0}
+@media(min-width:1101px){footer{max-width:1376px;width:calc(100% - 64px)}}
+@media(max-width:800px){footer{width:calc(100% - 50px)}.category-options{gap:8px 16px}.filter-controls .filter-row{padding-left:0}}
+@media(max-width:520px){footer{width:calc(100% - 36px)}.header-inner nav a:last-child{display:block}.filter-controls{padding:13px;gap:14px}.category-row{gap:10px}.category-row .filter-row-label{min-width:43px}.category-option{font-size:11px;gap:6px}.category-options{gap:6px 12px}}

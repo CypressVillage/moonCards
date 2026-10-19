@@ -15,7 +15,7 @@ export interface Card {
 
 export interface Filters {
   query: string;
-  group: string;
+  group: string | string[];
   profession: string;
   type: string;
   cost: string;
@@ -39,6 +39,9 @@ export { professionOrder } from './professions.ts';
 export const groupKey = (card: Pick<Card, 'group' | 'name'>) => JSON.stringify([card.group, card.name]);
 export const recordKey = (card: Card) => JSON.stringify([card.group, card.name, card.level]);
 
+export const selectedGroups = (filters: Filters): string[] => filters.group === 'all'
+  ? [] : typeof filters.group === 'string' ? [filters.group] : filters.group;
+
 export function relatedVariants(cards: Card[], source: Pick<Card, 'group'>, name: string): Card[] {
   return resolveRelatedCards(cards, source.group, name);
 }
@@ -50,7 +53,7 @@ export const costLabel = (cost: Card['cost']) => cost === null ? '无能耗' : `
 export function matchesCard(card: Card, filters: Filters) {
   const query = filters.query.trim().toLocaleLowerCase();
   return (!query || card.name.toLocaleLowerCase().includes(query))
-    && (filters.group === 'all' || card.group === filters.group)
+    && (selectedGroups(filters).length === 0 || selectedGroups(filters).includes(card.group))
     && (!filters.profession || (filters.profession === '__unknown'
       ? card.classes.length === 0 : card.classes.includes(filters.profession)))
     && (!filters.type || card.type === filters.type)
@@ -82,14 +85,19 @@ export function readFilters(search: string): Filters {
   const params = new URLSearchParams(search);
   // Keep existing shared links useful after replacing the old mode filter.
   if (!params.has('group') && params.has('mode')) params.set('group', params.get('mode') === 'classic' ? 'base' : params.get('mode')!);
-  return Object.fromEntries(Object.entries(emptyFilters).map(([key, fallback]) =>
+  const filters = Object.fromEntries(Object.entries(emptyFilters).map(([key, fallback]) =>
     [key, params.get(key) ?? fallback])) as unknown as Filters;
+  const groups = [...new Set(params.getAll('group'))].filter((group) => group && group !== 'all');
+  filters.group = groups.length > 1 ? groups : groups[0] ?? 'all';
+  return filters;
 }
 
 export function writeFilters(filters: Filters) {
   const params = new URLSearchParams();
   for (const key of Object.keys(emptyFilters) as (keyof Filters)[]) {
-    if (filters[key] !== emptyFilters[key]) params.set(key, filters[key]);
+    if (key === 'group') {
+      for (const group of selectedGroups(filters)) params.append(key, group);
+    } else if (filters[key] !== emptyFilters[key]) params.set(key, filters[key]);
   }
   return params.toString();
 }

@@ -768,6 +768,19 @@
   },
   {
     "name": "毒药桶",
+    "group": "base",
+    "image": "assets/card_base/毒药桶1.png",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "毒药桶",
     "level": 2,
     "classes": [
       "药剂师"
@@ -5439,6 +5452,32 @@
   },
   {
     "name": "充能炮",
+    "group": "base",
+    "image": "assets/card_base/充能炮1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "充能炮",
+    "group": "base",
+    "image": "assets/card_base/充能炮2.png",
+    "level": 2,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "充能炮",
     "level": 3,
     "classes": [
       "机械师"
@@ -5472,6 +5511,19 @@
     "image": "assets/card_base/弹幕射击.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "电流喷射",
+    "group": "base",
+    "image": "assets/card_base/电流喷射1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "电流喷射",
