@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { createElement } from 'react';
@@ -11,7 +13,7 @@ import react from '@vitejs/plugin-react';
 test('编辑器使用分组标题及编辑图标，状态、搜索、上传按顺序排列且不显示常驻提示', async () => {
   const originalWindow = Object.getOwnPropertyDescriptor(globalThis, 'window');
   Object.defineProperty(globalThis, 'window', { configurable: true, value: { location: { search: '?editor&group=base' } } });
-  const cache = await mkdtemp('/tmp/opencode/editor-layout-');
+  const cache = await mkdtemp(join(tmpdir(), 'editor-layout-'));
   let server: ViteDevServer | undefined;
   try {
     server = await createServer({

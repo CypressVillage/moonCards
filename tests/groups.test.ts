@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { mkdtemp, mkdir, readFile, writeFile, rm, readdir } from 'node:fs/promises';
 import { emptyFilters, filterGroups, relatedVariants, readFilters } from '../src/catalog.ts';
 import type { Card } from '../src/catalog.ts';
@@ -59,7 +61,7 @@ test('跨组同名卡按固定分组顺序解析，不混合不同分组的星�
 });
 
 test('分组文件自动发现，拒绝文件名、group 和图片文件夹不一致', async () => {
-  const root = await mkdtemp('/tmp/opencode/card-groups-');
+  const root = await mkdtemp(join(tmpdir(), 'card-groups-'));
   await mkdir(`${root}/data/cards`, { recursive: true });
   try {
     for (const group of ['diary', 'skill', 'base_extra', 'base']) {
@@ -92,7 +94,7 @@ test('实际 JSON 的 group 和目录一致，没有 diary 布尔字段（允许
 });
 
 test('分组配置支持可编辑模式和旧显示名，拒绝错误模式或空名称', async () => {
-  const root = await mkdtemp('/tmp/opencode/group-settings-');
+  const root = await mkdtemp(join(tmpdir(), 'group-settings-'));
   await mkdir(`${root}/data/cards`, { recursive: true });
   try {
     await writeFile(`${root}/data/cards/base.json`, JSON.stringify([card('base')]));

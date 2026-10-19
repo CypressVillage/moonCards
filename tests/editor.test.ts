@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
@@ -153,7 +155,7 @@ test('关联搜索覆盖所有 JSON，去重并排除自身和已选关联', () 
 });
 
 test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件）', async () => {
-  const root = await mkdtemp('/tmp/opencode/card-editor-');
+  const root = await mkdtemp(join(tmpdir(), 'card-editor-'));
   await mkdir(`${root}/data/cards`, { recursive: true });
   const file = `${root}/data/cards/base.json`;
   await writeFile(file, JSON.stringify([card('落石'), card('B')]));

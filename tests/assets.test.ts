@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { mkdtemp, mkdir, readFile, writeFile, readdir, rm, access, symlink, unlink } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import type { Card } from '../src/catalog.ts';
@@ -16,7 +18,7 @@ const source = 'assets/card_base/共享.png';
 const card = (group: string, name: string, level: number | null = 1, image = `assets/card_${group}/${name}.png`): Card => ({ name, group, level, image, classes: [], type: '攻击', cost: null, relatedCards: [] });
 
 async function fixture(run: (root: string) => Promise<void>) {
-  const root = await mkdtemp('/tmp/opencode/card-assets-');
+  const root = await mkdtemp(join(tmpdir(), 'card-assets-'));
   try {
     await mkdir(`${root}/data/cards`, { recursive: true });
     for (const group of ['base', 'base_extra', 'diary', 'skill']) await mkdir(`${root}/assets/card_${group}`, { recursive: true });
