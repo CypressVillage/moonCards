@@ -1,0 +1,240 @@
+[
+  {
+    "name": "毒蛇女王",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/毒蛇女王.png",
+    "level": null,
+    "classes": [
+      "小女巫",
+      "药剂师",
+      "女骑士",
+      "游侠",
+      "魔术师"
+    ],
+    "type": "特殊",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "飞龙幼崽",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/飞龙幼崽.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "药剂师",
+      "游侠",
+      "魔术师"
+    ],
+    "type": "咒术",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "古堡窃贼",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/古堡窃贼.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "药剂师",
+      "游侠",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "鹳鸟",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/鹳鸟.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "诡异的猫",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/诡异的猫.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "魔术师",
+      "药剂师",
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "蝴蝶看守",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/蝴蝶看守.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "镣铐野人",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/镣铐野人.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "石像鬼典狱长",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/石像鬼典狱长.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "嗜酒管家",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/嗜酒管家.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "鼠王",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/鼠王.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "跳蚤潜入者",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/跳蚤潜入者.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "投石猴",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/投石猴.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "蜥蜴术士",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/蜥蜴术士.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "醉鬼",
+    "group": "diary_extra",
+    "image": "assets/card_diary_extra/醉鬼.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  }
+]

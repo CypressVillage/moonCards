@@ -4,7 +4,7 @@ import type { CardCategory } from './card-data.ts';
 // @ts-expect-error Shared group definitions are plain JavaScript.
 import { describeGroup, validGroupId } from '../scripts/card-groups.mjs';
 import { levelLabel, relatedVariants } from './catalog.ts';
-import { appendRegistrationDraft, editCard, editCardIdentity, filterEditorCards, moveCard, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from './editor-model.ts';
+import { appendRegistrationDraft, availableUnregisteredAssets, editCard, editCardIdentity, filterEditorCards, moveCard, pendingRegistrationImages, removeCard, searchRelatedCards, withdrawRegistrationDraft } from './editor-model.ts';
 // @ts-expect-error Shared browser/Node validator is plain JavaScript.
 import { validateCards, cardTypes as allowedCardTypes } from '../scripts/validate-cards.mjs';
 import './editor.css';
@@ -130,7 +130,7 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       const authorization = await fetch(groupEndpoint, { cache: 'no-store' });
       const access = await authorization.json();
       if (!authorization.ok) throw new Error(access.error);
-      if (access.editorApiVersion !== 5) throw new Error('开发服务仍在运行旧版保存接口。请先导出 JSON 备份，再重启 npm run dev。');
+      if (access.editorApiVersion !== 6) throw new Error('开发服务仍在运行旧版保存接口。请先导出 JSON 备份，再重启 npm run dev。');
       const response = await fetch(groupEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': access.saveToken }, body: JSON.stringify({ cards, revision }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
@@ -190,6 +190,16 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
     setDirty(JSON.stringify(next) !== JSON.stringify(savedCards)); setDetailOpen(false);
     setMessage('已撤销本次收录，源图片未删除，其他修改仍保留。');
   }
+  function deleteRecord() {
+    if (busy || candidate || !card) return;
+    if (!window.confirm(`删除「${card.name} · ${levelLabel(card.level)}」这条已收录记录？\n仅删除当前记录，不删除源图片或同名的其他星级。${local ? '点击“保存到本地 JSON”后才会写入文件。' : '仅修改导出的 JSON，不会写入项目文件。'}`)) return;
+    try {
+      const next = removeCard(cards, selected, catalogCards.filter((entry) => entry.group !== groupId));
+      setCards(next); setSelected(Math.max(0, Math.min(selected, next.length - 1)));
+      setDirty(JSON.stringify(next) !== JSON.stringify(savedCards)); setDetailOpen(false);
+      setMessage('已删除当前收录记录，源图片未删除，其他修改仍保留；尚未保存 JSON。');
+    } catch (error) { setMessage(`删除失败：${error instanceof Error ? error.message : String(error)}`); }
+  }
   function closeDetail() {
     if (candidateDirty && !window.confirm('放弃尚未收录的新卡牌草稿？源图片不会删除。')) return;
     setDetailOpen(false); setCandidate(null); setCandidateDirty(false);
@@ -205,11 +215,10 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
   const related = card && relatedQuery.trim() ? searchRelatedCards(relationshipCatalog, card, relatedQuery) : [];
   const byPath = new Map(assets.map((asset) => [asset.path, asset]));
   const matchesQuery = (name: string) => name.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
-  const listedImages = new Set(cards.map((card) => card.image));
   const visibleStatus = statusFilter === 'pending' ? 'registered' : statusFilter;
   const missingImages = new Set(assets.filter((asset) => asset.status === 'missing').map((asset) => asset.path));
   const visibleCards = filterEditorCards(cards, query, visibleStatus, missingImages);
-  const remainingAssets = assets.filter((asset) => asset.status === 'unregistered' && !listedImages.has(asset.path));
+  const remainingAssets = availableUnregisteredAssets(assets, cards).map((asset) => ({ ...asset, status: 'unregistered' as const, references: 0 }));
   const unregistered = remainingAssets.filter((asset) => matchesQuery(asset.name) && ['all', 'unregistered'].includes(statusFilter));
   function editGroupSettings() {
     setMessage('');
@@ -280,7 +289,7 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
             }) : <p>没有可添加的匹配卡牌</p>}</div>}</div>
           <p className="editor-wide editor-hint">名称仅修改当前记录；分组、名称、星级全部相同才算重复。可见性同步本组同名卡牌的所有星级。重命名会在适用时更新本组引用，跨文件关联若失效需按校验提示先修正；图片路径保持不变。</p>
         </fieldset>
-        <div className="editor-actions editor-dialog-actions"><button type="button" disabled={busy} onClick={closeDetail}>{candidate ? '取消收录' : '完成编辑，返回缩略图'}</button>{local && !candidate && unsavedImages.has(card.image) && <button type="button" disabled={busy} onClick={withdrawDraft}>撤销本次收录</button>}{local && !candidate && byPath.has(card.image) && <button disabled={busy || dirty} onClick={() => { setDetailOpen(false); setManagedAsset(byPath.get(card.image)!); setMessage(''); }}>管理源图片文件</button>}{local ? candidate ? <button type="button" className="editor-save" title="只加入当前编辑列表，最后统一保存 JSON" onClick={collectCard} disabled={busy || formErrors.length > 0}>收录卡牌</button> : <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>保存到本地 JSON</button> : <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>}</div>
+        <div className="editor-actions editor-dialog-actions"><button type="button" disabled={busy} onClick={closeDetail}>{candidate ? '取消收录' : '完成编辑，返回缩略图'}</button>{local && !candidate && unsavedImages.has(card.image) && <button type="button" disabled={busy} onClick={withdrawDraft}>撤销本次收录</button>}{!candidate && !unsavedImages.has(card.image) && <button type="button" className="editor-delete-record" disabled={busy} title="仅删除当前元数据记录，保留源图片；保存或导出后生效" onClick={deleteRecord}>删除已收录记录</button>}{local && !candidate && byPath.has(card.image) && <button disabled={busy || dirty} onClick={() => { setDetailOpen(false); setManagedAsset(byPath.get(card.image)!); setMessage(''); }}>管理源图片文件</button>}{local ? candidate ? <button type="button" className="editor-save" title="只加入当前编辑列表，最后统一保存 JSON" onClick={collectCard} disabled={busy || formErrors.length > 0}>收录卡牌</button> : <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>保存到本地 JSON</button> : <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>}</div>
       </dialog>}
       {local && managedAsset && <AssetDialog key={managedAsset.path} asset={managedAsset} groups={availableGroups} busy={busy} message={message} onClose={() => setManagedAsset(null)} onAction={runAssetAction} onRegister={beginRegistration} />}
       {local && groupSettingsOpen && <GroupSettingsDialog key={groupId} group={currentGroup} busy={busy} message={message} onClose={() => setGroupSettingsOpen(false)} onSave={(label, mode) => runAssetAction({ action: 'group-settings', group: groupId, label, mode })} />}

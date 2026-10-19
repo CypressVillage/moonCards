@@ -48,6 +48,8 @@ test('编辑器使用分组标题及编辑图标，状态、搜索、上传按�
     assert.match(controls, /class="editor-visually-hidden" id="upload-help-base"/);
     assert.match(controls, /type="file"[^>]*multiple=""/);
     assert.match(html, /关联卡牌（全部分组，可多选）/);
+    assert.match(html, /class="editor-delete-record"[^>]*>删除已收录记录<\/button>/);
+    assert.match(html, /仅删除当前元数据记录，保留源图片/);
     assert.doesNotMatch(html, /value="pending"|待收录|class="editor-related-results"|class="editor-related-matches"|所属分组：/);
     window.location.search = '?editor&group=custom';
     const diaryHtml = renderToStaticMarkup(createElement(CardEditor, {

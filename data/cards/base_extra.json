@@ -15,22 +15,23 @@
     "group": "base_extra",
     "image": "assets/card_base_extra/减速.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "女骑士",
+      "游侠",
+      "小女巫",
+      "修女",
+      "魔术师",
+      "狼人",
+      "契约师",
+      "药剂师",
+      "调灵师",
+      "机械师",
+      "猎魔人"
+    ],
     "type": "行动",
     "cost": 1,
     "relatedCards": [],
     "hidden": false
-  },
-  {
-    "name": "小小法力",
-    "level": null,
-    "classes": [],
-    "type": "法力",
-    "cost": null,
-    "image": "assets/card_base_extra/egg_小小法力.png",
-    "relatedCards": [],
-    "hidden": false,
-    "group": "base_extra"
   },
   {
     "name": "死神降临",
@@ -42,6 +43,17 @@
     ],
     "type": "咒术",
     "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "枯竭",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/枯竭.png",
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
     "relatedCards": [],
     "hidden": false
   },
@@ -90,17 +102,6 @@
     "group": "base_extra"
   },
   {
-    "name": "枯竭",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/枯竭.png",
-    "level": null,
-    "classes": [],
-    "type": "咒术",
-    "cost": 2,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
     "name": "尖刺羽毛",
     "group": "base_extra",
     "image": "assets/card_base_extra/尖刺羽毛.png",
@@ -108,6 +109,99 @@
     "classes": [],
     "type": "特殊",
     "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "魔法反射",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/魔法反射.png",
+    "level": 3,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "反制",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "流星镖",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/流星镖.png",
+    "level": null,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "商品订单",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/商品订单（攻击牌）.png",
+    "level": null,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "卡牌包",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/卡牌包（行动牌）.png",
+    "level": null,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "小小法力",
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base_extra/egg_小小法力.png",
+    "relatedCards": [],
+    "hidden": false,
+    "group": "base_extra"
+  },
+  {
+    "name": "杂门咒术",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/杂门咒术.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "狼人",
+      "机械师",
+      "小猪妖"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "小雪花",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/小雪花.png",
+    "level": null,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
     "relatedCards": [],
     "hidden": false
   }

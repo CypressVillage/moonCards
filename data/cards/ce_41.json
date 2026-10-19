@@ -4,7 +4,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/塔盾（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "女骑士"
+    ],
     "type": "装备",
     "cost": null,
     "relatedCards": [],
@@ -15,7 +17,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/佣兵小队（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "游侠"
+    ],
     "type": "行动",
     "cost": 0,
     "relatedCards": [],
@@ -26,7 +30,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/咒语突破（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "小女巫"
+    ],
     "type": "行动",
     "cost": 1,
     "relatedCards": [],
@@ -37,7 +43,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/末日灾祸（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "修女"
+    ],
     "type": "咒术",
     "cost": 8,
     "relatedCards": [],
@@ -48,7 +56,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/杂技（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "魔术师"
+    ],
     "type": "攻击",
     "cost": null,
     "relatedCards": [],
@@ -59,7 +69,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/回收装置（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "药剂师"
+    ],
     "type": "行动",
     "cost": 1,
     "relatedCards": [],
@@ -70,7 +82,9 @@
     "group": "ce_41",
     "image": "assets/card_ce_41/饥饿（愚人节）.png",
     "level": null,
-    "classes": [],
+    "classes": [
+      "狼人"
+    ],
     "type": "行动",
     "cost": 2,
     "relatedCards": [],

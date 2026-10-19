@@ -32,6 +32,23 @@ export function withdrawRegistrationDraft(cards: Card[], image: string, savedCar
   return cards.filter((card) => card.image !== image);
 }
 
+export function removeCard(cards: Card[], index: number, otherCards: Card[] = []): Card[] {
+  const removed = cards[index];
+  if (!removed) return cards;
+  const next = cards.filter((_, position) => position !== index);
+  const catalog = [...otherCards, ...next];
+  if (!catalog.some((card) => card.name === removed.name)) {
+    const references = catalog.filter((card) => card.relatedCards.includes(removed.name));
+    if (references.length) throw new Error(`请先移除以下卡牌对「${removed.name}」的关联，再删除记录：${references.map((card) => `${card.name}（${card.group}）`).join('、')}`);
+  }
+  return next;
+}
+
+export function availableUnregisteredAssets<T extends { path: string; status: string }>(assets: T[], cards: Card[]): T[] {
+  const listedImages = new Set(cards.map((card) => card.image));
+  return assets.filter((asset) => asset.status !== 'missing' && !listedImages.has(asset.path));
+}
+
 export function filterEditorCards(cards: Card[], query: string, status: string, missingImages: Set<string> = new Set()) {
   const term = query.trim().toLocaleLowerCase();
   return cards.map((entry, index) => ({ entry, index })).filter(({ entry }) =>

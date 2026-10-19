@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { Readable } from 'node:stream';
-import { appendRegistrationDraft, moveCard, editCard, editCardIdentity, filterEditorCards, pendingRegistrationImages, searchRelatedCards, withdrawRegistrationDraft } from '../src/editor-model.ts';
+import { appendRegistrationDraft, availableUnregisteredAssets, moveCard, editCard, editCardIdentity, filterEditorCards, pendingRegistrationImages, removeCard, searchRelatedCards, withdrawRegistrationDraft } from '../src/editor-model.ts';
 import type { Card } from '../src/catalog.ts';
 // @ts-expect-error Shared Node middleware is plain JavaScript.
 import { cardEditorApi } from '../scripts/card-editor-api.mjs';
@@ -41,6 +41,44 @@ test('新收录卡牌立即属于已收录列表，持久化状态不参与筛�
   assert.deepEqual(filterEditorCards(collected, '', 'registered', new Set([saved[0].image])).map(({ entry }) => entry.name), ['A', '新卡']);
   assert.deepEqual(filterEditorCards(collected, '', 'missing', new Set([saved[0].image])).map(({ entry }) => entry.name), ['A']);
   assert.equal(saved.length, 1);
+});
+
+test('删除仅移除选中记录，保留同名其他星级、共享图片记录及其他草稿修改', () => {
+  const saved = [card('A'), { ...card('A', 2), image: card('A').image }, card('B')];
+  const changed = editCard(saved, 2, { cost: 3 });
+  const next = removeCard(changed, 0);
+  assert.deepEqual(next.map((entry) => [entry.name, entry.level]), [['A', 2], ['B', 1]]);
+  assert.equal(next[0].image, saved[0].image);
+  assert.equal(next[1].cost, 3);
+  assert.equal(saved.length, 3);
+  assert.equal(saved[2].cost, null);
+  assert.equal(removeCard(changed, -1), changed);
+  assert.equal(removeCard(changed, changed.length), changed);
+  assert.deepEqual(removeCard([card('最后一张')], 0), []);
+});
+
+test('删除最后一个名称前检查本组和跨组关联，不自动改写其他记录', () => {
+  const referencing = { ...card('B'), relatedCards: ['A'] };
+  const cards = [card('A'), card('A', 2), referencing];
+  assert.deepEqual(removeCard(cards, 0).map((entry) => entry.name), ['A', 'B']);
+  assert.throws(() => removeCard([cards[0], referencing], 0), /请先移除.*B（base）/);
+  const external = { ...referencing, group: 'diary' };
+  assert.throws(() => removeCard([cards[0]], 0, [external]), /B（diary）/);
+  assert.deepEqual(external.relatedCards, ['A']);
+  assert.deepEqual(removeCard([cards[0]], 0, [{ ...card('A'), group: 'diary' }, external]), []);
+});
+
+test('删除后保留的图片立即归入未收录，共享图片仍收录时和缺失图片不出现', () => {
+  const cards = [card('A'), { ...card('A', 2), image: card('A').image }];
+  const assets = [
+    { path: card('A').image, status: 'registered' },
+    { path: card('B').image, status: 'unregistered' },
+    { path: card('缺失').image, status: 'missing' },
+  ];
+  assert.deepEqual(availableUnregisteredAssets(assets, removeCard(cards, 0)).map((asset) => asset.path), [card('B').image]);
+  assert.deepEqual(availableUnregisteredAssets(assets, []).map((asset) => asset.path), [card('A').image, card('B').image]);
+  assert.deepEqual(availableUnregisteredAssets(assets, [card('B')]).map((asset) => asset.path), [card('A').image]);
+  assert.equal(assets[0].status, 'registered');
 });
 
 test('排序移动精确对应 JSON 记录顺序，不改变内容', () => {
@@ -144,7 +182,7 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     const loaded = await read.json();
     saveToken = loaded.saveToken;
     assert.ok(saveToken);
-    assert.equal(loaded.editorApiVersion, 5);
+    assert.equal(loaded.editorApiVersion, 6);
     assert.deepEqual(loaded.groups.map((group: { id: string }) => group.id), ['base', 'diary', 'base_extra']);
     assert.equal(loaded.cards.length, 2);
     assert.equal(loaded.catalogCards.length, 4);
@@ -162,7 +200,7 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     assert.equal((await post({ cards: updated, revision: savedData.revision }, origin, '')).status, 403);
     assert.equal((await post({ cards: updated, revision: savedData.revision }, origin, 'wrong-token')).status, 403);
     assert.equal((await fetch(url, { headers: { 'Sec-Fetch-Site': 'cross-site' } })).status, 403);
-    assert.equal((await post({ cards: [], revision: savedData.revision })).status, 400);
+    assert.equal((await post({ cards: null, revision: savedData.revision })).status, 400);
     assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), updated);
     const renamed = editCardIdentity(updated, 0, { name: '新名称' });
     renamed[0] = { ...renamed[0], level: 3, type: '装备', hidden: true, classes: ['游侠', '女骑士'] };

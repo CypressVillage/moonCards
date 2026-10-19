@@ -12,4 +12,7 @@ test('成功反馈可临时显示，不将报错当成可自动消失的成功�
     assert.equal(isErrorMessage(message), true);
   }
   assert.equal(isTransientMessage('请选择卡牌类型并核对元数据'), false);
+  assert.equal(isTransientMessage('已删除当前收录记录，源图片未删除；尚未保存 JSON。'), true);
+  assert.equal(isErrorMessage('删除失败：请先移除关联'), true);
+  assert.equal(isTransientMessage('删除失败：请先移除关联'), false);
 });

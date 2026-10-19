@@ -2614,6 +2614,19 @@
     "group": "base"
   },
   {
+    "name": "金属音",
+    "group": "base",
+    "image": "assets/card_base/金属音1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
     "name": "机械刃弩",
     "level": 2,
     "classes": [
@@ -2626,6 +2639,32 @@
     "group": "base"
   },
   {
+    "name": "机械刃弩",
+    "group": "base",
+    "image": "assets/card_base/机械刃弩1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "修理扳手",
+    "group": "base",
+    "image": "assets/card_base/修理扳手1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
     "name": "修理扳手",
     "level": 2,
     "classes": [
@@ -2636,6 +2675,19 @@
     "image": "assets/card_base/修理扳手.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "反射护盾",
+    "group": "base",
+    "image": "assets/card_base/反射护盾1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "反射护盾",
@@ -2684,6 +2736,32 @@
     "image": "assets/card_base/扰乱.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "增殖弹",
+    "group": "base",
+    "image": "assets/card_base/增殖弹1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "增殖弹",
+    "group": "base",
+    "image": "assets/card_base/增殖弹2.png",
+    "level": 2,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "增殖弹",
@@ -5539,6 +5617,19 @@
   },
   {
     "name": "钢铁之躯",
+    "group": "base",
+    "image": "assets/card_base/钢铁之躯1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "钢铁之躯",
     "level": 2,
     "classes": [
       "机械师"
@@ -5562,6 +5653,34 @@
     "group": "base"
   },
   {
+    "name": "机械兔",
+    "group": "base",
+    "image": "assets/card_base/机械兔1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 3,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "炸药飞艇",
+    "group": "base",
+    "image": "assets/card_base/炸药飞艇1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 5,
+    "relatedCards": [
+      "机械炸药"
+    ],
+    "hidden": false
+  },
+  {
     "name": "炸药飞艇",
     "level": 2,
     "classes": [
@@ -5577,7 +5696,7 @@
   },
   {
     "name": "机械重碾",
-    "level": 1,
+    "level": null,
     "classes": [
       "机械师"
     ],
@@ -5625,6 +5744,19 @@
   },
   {
     "name": "能量存储",
+    "group": "base",
+    "image": "assets/card_base/能量存储1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "能量存储",
     "level": 2,
     "classes": [
       "机械师"
@@ -5651,6 +5783,19 @@
   },
   {
     "name": "召唤机甲",
+    "group": "base",
+    "image": "assets/card_base/召唤机甲1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "召唤机甲",
     "level": 2,
     "classes": [
       "机械师"
@@ -5660,6 +5805,19 @@
     "image": "assets/card_base/召唤机甲.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "瓦解",
+    "group": "base",
+    "image": "assets/card_base/瓦解1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "瓦解",
@@ -5684,6 +5842,19 @@
     "image": "assets/card_base/机械拷贝.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "机械鼹鼠",
+    "group": "base",
+    "image": "assets/card_base/机械鼹鼠1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 5,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "机械鼹鼠",
@@ -5746,6 +5917,19 @@
     "group": "base"
   },
   {
+    "name": "火箭推进器",
+    "group": "base",
+    "image": "assets/card_base/火箭推进器1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 8,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
     "name": "设计图纸",
     "level": null,
     "classes": [
@@ -5768,6 +5952,19 @@
     "image": "assets/card_base/紧张感.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "炸药狂热",
+    "group": "base",
+    "image": "assets/card_base/炸药狂热1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "炸药狂热",
@@ -5804,6 +6001,19 @@
     "image": "assets/card_base/机械操控.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "终极粉碎",
+    "group": "base",
+    "image": "assets/card_base/终极粉碎1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "终极粉碎",
@@ -6718,6 +6928,19 @@
     "image": "assets/card_base/分身术.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "元素波动",
+    "group": "base",
+    "image": "assets/card_base/元素波动1.png",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "元素波动",
@@ -7645,7 +7868,7 @@
   },
   {
     "name": "腐败",
-    "level": 1,
+    "level": null,
     "classes": [
       "药剂师"
     ],
@@ -7697,7 +7920,7 @@
   },
   {
     "name": "闪电爆破",
-    "level": 1,
+    "level": null,
     "classes": [
       "药剂师"
     ],
@@ -9236,6 +9459,19 @@
   },
   {
     "name": "恐惧低语",
+    "group": "base",
+    "image": "assets/card_base/恐惧低语1.png",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "恐惧低语",
     "level": 2,
     "classes": [
       "契约师"
@@ -9247,6 +9483,19 @@
       "恐惧"
     ],
     "group": "base"
+  },
+  {
+    "name": "阴云密布",
+    "group": "base",
+    "image": "assets/card_base/阴云密布1.png",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "阴云密布",

@@ -66,7 +66,7 @@ export function cardEditorApi(root) {
         const current = snapshot.store.groups.find((group) => group.id === groupId);
         if (!snapshot.groups.some((group) => group.id === groupId)) return reply(404, { error: '卡牌分组不存在' });
         return reply(200, {
-          cards: current?.cards ?? [], catalogCards: snapshot.store.cards, revision: revision(current?.text ?? null), saveToken, editorApiVersion: 5,
+          cards: current?.cards ?? [], catalogCards: snapshot.store.cards, revision: revision(current?.text ?? null), saveToken, editorApiVersion: 6,
           groups: snapshot.groups, assets: snapshot.assets.filter((asset) => asset.group === groupId), assetVersion: snapshot.version,
         });
       }
@@ -103,7 +103,12 @@ export function cardEditorApi(root) {
         }
         const text = jsonText(payload.cards);
         await commitChanges(root, [{ path: relativeFile, before: previousBytes, after: Buffer.from(text) }]);
-        return reply(200, { revision: revision(text), added: payload.cards.length - originalCards.length });
+        const previousCounts = new Map();
+        const nextCounts = new Map();
+        for (const card of originalCards) previousCounts.set(card.image, (previousCounts.get(card.image) ?? 0) + 1);
+        for (const card of payload.cards) nextCounts.set(card.image, (nextCounts.get(card.image) ?? 0) + 1);
+        const removed = [...previousCounts].reduce((total, [path, count]) => total + Math.max(0, count - (nextCounts.get(path) ?? 0)), 0);
+        return reply(200, { revision: revision(text), added: newImages.length, removed });
       } finally { saving = false; }
     } catch (error) { return reply(error.status ?? 500, { error: `无法读写卡牌文件：${error.message}` }); }
   };

@@ -311,7 +311,7 @@ test('暂存多张新卡不写文件，统一保存时与旧卡修改、排序�
     drafts = moveCard(drafts, 3, 0);
     assert.deepEqual(await readFile(file), before);
     const post = (cards: Card[], dryRun = false, revision = loaded.revision) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': loaded.saveToken }, body: JSON.stringify({ cards, revision, dryRun }) });
-    assert.equal((await post(drafts.filter((entry) => !(entry.name === 'A' && entry.level === 1)))).status, 400);
+    assert.equal((await post(drafts.filter((entry) => !(entry.name === 'A' && entry.level === 1)), true)).status, 200);
     assert.equal((await post([...drafts, card('base', '已有图片多加一条', 3, source)])).status, 400);
     assert.deepEqual(await readFile(file), before);
     assert.equal((await post(drafts, true)).status, 200);
@@ -325,6 +325,94 @@ test('暂存多张新卡不写文件，统一保存时与旧卡修改、排序�
     const persisted = await readFile(file);
     assert.equal((await post(drafts)).status, 409);
     assert.deepEqual(await readFile(file), persisted);
+  } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
+}));
+
+test('删除已收录记录统一保存，支持共享图片、混合新增和清空，原图及其他组不变且有备份', async () => fixture(async (root) => {
+  const file = `${root}/data/cards/base.json`;
+  const before = await readFile(file);
+  const sibling = await readFile(`${root}/data/cards/diary.json`);
+  const middleware = cardEditorApi(root);
+  const server = createServer((req, res) => void middleware(req, res, () => { res.writeHead(404); res.end(); }));
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address(); assert.ok(address && typeof address !== 'string');
+  const url = `http://127.0.0.1:${address.port}/__card-editor/cards?group=base`;
+  try {
+    const loaded = await (await fetch(url)).json();
+    let revision = loaded.revision;
+    const post = (cards: Card[], dryRun = false, version = revision) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': loaded.saveToken }, body: JSON.stringify({ cards, revision: version, dryRun }) });
+    const remaining = [{ ...loaded.cards[1], cost: 3 }];
+    assert.equal((await post(remaining, true)).status, 200);
+    assert.deepEqual(await readFile(file), before);
+    let response = await post(remaining);
+    assert.equal(response.status, 200);
+    let result = await response.json();
+    assert.equal(result.removed, 1); assert.equal(result.added, 0);
+    revision = result.revision;
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), remaining);
+    assert.deepEqual(await readFile(`${root}/${source}`), png);
+    let snapshot = await scanCardAssets(root);
+    assert.equal(snapshot.assets.find((asset: { path: string }) => asset.path === source).references, 1);
+    assert.equal((await post([], false, loaded.revision)).status, 409);
+    const mixed = [card('base', '新卡', null, 'assets/card_base/未收录.png')];
+    response = await post(mixed);
+    assert.equal(response.status, 200);
+    result = await response.json(); revision = result.revision;
+    assert.equal(result.removed, 1); assert.equal(result.added, 1);
+    snapshot = await scanCardAssets(root);
+    assert.equal(snapshot.assets.find((asset: { path: string }) => asset.path === source).status, 'unregistered');
+    response = await post([]);
+    assert.equal(response.status, 200);
+    result = await response.json(); revision = result.revision;
+    assert.equal(result.removed, 1); assert.equal(result.added, 0);
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), []);
+    assert.deepEqual(await readFile(`${root}/assets/card_base/未收录.png`), png);
+    assert.deepEqual(await readFile(`${root}/${source}`), png);
+    assert.deepEqual(await readFile(`${root}/data/cards/diary.json`), sibling);
+    const backupDirectory = `${root}/.card-editor/transactions`;
+    const journals = await Promise.all((await readdir(backupDirectory)).map(async (name) => JSON.parse(await readFile(`${backupDirectory}/${name}`, 'utf8'))));
+    assert.ok(journals.some((journal) => journal.entries.some((entry: { path: string; before: string }) => entry.path === 'data/cards/base.json' && Buffer.from(entry.before, 'base64').equals(before))));
+    // Images retained by deletion can be explicitly registered again.
+    response = await post([card('base', '重新收录', null, source)]);
+    assert.equal(response.status, 200);
+  } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
+}));
+
+test('删除校验跨组关联与最新外部修改，缺图记录也能单独移除', async () => fixture(async (root) => {
+  const file = `${root}/data/cards/base.json`;
+  const siblingFile = `${root}/data/cards/diary.json`;
+  const originalSibling = JSON.parse(await readFile(siblingFile, 'utf8'));
+  await writeFile(siblingFile, JSON.stringify(originalSibling.map((entry: Card) => ({ ...entry, relatedCards: ['A'] }))));
+  const before = await readFile(file);
+  const middleware = cardEditorApi(root);
+  const server = createServer((req, res) => void middleware(req, res, () => { res.writeHead(404); res.end(); }));
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const address = server.address(); assert.ok(address && typeof address !== 'string');
+  const url = `http://127.0.0.1:${address.port}/__card-editor/cards?group=base`;
+  try {
+    const loaded = await (await fetch(url)).json();
+    const post = (cards: Card[], revision = loaded.revision) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': loaded.saveToken }, body: JSON.stringify({ cards, revision }) });
+    let response = await post([]);
+    assert.equal(response.status, 400);
+    assert.match((await response.json()).error, /关联卡.*A.*不存在/);
+    assert.deepEqual(await readFile(file), before);
+    await writeFile(siblingFile, JSON.stringify(originalSibling));
+    await unlink(`${root}/${source}`);
+    response = await post([loaded.cards[1]]);
+    assert.equal(response.status, 200);
+    const saved = await response.json();
+    assert.equal(saved.removed, 1);
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), [loaded.cards[1]]);
+    // Fresh sibling edits after loading must also prevent dangling references.
+    const external = JSON.stringify(originalSibling.map((entry: Card) => ({ ...entry, relatedCards: ['A'] })));
+    await writeFile(siblingFile, external);
+    assert.equal((await post([], saved.revision)).status, 400);
+    assert.equal(await readFile(siblingFile, 'utf8'), external);
+    await writeFile(siblingFile, JSON.stringify(originalSibling));
+    response = await post([], saved.revision);
+    assert.equal(response.status, 200);
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), []);
+    await assert.rejects(access(`${root}/${source}`));
   } finally { await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve())); }
 }));
 
