@@ -141,7 +141,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/恶魔手镜.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恶作剧"
+    ],
     "group": "base"
   },
   {
@@ -611,7 +613,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/忏悔录.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "忏悔"
+    ],
     "group": "base"
   },
   {
@@ -819,7 +823,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/对撞机.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "反物质"
+    ],
     "group": "base"
   },
   {
@@ -927,7 +933,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/审判者.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -987,7 +995,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/死亡钟摆.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -1227,7 +1237,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/索敌绳套.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -1289,7 +1301,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/淬毒箭头.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -1522,6 +1536,32 @@
   },
   {
     "name": "普通攻击（女骑士）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击1（女骑士）.png",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（女骑士）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击2（女骑士）.png",
+    "level": 2,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（女骑士）",
     "level": 3,
     "classes": [
       "女骑士"
@@ -1643,7 +1683,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/拳击.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "普通攻击（女骑士）"
+    ],
     "group": "base"
   },
   {
@@ -1657,7 +1699,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/小丑戏法.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恶作剧"
+    ],
     "group": "base"
   },
   {
@@ -1829,6 +1873,32 @@
   },
   {
     "name": "普通攻击（游侠）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击1（游侠）.png",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（游侠）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击2（游侠）.png",
+    "level": 2,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（游侠）",
     "level": 3,
     "classes": [
       "游侠"
@@ -1886,6 +1956,32 @@
     "image": "assets/card_base/流血箭.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "普通攻击（小女巫）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击1（小女巫）.png",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（小女巫）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击2（小女巫）.png",
+    "level": 2,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "普通攻击（小女巫）",
@@ -1952,6 +2048,32 @@
   },
   {
     "name": "普通攻击（修女）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击1（修女）.png",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（修女）",
+    "group": "base",
+    "image": "assets/card_base/普通攻击2（修女）.png",
+    "level": 2,
+    "classes": [
+      "修女"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "普通攻击（修女）",
     "level": 3,
     "classes": [
       "修女"
@@ -2007,7 +2129,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/恶作剧惊魂.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恶作剧"
+    ],
     "group": "base"
   },
   {
@@ -2571,7 +2695,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/伏击.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -2607,7 +2733,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/天罗地网.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -2643,7 +2771,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/淬火.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -2655,7 +2785,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/燥热杀意.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -3287,7 +3419,9 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/娴熟魔术.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恶作剧"
+    ],
     "group": "base"
   },
   {
@@ -4377,7 +4511,9 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/化学狂暴.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "魔药强效"
+    ],
     "group": "base"
   },
   {
@@ -4461,7 +4597,9 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/快速混合.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "鸡尾酒"
+    ],
     "group": "base"
   },
   {
@@ -4965,7 +5103,9 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/死亡怀表.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -5013,7 +5153,9 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/巨物恐惧症.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恐惧"
+    ],
     "group": "base"
   },
   {
@@ -5061,7 +5203,9 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/大难临头.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -5099,6 +5243,19 @@
     "image": "assets/card_base/机械犬.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "超速",
+    "group": "base",
+    "image": "assets/card_base/超速1.png",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 3,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "超速",
@@ -5205,7 +5362,9 @@
     "type": "行动",
     "cost": 5,
     "image": "assets/card_base/炸药飞艇.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "机械炸药"
+    ],
     "group": "base"
   },
   {
@@ -5277,7 +5436,9 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/炸药研发.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "机械炸药"
+    ],
     "group": "base"
   },
   {
@@ -5829,7 +5990,9 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/凝神.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -6879,7 +7042,9 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/苦修.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "忏悔"
+    ],
     "group": "base"
   },
   {
@@ -6951,7 +7116,9 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/救赎之光.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "忏悔"
+    ],
     "group": "base"
   },
   {
@@ -7341,7 +7508,9 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/血瓶.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "饮血"
+    ],
     "group": "base"
   },
   {
@@ -7476,7 +7645,9 @@
     "type": "咒术",
     "cost": 3,
     "image": "assets/card_base/风筝实验.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "闪电链接"
+    ],
     "group": "base"
   },
   {
@@ -7562,7 +7733,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/虚无之审判.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -7586,7 +7759,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/恐惧障壁.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恐惧"
+    ],
     "group": "base"
   },
   {
@@ -7658,7 +7833,9 @@
     "type": "咒术",
     "cost": 5,
     "image": "assets/card_base/瘟疫之审判.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -7670,7 +7847,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/血色之审判.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -7694,7 +7873,9 @@
     "type": "咒术",
     "cost": 5,
     "image": "assets/card_base/恐惧来袭.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恐惧"
+    ],
     "group": "base"
   },
   {
@@ -7780,7 +7961,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/炼狱之审判.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -7792,7 +7975,9 @@
     "type": "咒术",
     "cost": 5,
     "image": "assets/card_base/寒冷之审判.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -7816,7 +8001,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/幽闭恐惧症.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恐惧"
+    ],
     "group": "base"
   },
   {
@@ -7828,7 +8015,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/招魂水晶.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "招魂术"
+    ],
     "group": "base"
   },
   {
@@ -8280,7 +8469,9 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/逼近.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -8330,7 +8521,9 @@
     "type": "咒术",
     "cost": 8,
     "image": "assets/card_base/猎杀时刻.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -8842,7 +9035,9 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/恐惧低语.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恐惧"
+    ],
     "group": "base"
   },
   {
@@ -8854,7 +9049,9 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/阴云密布.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "死神降临"
+    ],
     "group": "base"
   },
   {
@@ -9207,7 +9404,9 @@
     "type": "反制",
     "cost": null,
     "image": "assets/card_base/寻迹追踪.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -9231,7 +9430,9 @@
     "type": "反制",
     "cost": null,
     "image": "assets/card_base/弩箭陷阱.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -9315,7 +9516,9 @@
     "type": "祷告",
     "cost": null,
     "image": "assets/card_base/悔过祈祷.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "忏悔"
+    ],
     "group": "base"
   },
   {

@@ -72,11 +72,13 @@ test('旧名称最后一条记录重命名时更新引用，并移除合并后�
   assert.deepEqual(updated[2].relatedCards, ['B']);
 });
 
-test('关联搜索去重并排除自身、其他模式和已有的关联', () => {
+test('关联搜索覆盖所有 JSON，去重并排除自身和已选关联', () => {
   const cards = [card('A'), card('Moon'), card('Moon', 2), card('B'), { ...card('Moon日记'), group: 'diary' }];
-  assert.deepEqual(searchRelatedCards(cards, cards[0], ' MOON '), ['Moon']);
-  assert.deepEqual(searchRelatedCards(cards, { ...cards[0], relatedCards: ['Moon'] }, ''), ['B']);
+  assert.deepEqual(searchRelatedCards(cards, cards[0], ' MOON '), ['Moon', 'Moon日记']);
+  assert.deepEqual(searchRelatedCards(cards, { ...cards[0], relatedCards: ['Moon'] }, ''), ['B', 'Moon日记']);
   assert.deepEqual(searchRelatedCards(cards, cards[0], '不存在'), []);
+  const expanded = [...cards, { ...card('技能目标'), group: 'skill', hidden: true }];
+  assert.deepEqual(searchRelatedCards(expanded, cards[0], '技能'), ['技能目标']);
 });
 
 test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件）', async () => {
@@ -109,7 +111,7 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     const loaded = await read.json();
     saveToken = loaded.saveToken;
     assert.ok(saveToken);
-    assert.equal(loaded.editorApiVersion, 3);
+    assert.equal(loaded.editorApiVersion, 4);
     assert.deepEqual(loaded.groups.map((group: { id: string }) => group.id), ['base', 'diary', 'base_extra']);
     assert.equal(loaded.cards.length, 2);
     assert.equal(loaded.catalogCards.length, 4);
@@ -121,7 +123,8 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), updated);
     assert.equal((await post({ cards: loaded.cards, revision: loaded.revision })).status, 409);
     assert.equal((await post({ cards: [{ ...updated[0], cost: -1 }], revision: savedData.revision })).status, 400);
-    assert.equal((await post({ cards: updated.map((entry: Card, index: number) => index === 0 ? { ...entry, relatedCards: ['日记卡'] } : entry), revision: savedData.revision })).status, 400);
+    assert.equal((await post({ cards: updated.map((entry: Card, index: number) => index === 0 ? { ...entry, relatedCards: ['日记卡'] } : entry), revision: savedData.revision, dryRun: true })).status, 200);
+    assert.equal((await post({ cards: updated.map((entry: Card, index: number) => index === 0 ? { ...entry, relatedCards: ['不存在的目标'] } : entry), revision: savedData.revision })).status, 400);
     assert.equal((await post({ cards: updated, revision: savedData.revision }, 'https://other.example')).status, 403);
     assert.equal((await post({ cards: updated, revision: savedData.revision }, origin, '')).status, 403);
     assert.equal((await post({ cards: updated, revision: savedData.revision }, origin, 'wrong-token')).status, 403);
@@ -173,6 +176,12 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     await writeFile(siblingFile, externalSibling);
     const independentSave = await post({ cards: nextCards, revision: JSON.parse(splitBody).revision });
     assert.equal(independentSave.status, 200);
+    assert.equal(await readFile(siblingFile, 'utf8'), externalSibling);
+    const latestRevision = (await independentSave.json()).revision;
+    const crossGroupCards = nextCards.map((entry: Card, index: number) => index === 0 ? { ...entry, relatedCards: ['日记卡'] } : entry);
+    const crossGroupSave = await post({ cards: crossGroupCards, revision: latestRevision });
+    assert.equal(crossGroupSave.status, 200);
+    assert.deepEqual(JSON.parse(await readFile(file, 'utf8'))[0].relatedCards, ['日记卡']);
     assert.equal(await readFile(siblingFile, 'utf8'), externalSibling);
   } finally {
     await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));

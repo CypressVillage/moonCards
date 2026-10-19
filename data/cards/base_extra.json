@@ -1,24 +1,59 @@
 [
   {
-    "name": "精准格挡",
+    "name": "恶作剧",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/恶作剧.png",
     "level": null,
     "classes": [],
-    "type": "反制",
+    "type": "特殊",
     "cost": null,
-    "image": "assets/card_base_extra/精准格挡.png",
     "relatedCards": [],
-    "hidden": false,
+    "hidden": false
+  },
+  {
+    "name": "减速",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/减速.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "小小法力",
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base_extra/egg_小小法力.png",
+    "relatedCards": [],
+    "hidden": true,
     "group": "base_extra"
   },
   {
-    "name": "割肉刀",
+    "name": "死神降临",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/死神降临.png",
+    "level": null,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "恐惧",
     "level": null,
     "classes": [],
-    "type": "装备",
-    "cost": null,
-    "image": "assets/card_base_extra/割肉刀.png",
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base_extra/恐惧.png",
     "relatedCards": [],
-    "hidden": true,
+    "hidden": false,
     "group": "base_extra"
   },
   {
@@ -33,25 +68,14 @@
     "group": "base_extra"
   },
   {
-    "name": "未送达的信",
+    "name": "精准格挡",
     "level": null,
     "classes": [],
-    "type": "攻击",
+    "type": "反制",
     "cost": null,
-    "image": "assets/card_base_extra/未送达的信.png",
+    "image": "assets/card_base_extra/精准格挡.png",
     "relatedCards": [],
-    "hidden": true,
-    "group": "base_extra"
-  },
-  {
-    "name": "信件背包",
-    "level": null,
-    "classes": [],
-    "type": "装备",
-    "cost": null,
-    "image": "assets/card_base_extra/信件背包.png",
-    "relatedCards": [],
-    "hidden": true,
+    "hidden": false,
     "group": "base_extra"
   },
   {
@@ -66,25 +90,25 @@
     "group": "base_extra"
   },
   {
-    "name": "小小法力",
-    "level": null,
-    "classes": [],
-    "type": "法力",
-    "cost": null,
-    "image": "assets/card_base_extra/egg_小小法力.png",
-    "relatedCards": [],
-    "hidden": true,
-    "group": "base_extra"
-  },
-  {
-    "name": "恐惧",
+    "name": "枯竭",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/枯竭.png",
     "level": null,
     "classes": [],
     "type": "咒术",
     "cost": 2,
-    "image": "assets/card_base_extra/恐惧.png",
     "relatedCards": [],
-    "hidden": false,
-    "group": "base_extra"
+    "hidden": false
+  },
+  {
+    "name": "尖刺羽毛",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/尖刺羽毛.png",
+    "level": null,
+    "classes": [],
+    "type": "特殊",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   }
 ]

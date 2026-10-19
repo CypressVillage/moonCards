@@ -1,4 +1,4 @@
-import { canRelate, groupKey, recordKey } from './catalog.ts';
+import { groupKey, recordKey } from './catalog.ts';
 import type { Card } from './catalog.ts';
 
 export function moveCard(cards: Card[], from: number, to: number): Card[] {
@@ -39,7 +39,6 @@ export function editCardIdentity(cards: Card[], index: number, patch: Pick<Parti
 
 export function searchRelatedCards(cards: Card[], card: Card, query: string): string[] {
   const term = query.trim().toLocaleLowerCase();
-  return [...new Set(cards.filter((candidate) => canRelate(candidate.group, card.group)
-    && candidate.name !== card.name && !card.relatedCards.includes(candidate.name)
+  return [...new Set(cards.filter((candidate) => candidate.name !== card.name && !card.relatedCards.includes(candidate.name)
     && candidate.name.toLocaleLowerCase().includes(term)).map((candidate) => candidate.name))];
 }

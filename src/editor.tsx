@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Card } from './catalog.ts';
 import type { CardCategory } from './card-data.ts';
-// @ts-expect-error Shared group labels are plain JavaScript.
-import { groupLabel } from '../scripts/card-groups.mjs';
-import { levelLabel, professionOrder } from './catalog.ts';
+// @ts-expect-error Shared group definitions are plain JavaScript.
+import { describeGroup, validGroupId } from '../scripts/card-groups.mjs';
+import { levelLabel, professionOrder, relatedVariants } from './catalog.ts';
 import { editCard, editCardIdentity, moveCard, searchRelatedCards } from './editor-model.ts';
 // @ts-expect-error Shared browser/Node validator is plain JavaScript.
 import { validateCards, cardTypes as allowedCardTypes } from '../scripts/validate-cards.mjs';
 import './editor.css';
+import { AssetDialog, UnregisteredGallery, UploadImages, sourcePreviewUrl } from './asset-manager.tsx';
+import type { AssetAction, CardAsset } from './asset-manager.tsx';
+import { isErrorMessage, isTransientMessage } from './editor-feedback.ts';
 
 const endpoint = `${import.meta.env.BASE_URL}__card-editor/cards`;
 const professions = professionOrder;
@@ -16,10 +19,18 @@ const cardTypes: string[] = allowedCardTypes;
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;
 
 export function CardEditor({ initialCards, categories }: { initialCards: Card[]; categories: CardCategory[] }) {
-  const [groupId, setGroupId] = useState(categories[0]?.id ?? 'base');
+  const requestedGroup = new URLSearchParams(window.location.search).get('group');
+  const initialGroup = requestedGroup && (categories.some((group) => group.id === requestedGroup) || (import.meta.env.DEV && validGroupId(requestedGroup))) ? requestedGroup : categories[0]?.id ?? 'base';
+  const [groupId, setGroupId] = useState(initialGroup);
   const [availableGroups, setAvailableGroups] = useState(categories);
   const [catalogCards, setCatalogCards] = useState(initialCards);
-  const [cards, setCards] = useState<Card[]>(() => structuredClone(initialCards.filter((card) => card.group === (categories[0]?.id ?? 'base'))));
+  const [assets, setAssets] = useState<CardAsset[]>([]);
+  const [assetVersion, setAssetVersion] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [managedAsset, setManagedAsset] = useState<CardAsset | null>(null);
+  const [candidate, setCandidate] = useState<Card | null>(null);
+  const [candidateDirty, setCandidateDirty] = useState(false);
+  const [cards, setCards] = useState<Card[]>(() => structuredClone(initialCards.filter((card) => card.group === initialGroup)));
   const [selected, setSelected] = useState(0);
   const [query, setQuery] = useState('');
   const [relatedQuery, setRelatedQuery] = useState('');
@@ -32,11 +43,13 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
   const [dropTarget, setDropTarget] = useState<number | null>(null);
   const drag = useRef<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const card = cards[selected];
+  const card = candidate ?? cards[selected];
   const local = import.meta.env.DEV;
   const errors: string[] = validateCards([...catalogCards.filter((entry) => entry.group !== groupId), ...cards]);
+  const formErrors: string[] = candidate ? validateCards([...catalogCards.filter((entry) => entry.group !== groupId), ...cards, candidate]) : errors;
   const groupEndpoint = `${endpoint}?group=${encodeURIComponent(groupId)}`;
-  const currentGroup = availableGroups.find((group) => group.id === groupId)!;
+  const currentGroup: CardCategory = availableGroups.find((group) => group.id === groupId) ?? describeGroup(groupId);
+  const previewUrl = (path: string) => local ? sourcePreviewUrl(path) : assetUrl(`thumbnails/${path.replace(/\.[^.]+$/, '.webp')}`);
 
   async function load(target = groupId) {
     setBusy(true);
@@ -45,8 +58,9 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       setCards(data.cards); setCatalogCards(data.catalogCards); setAvailableGroups(data.groups); setGroupId(target);
+      setAssets(data.assets ?? []); setAssetVersion(data.assetVersion ?? ''); setCandidate(null); setCandidateDirty(false);
       setRevision(data.revision); setDirty(false); setSelected(0); setQuery('');
-      setMessage(`已读取本地 data/cards/${target}.json`);
+      setMessage('');
     } catch (error) { setMessage(`读取失败：${String(error)}`); }
     finally { setBusy(false); }
   }
@@ -61,6 +75,16 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
   }
   useEffect(() => { if (local) void load(); }, []);
   useEffect(() => {
+    if (!isTransientMessage(message)) return;
+    const timer = window.setTimeout(() => setMessage(''), 4000);
+    return () => window.clearTimeout(timer);
+  }, [message]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('group', groupId);
+    window.history.replaceState(null, '', url);
+  }, [groupId]);
+  useEffect(() => {
     const element = dialog.current;
     if (!detailOpen || !element) return;
     element.showModal();
@@ -69,15 +93,20 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
     return () => { element.close(); document.body.style.overflow = previous; };
   }, [detailOpen]);
   useEffect(() => {
-    const beforeUnload = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); };
+    const beforeUnload = (event: BeforeUnloadEvent) => { if (dirty || candidateDirty) event.preventDefault(); };
     window.addEventListener('beforeunload', beforeUnload);
     return () => window.removeEventListener('beforeunload', beforeUnload);
-  }, [dirty]);
+  }, [dirty, candidateDirty]);
   function update(patch: Partial<Card>) {
+    if (candidate) { setCandidate((previous) => previous ? { ...previous, ...patch } : previous); setCandidateDirty(true); return; }
     setCards((previous) => editCard(previous, selected, patch)); setDirty(true); setMessage('');
   }
   function updateIdentity(patch: Pick<Partial<Card>, 'name'>) {
     try {
+      if (candidate) {
+        if (!patch.name?.trim()) throw new Error('卡牌名称不能为空');
+        setCandidate({ ...candidate, name: patch.name.trim() }); setCandidateDirty(true); return true;
+      }
       setCards(editCardIdentity(cards, selected, patch)); setDirty(true); setMessage(''); return true;
     } catch (error) { setMessage(String(error)); return false; }
   }
@@ -95,14 +124,53 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       const authorization = await fetch(groupEndpoint, { cache: 'no-store' });
       const access = await authorization.json();
       if (!authorization.ok) throw new Error(access.error);
-      if (access.editorApiVersion !== 3) throw new Error('开发服务仍在运行旧版保存接口。请先导出 JSON 备份，再重启 npm run dev。');
+      if (access.editorApiVersion !== 4) throw new Error('开发服务仍在运行旧版保存接口。请先导出 JSON 备份，再重启 npm run dev。');
       const response = await fetch(groupEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': access.saveToken }, body: JSON.stringify({ cards, revision }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       setRevision(data.revision); setCatalogCards([...access.catalogCards.filter((entry: Card) => entry.group !== groupId), ...cards]);
       setDirty(false); setMessage(`已保存到本地 data/cards/${groupId}.json，其他组文件未修改`);
+      try { await refreshInventory(); }
+      catch (error) { setMessage(`元数据已保存，但扫描刷新失败：${String(error)}。请刷新扫描后再操作图片文件。`); }
     } catch (error) { setMessage(`保存失败：${String(error)}`); }
     finally { setBusy(false); }
+  }
+  async function refreshInventory() {
+    const response = await fetch(`${import.meta.env.BASE_URL}__card-editor/assets`, { cache: 'no-store' });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error);
+    setAssets(data.assets.filter((asset: CardAsset) => asset.group === groupId));
+    setAssetVersion(data.version); setAvailableGroups(data.groups); setCatalogCards(data.catalogCards);
+  }
+  async function runAssetAction(action: AssetAction): Promise<boolean> {
+    if (dirty || (candidateDirty && action.action !== 'register')) {
+      setMessage('请先保存当前元数据修改，再执行图片文件操作或修改分组名称。'); return false;
+    }
+    setBusy(true);
+    const url = `${import.meta.env.BASE_URL}__card-editor/assets`;
+    try {
+      const authorization = await fetch(url, { cache: 'no-store' });
+      const access = await authorization.json();
+      if (!authorization.ok) throw new Error(access.error);
+      const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': access.saveToken }, body: JSON.stringify({ ...action, version: assetVersion }) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error);
+      setDetailOpen(false); setCandidate(null); setCandidateDirty(false);
+      await load(groupId);
+      setMessage(`操作完成：\n${result.summary.join('\n')}`);
+      return true;
+    } catch (error) { setMessage(`操作失败：${String(error)}`); return false; }
+    finally { setBusy(false); }
+  }
+  function beginRegistration(asset: CardAsset) {
+    if (dirty) { setMessage('请先保存当前元数据，再添加新卡牌。'); return; }
+    setManagedAsset(null); setCandidate({ name: asset.name.replace(/\.[^.]+$/, ''), group: asset.group, image: asset.path,
+      level: null, classes: [], type: '', cost: null, relatedCards: [], hidden: false });
+    setCandidateDirty(false); setRelatedQuery(''); setMessage('请选择卡牌类型并核对元数据；不会从文件名推断星级。'); setDetailOpen(true);
+  }
+  function closeDetail() {
+    if (candidateDirty && !window.confirm('放弃尚未收录的新卡牌草稿？源图片不会删除。')) return;
+    setDetailOpen(false); setCandidate(null); setCandidateDirty(false);
   }
   function download() {
     const url = URL.createObjectURL(new Blob([`${JSON.stringify(cards, null, 2)}\n`], { type: 'application/json' }));
@@ -111,19 +179,39 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
     setMessage('已导出 JSON；尚未写入项目文件。');
   }
   useEffect(() => { setRelatedQuery(''); }, [selected, groupId]);
-  const related = card ? searchRelatedCards([...catalogCards.filter((entry) => entry.group !== groupId), ...cards], card, relatedQuery) : [];
+  const relationshipCatalog = [...catalogCards.filter((entry) => entry.group !== groupId), ...cards];
+  const related = card ? searchRelatedCards(relationshipCatalog, card, relatedQuery) : [];
+  const byPath = new Map(assets.map((asset) => [asset.path, asset]));
+  const matchesQuery = (name: string) => name.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
+  const visibleCards = cards.map((entry, index) => ({ entry, index })).filter(({ entry }) => (matchesQuery(entry.name) || matchesQuery(entry.image.split('/').at(-1)!))
+    && (statusFilter === 'all' || (statusFilter === 'registered' && byPath.get(entry.image)?.status !== 'missing') || (statusFilter === 'missing' && byPath.get(entry.image)?.status === 'missing')));
+  const unregistered = assets.filter((asset) => asset.status === 'unregistered' && matchesQuery(asset.name) && ['all', 'unregistered'].includes(statusFilter));
+  function renameGroup() {
+    const label = window.prompt('分组显示名称（不修改内部 group ID 或目录名）', currentGroup.label);
+    if (label?.trim() && label.trim() !== currentGroup.label) void runAssetAction({ action: 'label', group: groupId, label });
+  }
   return <main className="editor-page">
-    <div className="editor-heading"><div><p className="eyebrow">LOCAL CARD WORKSHOP</p><h1>卡牌元数据编辑</h1><p>{groupLabel(groupId)} · {cards.length} 条版本记录 · {dirty ? '有未保存修改' : '无未保存修改'}</p></div>
+    <div className="editor-heading"><div className="editor-heading-copy"><h1>卡牌图片与元数据管理</h1><span className={`editor-save-state${dirty || candidateDirty ? ' is-dirty' : ''}`} aria-live="polite">{dirty || candidateDirty ? '有未保存修改' : '无未保存修改'}</span>{!local && <span className="editor-static-mode" title="静态网站仅支持已有元数据编辑和导出；扫描目录、上传及文件操作需要 npm run dev。">静态模式 · 仅导出</span>}</div>
       <div className="editor-actions"><a href={import.meta.env.BASE_URL} onClick={(event) => { if (dirty && !window.confirm('修改尚未保存，确定离开？')) event.preventDefault(); }}>返回图鉴</a>
-        {local && <button disabled={busy} onClick={() => { if (!dirty || window.confirm('丢弃未保存修改并重新读取文件？')) void load(); }}>重新载入</button>}
+        {local && <button disabled={busy} onClick={() => { if (!dirty || window.confirm('丢弃未保存修改并重新扫描文件？')) void load(); }}>刷新扫描</button>}
         <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>
         {local && <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>{busy ? '处理中…' : '保存到本地 JSON'}</button>}</div></div>
-    <p className="editor-notice">{local ? `保存只会写入 data/cards/${groupId}.json，不修改其他分组。` : `静态网站模式：导出 ${groupId}.json 后手动替换 data/cards/ 下的同名文件。`} 直接拖动缩略图调整本组 JSON 顺序，点击卡牌打开编辑窗口。关闭窗口保留修改；切换组之前请先保存或导出。可见性对本组同名卡牌的所有星级同步生效。</p>
-    {message && <p className="editor-message" role="status">{message}</p>}
     {errors.length > 0 && <div className="editor-errors" role="alert"><strong>请修正后再保存或导出：</strong>{errors.slice(0, 8).map((error, index) => <p key={index}>{error}</p>)}</div>}
     <div className="editor-workspace" aria-busy={busy}>
-      <section aria-label="卡牌缩略图排序"><div className="editor-gallery-toolbar"><label className="editor-group-filter">文件夹 / 分组<select aria-label="按文件夹选择编辑分组" value={groupId} disabled={busy} onChange={(event) => selectGroup(event.target.value)}>{availableGroups.map((group) => <option key={group.id} value={group.id}>{group.label} · card_{group.id}</option>)}</select></label><label className="editor-gallery-search">查找卡牌<input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="输入卡牌名称" /></label><p>{query.trim() ? '搜索结果保留组内原始序号' : '拖动排序 · 点击编辑'}</p></div>
-        <div className="editor-thumbnail-grid">{cards.map((entry, index) => ({ entry, index })).filter(({ entry }) => entry.name.includes(query.trim())).map(({ entry, index }) =>
+      <section aria-labelledby="editor-group-title">
+        <div className="editor-group-header">
+          <div className="editor-group-name"><h2 id="editor-group-title" title={currentGroup.label}>{currentGroup.label}</h2>{local && <button className="editor-group-rename" type="button" aria-label="修改分组显示名" title={dirty ? '请先保存元数据修改' : '修改分组显示名'} disabled={busy || dirty} onClick={renameGroup}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z" /><path d="m14 5 5 5" /></svg></button>}</div>
+          <p className="editor-group-meta" title={`${currentGroup.folder} · ${currentGroup.file}`}><code>card_{groupId}</code><span>已收录记录 <strong>{cards.length}</strong></span>{local && <><span>未收录图片 <strong>{currentGroup.unregistered ?? 0}</strong></span>{(currentGroup.missing ?? 0) > 0 && <span className="editor-missing-count">缺图 <strong>{currentGroup.missing}</strong></span>}</>}</p>
+          <label className="editor-folder-switch"><span className="editor-visually-hidden">切换文件夹</span><select aria-label="按文件夹选择编辑分组" title="切换文件夹" value={groupId} disabled={busy} onChange={(event) => selectGroup(event.target.value)}>{availableGroups.map((group) => <option key={group.id} value={group.id}>{group.label} · card_{group.id}</option>)}</select></label>
+        </div>
+        <div className="editor-controls">
+          <label className="editor-status-filter">收录状态<select aria-label="图片收录状态" value={local ? statusFilter : 'registered'} disabled={!local} onChange={(event) => setStatusFilter(event.target.value)}>{local && <option value="all">全部图片</option>}<option value="registered">已收录</option>{local && <><option value="unregistered">未收录</option><option value="missing">源图缺失</option></>}</select></label>
+          <label className="editor-gallery-search">查找卡牌 / 文件名<input type="search" aria-label="查找卡牌或图片文件名" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="输入卡牌名称或图片文件名" /></label>
+          <div className="editor-upload-field"><span className="editor-control-label">上传到当前文件夹</span>{local ? <UploadImages group={groupId} disabled={busy || dirty || !currentGroup.folderExists} disabledReason={dirty ? '请先保存元数据修改' : busy ? '正在处理，请稍后' : !currentGroup.folderExists ? '源文件夹不存在，暂时不能上传' : undefined} onAction={runAssetAction} onError={(error) => setMessage(`上传失败：${error}`)} /> : <div className="asset-upload-zone compact disabled" title="上传图片需要在本地运行 npm run dev"><button type="button" disabled>仅本地开发支持上传</button></div>}</div>
+        </div>
+        {message && !detailOpen && !managedAsset && <div className={`editor-feedback${isTransientMessage(message) ? ' is-transient' : ''}${isErrorMessage(message) ? ' is-error' : ''}`} role={isErrorMessage(message) ? 'alert' : 'status'}><span>{message}</span><button type="button" aria-label="关闭提示" onClick={() => setMessage('')}>×</button></div>}
+        {visibleCards.length > 0 && <h2 className="asset-section-heading">已收录记录 <small>{visibleCards.length} 条 · 拖动调整 JSON 顺序</small></h2>}
+        <div className="editor-thumbnail-grid">{visibleCards.map(({ entry, index }) =>
           <article key={entry.image + index} draggable={!busy} className={`editor-thumbnail${dragging === index ? ' is-dragging' : ''}${dropTarget === index && dragging !== index ? ' is-drop-target' : ''}`}
             onDragStart={(event) => { drag.current = index; setDragging(index); event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData('text/plain', String(index)); }}
             onDragEnd={() => { drag.current = null; setDragging(null); setDropTarget(null); }}
@@ -131,22 +219,23 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
             onDrop={(event) => { event.preventDefault(); if (!busy && drag.current !== null) move(drag.current, index); drag.current = null; setDragging(null); setDropTarget(null); }}>
             <div className="editor-thumbnail-meta"><span>#{index + 1}</span><span>{entry.hidden ? '隐藏' : entry.group} <span aria-hidden="true">⠿</span></span></div>
             <button disabled={busy} className="editor-thumbnail-open" aria-label={`编辑${entry.name}·${levelLabel(entry.level)}·第${index + 1}条`} onClick={() => { if (drag.current !== null) return; setSelected(index); setDetailOpen(true); }}>
-              <img src={assetUrl(`thumbnails/${entry.image.replace(/\.[^.]+$/, '.webp')}`)} alt={entry.name} loading="lazy" decoding="async" width="517" height="780" draggable={false} />
-              <strong>{entry.name}</strong><small>{groupLabel(entry.group)} · {levelLabel(entry.level)} · {entry.type}</small>
+              {byPath.get(entry.image)?.status === 'missing' ? <div className="asset-missing-preview">源图片缺失<br />元数据已保留</div> : <img src={previewUrl(entry.image)} alt={entry.name} loading="lazy" decoding="async" width="517" height="780" draggable={false} />}
+              <strong>{entry.name}</strong><small>{levelLabel(entry.level)} · {entry.type}{byPath.get(entry.image)?.status === 'missing' ? ' · 图片缺失' : ''}</small>
             </button>
             {dropTarget === index && dragging !== index && <span className="editor-drop-label">放到第 {index + 1} 位</span>}
           </article>)}</div>
-        {!cards.some((entry) => entry.name.includes(query.trim())) && <p className="editor-gallery-empty">没有找到匹配的卡牌，请尝试其他名称。</p>}
+        {local && <UnregisteredGallery assets={unregistered} onOpen={(asset) => { setManagedAsset(asset); setMessage(''); }} busy={busy} />}
+        {!visibleCards.length && !unregistered.length && <p className="editor-gallery-empty">没有找到匹配的记录或图片，请尝试其他名称或收录状态。</p>}
       </section>
-      {card && <dialog ref={dialog} className="editor-detail editor-dialog" aria-labelledby="editor-card-title" onCancel={(event) => { event.preventDefault(); setDetailOpen(false); }} onClick={(event) => { if (event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) setDetailOpen(false); } }}>
-        <button className="editor-dialog-close" type="button" aria-label="关闭卡牌编辑" onClick={() => setDetailOpen(false)}>×</button>
-        <div className="editor-card-heading"><img src={assetUrl(`thumbnails/${card.image.replace(/\.[^.]+$/, '.webp')}`)} alt={card.name} /><div><p>组内第 {selected + 1} 条 / {cards.length}</p><h2 id="editor-card-title">{card.name}</h2><p>{groupLabel(card.group)}</p><code>{card.image}</code></div></div>
+      {card && <dialog ref={dialog} className="editor-detail editor-dialog" aria-labelledby="editor-card-title" onCancel={(event) => { event.preventDefault(); if (!busy) closeDetail(); }} onClick={(event) => { if (!busy && event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeDetail(); } }}>
+        <button className="editor-dialog-close" type="button" aria-label="关闭卡牌编辑" disabled={busy} onClick={closeDetail}>×</button>
+        <div className="editor-card-heading">{byPath.get(card.image)?.status !== 'missing' && <img src={previewUrl(card.image)} alt={card.name} />}<div><p>{candidate ? '未收录图片 · 新卡牌草稿' : `组内第 ${selected + 1} 条 / ${cards.length}`}</p><h2 id="editor-card-title">{card.name}</h2><p>{currentGroup.label}</p><code>{card.image}</code></div></div>
         {message && <p className="editor-message" role="status">{message}</p>}
-        {errors.length > 0 && <div className="editor-errors" role="alert">{errors.slice(0, 8).map((error, index) => <p key={index}>{error}</p>)}</div>}
+        {formErrors.length > 0 && <div className="editor-errors" role="alert">{formErrors.slice(0, 8).map((error, index) => <p key={index}>{error}</p>)}</div>}
         <fieldset key={`${card.image}:${revision}`} disabled={busy} className="editor-fields"><legend>元数据</legend>
-          <div className="editor-position"><button disabled={busy || selected === 0} onClick={() => move(selected, selected - 1)}>↑ 上移</button><button disabled={busy || selected === cards.length - 1} onClick={() => move(selected, selected + 1)}>↓ 下移</button><label>移至第 <input key={`position-${selected}`} type="number" min="1" max={cards.length} defaultValue={selected + 1} onBlur={(event) => { const value = Number(event.target.value); if (Number.isInteger(value) && value >= 1 && value <= cards.length) move(selected, value - 1); }} /> 条</label></div>
-          <label className="editor-wide">卡牌名称（仅修改当前记录，离开输入框时应用）<input key={`name-${selected}-${card.name}`} defaultValue={card.name} onChange={() => setDirty(true)} onBlur={(event) => { const name = event.target.value.trim(); event.target.value = name === card.name || updateIdentity({ name }) ? name : card.name; }} onKeyDown={(event) => { if (event.key === 'Enter') event.currentTarget.blur(); }} /></label>
-          <p className="editor-wide editor-hint">所属分组：{groupId} · {currentGroup.folder} · {currentGroup.file}。分组由所在文件夹决定，不在元数据编辑器中跨文件夹移动卡牌。</p>
+          {!candidate && <div className="editor-position"><button disabled={busy || selected === 0} onClick={() => move(selected, selected - 1)}>↑ 上移</button><button disabled={busy || selected === cards.length - 1} onClick={() => move(selected, selected + 1)}>↓ 下移</button><label>移至第 <input key={`position-${selected}`} type="number" min="1" max={cards.length} defaultValue={selected + 1} onBlur={(event) => { const value = Number(event.target.value); if (Number.isInteger(value) && value >= 1 && value <= cards.length) move(selected, value - 1); }} /> 条</label></div>}
+          <label className="editor-wide">卡牌名称（仅修改当前记录，离开输入框时应用）<input key={`name-${selected}-${card.name}`} defaultValue={card.name} onChange={() => candidate ? setCandidateDirty(true) : setDirty(true)} onBlur={(event) => { const name = event.target.value.trim(); event.target.value = name === card.name || updateIdentity({ name }) ? name : card.name; }} onKeyDown={(event) => { if (event.key === 'Enter') event.currentTarget.blur(); }} /></label>
+          <p className="editor-wide editor-hint">所属分组：{groupId} · {currentGroup.folder} · {currentGroup.file}。分组随源目录确定；需要换组时，请在源图片管理中移动文件，不能只修改 group 字段。</p>
           <fieldset className="editor-options editor-wide"><legend>可获得职业（可多选，不勾选表示未标注）</legend><div className="editor-choice-grid">
             {professions.map((profession) => <label className="editor-choice" key={profession}><input type="checkbox" checked={card.classes.includes(profession)} onChange={(event) => update({ classes: event.target.checked ? [...card.classes, profession] : card.classes.filter((name) => name !== profession) })} />{profession}</label>)}
           </div>{card.classes.some((name) => !professions.includes(name)) && <p className="editor-hint">其他已有职业（保留原值）：{card.classes.filter((name) => !professions.includes(name)).join('、')}</p>}</fieldset>
@@ -156,15 +245,20 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
           <fieldset className="editor-options editor-wide"><legend>类型（单选）</legend><div className="editor-choice-grid">
             {cardTypes.map((type) => <label className="editor-choice" key={type}><input type="radio" name="card-type" checked={card.type === type} onChange={() => update({ type })} />{type}</label>)}
           </div></fieldset>
-          <label>能耗（空为未标注）<input key={`cost-${selected}`} defaultValue={card.cost ?? ''} placeholder="0、1、2… 或 X" onChange={(event) => { const value = event.target.value.trim().toUpperCase(); update({ cost: value === '' ? null : value === 'X' ? 'X' : /^\d+$/.test(value) ? Number(value) : NaN }); }} /></label>
+          <label>能耗（空为无能耗）<input key={`cost-${selected}`} defaultValue={card.cost ?? ''} placeholder="0、1、2… 或 X" onChange={(event) => { const value = event.target.value.trim().toUpperCase(); update({ cost: value === '' ? null : value === 'X' ? 'X' : /^\d+$/.test(value) ? Number(value) : NaN }); }} /></label>
           <label className="editor-check"><input type="checkbox" checked={!card.hidden} onChange={(event) => update({ hidden: !event.target.checked })} />在图鉴和搜索结果中显示</label>
-          <div className="editor-wide"><p className="editor-field-label">关联卡牌（可多选，base 与 base_extra 可互相关联）</p><div className="related-selected">{card.relatedCards.map((name) => <button key={name} onClick={() => update({ relatedCards: card.relatedCards.filter((value) => value !== name) })}>{name} ×</button>)}{!card.relatedCards.length && <span>暂无关联卡牌</span>}</div>
-            <input type="search" aria-label="搜索关联卡牌" placeholder="输入名称搜索可关联卡牌…" value={relatedQuery} onChange={(event) => setRelatedQuery(event.target.value)} />
-            <div className="editor-related-results" aria-label="关联卡牌搜索结果">{related.length ? related.map((name) => <button key={name} type="button" onClick={() => { update({ relatedCards: [...card.relatedCards, name] }); setRelatedQuery(''); }}>{name}<span>＋ 添加</span></button>) : <p>没有可添加的匹配卡牌</p>}</div></div>
+          <div className="editor-wide"><p className="editor-field-label">关联卡牌（全部分组，可多选）</p><div className="related-selected">{card.relatedCards.map((name) => <button key={name} onClick={() => update({ relatedCards: card.relatedCards.filter((value) => value !== name) })}>{name} ×</button>)}{!card.relatedCards.length && <span>暂无关联卡牌</span>}</div>
+            <input type="search" aria-label="搜索关联卡牌" placeholder="输入名称搜索所有 JSON 中的卡牌…" value={relatedQuery} onChange={(event) => setRelatedQuery(event.target.value)} />
+            <div className="editor-related-results" aria-label="关联卡牌搜索结果">{related.length ? related.map((name) => {
+              const targetGroup = relatedVariants(relationshipCatalog, card, name)[0]?.group;
+              const label = availableGroups.find((group) => group.id === targetGroup)?.label ?? targetGroup;
+              return <button key={name} type="button" onClick={() => { update({ relatedCards: [...card.relatedCards, name] }); setRelatedQuery(''); }}>{name}<span title={label}>{label} · ＋ 添加</span></button>;
+            }) : <p>没有可添加的匹配卡牌</p>}</div></div>
           <p className="editor-wide editor-hint">名称仅修改当前记录；分组、名称、星级全部相同才算重复。可见性同步本组同名卡牌的所有星级。重命名会在适用时更新本组引用，跨文件关联若失效需按校验提示先修正；图片路径保持不变。</p>
         </fieldset>
-        <div className="editor-actions editor-dialog-actions"><button type="button" onClick={() => setDetailOpen(false)}>完成编辑，返回缩略图</button>{local ? <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>保存到本地 JSON</button> : <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>}</div>
+        <div className="editor-actions editor-dialog-actions"><button type="button" disabled={busy} onClick={closeDetail}>{candidate ? '取消收录' : '完成编辑，返回缩略图'}</button>{local && !candidate && byPath.has(card.image) && <button disabled={busy || dirty} onClick={() => { setDetailOpen(false); setManagedAsset(byPath.get(card.image)!); setMessage(''); }}>管理源图片文件</button>}{local ? candidate ? <button className="editor-save" onClick={() => void runAssetAction({ action: 'register', path: candidate.image, card: candidate })} disabled={busy || dirty || formErrors.length > 0}>确认添加到本组 JSON</button> : <button className="editor-save" onClick={() => void save()} disabled={busy || !dirty || !revision || errors.length > 0}>保存到本地 JSON</button> : <button onClick={download} disabled={busy || errors.length > 0}>导出 JSON</button>}</div>
       </dialog>}
+      {local && managedAsset && <AssetDialog key={managedAsset.path} asset={managedAsset} groups={availableGroups} busy={busy} message={message} onClose={() => setManagedAsset(null)} onAction={runAssetAction} onRegister={beginRegistration} />}
     </div>
   </main>;
 }

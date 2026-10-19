@@ -1,4 +1,4 @@
-import { relatedScope, validGroupId } from './card-groups.mjs';
+import { validGroupId } from './card-groups.mjs';
 
 export const cardTypes = ['装备', '攻击', '法力', '行动', '咒术', '祷告', '反制', '特殊'];
 
@@ -38,7 +38,7 @@ export function validateCards(cards) {
     const identity = JSON.stringify([card.group, card.name, card.level]);
     if (identities.has(identity)) errors.push(`${prefix} 分组、名称、等级重复：${card.name}`);
     identities.add(identity);
-    names.add(JSON.stringify([relatedScope(card.group), card.name]));
+    names.add(card.name);
     if (groupVisibility.has(groupKey) && groupVisibility.get(groupKey) !== Boolean(card.hidden)) {
       errors.push(`${prefix} 同一张卡的各等级必须使用一致的 hidden`);
     }
@@ -48,8 +48,8 @@ export function validateCards(cards) {
     if (!card || !Array.isArray(card.relatedCards)) continue;
     for (const name of card.relatedCards) {
       if (name === card.name) errors.push(`${card.name} 不需要关联自身`);
-      if (!names.has(JSON.stringify([relatedScope(card.group), name]))) {
-        errors.push(`${card.name} 的关联卡「${name}」在可关联分组中不存在`);
+      if (!names.has(name)) {
+        errors.push(`${card.name} 的关联卡「${name}」在所有已加载 JSON 中不存在`);
       }
     }
   }

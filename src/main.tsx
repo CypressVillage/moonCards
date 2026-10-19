@@ -17,8 +17,8 @@ if (import.meta.hot) import.meta.hot.dispose(removeFocusMode);
 
 const heroFront = cards.find((card) => !card.hidden && card.type === '装备') ?? cards[0];
 const heroBack = cards.find((card) => !card.hidden && card.type === '攻击') ?? cards[1] ?? cards[0];
-const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;
-const thumbnailUrl = (card: Card) => assetUrl(`thumbnails/${card.image.replace(/\.[^.]+$/, '.webp')}`);
+const assetUrl = (path: string) => import.meta.env.DEV ? `${import.meta.env.BASE_URL}__card-editor/image?path=${encodeURIComponent(path)}` : `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;
+const thumbnailUrl = (card: Card) => assetUrl(import.meta.env.DEV ? card.image : `thumbnails/${card.image.replace(/\.[^.]+$/, '.webp')}`);
 const variantsByName = new Map<string, Card[]>();
 for (const card of cards) {
   const key = groupKey(card);
@@ -82,7 +82,7 @@ function CardTile({ group, filters, onOpen }: { group: CardGroup; filters: Filte
       <CardImage card={selected} /><span className="image-hint">查看大图 <Icon name="arrow" size={15} /></span>
     </button>
     <div className="card-title-row"><h3>{selected.name}</h3><DownloadLink card={selected} /></div>
-    <p className="card-profession">{selected.classes.length ? selected.classes.join(' / ') : '职业待补充'}<span>·</span>{selected.cost === null ? '能耗未标注' : costLabel(selected.cost)}</p>
+    <p className="card-profession">{selected.classes.length ? selected.classes.join(' / ') : '职业待补充'}<span>·</span>{costLabel(selected.cost)}</p>
     <Selectors root={group} selected={selected} onSelect={setSelected} />
     {!matchesCard(selected, filters) && <p className="outside-filter">当前切换版本不符合筛选条件</p>}
   </article>;
@@ -188,7 +188,7 @@ function App() {
           <div className="filter-row"><span className="filter-row-label"><Icon name="filter" size={17} /> 筛选</span>
             <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{name}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
             <FilterSelect label="类型" value={filters.type} onChange={(value) => update('type', value)}><option value="">全部类型</option>{types.map((type) => <option key={type} value={type}>{type}牌</option>)}</FilterSelect>
-            <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '未标注 / 不适用' : `${cost} 费`}</option>)}</FilterSelect>
+            <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '无能耗' : `${cost} 费`}</option>)}</FilterSelect>
             <FilterSelect label="等级" value={filters.level} onChange={(value) => update('level', value)}><option value="">全部等级</option>{levels.map((level) => <option key={level} value={level}>{level === 'null' ? '无星级' : `${level} 星`}</option>)}</FilterSelect>
             <button type="button" className="reset-button" onClick={reset} disabled={!hasFilters}>重置筛选 ↺</button>
           </div>

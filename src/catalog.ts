@@ -1,5 +1,5 @@
 // @ts-expect-error Shared browser/Node group definitions are plain JavaScript.
-import { relatedScope } from '../scripts/card-groups.mjs';
+import { resolveRelatedCards } from '../scripts/card-groups.mjs';
 
 export interface Card {
   name: string;
@@ -38,17 +38,14 @@ export const professionOrder = ['女骑士', '游侠', '小女巫', '修女', '�
 
 export const groupKey = (card: Pick<Card, 'group' | 'name'>) => JSON.stringify([card.group, card.name]);
 export const recordKey = (card: Card) => JSON.stringify([card.group, card.name, card.level]);
-export const canRelate = (left: string, right: string) => relatedScope(left) === relatedScope(right);
 
 export function relatedVariants(cards: Card[], source: Pick<Card, 'group'>, name: string): Card[] {
-  const candidates = cards.filter((card) => card.name === name && canRelate(source.group, card.group));
-  const sameGroup = candidates.filter((card) => card.group === source.group);
-  return sameGroup.length ? sameGroup : candidates;
+  return resolveRelatedCards(cards, source.group, name);
 }
 export const sortLevels = (cards: Card[]) => [...cards].sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
 export const highestLevel = (cards: Card[]) => sortLevels(cards).at(-1)!;
 export const levelLabel = (level: number | null) => level === null ? '无星级' : `${level} 星`;
-export const costLabel = (cost: Card['cost']) => cost === null ? '未标注 / 不适用' : `${cost} 费`;
+export const costLabel = (cost: Card['cost']) => cost === null ? '无能耗' : `${cost} 费`;
 
 export function matchesCard(card: Card, filters: Filters) {
   const query = filters.query.trim().toLocaleLowerCase();

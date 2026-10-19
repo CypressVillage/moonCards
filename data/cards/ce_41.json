@@ -1,0 +1,79 @@
+[
+  {
+    "name": "塔盾（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/塔盾（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "佣兵小队（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/佣兵小队（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "咒语突破（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/咒语突破（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "末日灾祸（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/末日灾祸（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 8,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "杂技（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/杂技（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "回收装置（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/回收装置（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "饥饿（愚人节）",
+    "group": "ce_41",
+    "image": "assets/card_ce_41/饥饿（愚人节）.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 2,
+    "relatedCards": [],
+    "hidden": false
+  }
+]

@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react';
 import { cardEditorApi } from './scripts/card-editor-api.mjs';
 
 export default defineConfig({
+  server: {
+    fs: { deny: ['.env', '.env.*', '*.{crt,pem}', '**/.git/**', '**/.card-editor/**'] },
+  },
   plugins: [react(), {
     name: 'local-card-editor',
     configureServer(server) {

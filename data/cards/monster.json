@@ -1,0 +1,46 @@
+[
+  {
+    "name": "饮血",
+    "group": "monster",
+    "image": "assets/card_monster/饮血.png",
+    "level": 2,
+    "classes": [],
+    "type": "咒术",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "未送达的信",
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/未送达的信.png",
+    "relatedCards": [],
+    "hidden": false,
+    "group": "monster"
+  },
+  {
+    "name": "割肉刀",
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_monster/割肉刀.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "monster"
+  },
+  {
+    "name": "信件背包",
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_monster/信件背包.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "monster"
+  }
+]

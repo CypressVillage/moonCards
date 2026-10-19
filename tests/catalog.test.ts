@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyFilters, filterGroups, highestLevel, professionOrder, readFilters, relatedNames, writeFilters } from '../src/catalog.ts';
+import { costLabel, emptyFilters, filterGroups, highestLevel, professionOrder, readFilters, relatedNames, writeFilters } from '../src/catalog.ts';
 import type { Card } from '../src/catalog.ts';
 // @ts-expect-error The validation script is intentionally shared as plain JavaScript.
 import { validateCards, cardTypes } from '../scripts/validate-cards.mjs';
@@ -8,6 +8,13 @@ import { validateCards, cardTypes } from '../scripts/validate-cards.mjs';
 const makeCard = (overrides: Partial<Card> = {}): Card => ({
   name: '测试卡', group: 'base', level: 1, classes: ['职业A', '职业B'],
   type: '攻击', cost: 1, image: 'assets/test.png', relatedCards: [], ...overrides,
+});
+
+test('空能耗显示无能耗，不混淆明确的零费、普通费用和 X 费', () => {
+  assert.equal(costLabel(null), '无能耗');
+  assert.equal(costLabel(0), '0 费');
+  assert.equal(costLabel(2), '2 费');
+  assert.equal(costLabel('X'), 'X 费');
 });
 
 test('职业筛选使用固定顺序并直接显示原始职业名称', () => {
@@ -83,11 +90,13 @@ test('数据校验拒绝重复身份和错误字段', () => {
   assert.match(validateCards([makeCard({ image: 'assets/../secret.png' })]).join(), /image/);
 });
 
-test('关联按分组隔离，但保留 base 与 base_extra 的跨文件关联', () => {
+test('关联允许指向任意已加载 JSON，仅拒绝不存在的名称', () => {
   const primary = makeCard({ relatedCards: ['附属卡'] });
-  assert.match(validateCards([primary, makeCard({ name: '附属卡', group: 'diary' })]).join(), /可关联分组/);
+  assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡', group: 'diary' })]), []);
   assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡' })]), []);
   assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡', group: 'base_extra' })]), []);
+  assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡', group: 'skill' })]), []);
+  assert.match(validateCards([primary]).join(), /所有已加载 JSON 中不存在/);
 });
 
 test('各等级的隐藏状态必须保持一致', () => {

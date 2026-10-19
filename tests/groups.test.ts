@@ -40,12 +40,22 @@ test('任意新增组可独立筛选，同名同星不跨组重复或合并', ()
   assert.equal(readFilters('?group=skill').group, 'skill');
 });
 
-test('跨文件关联保留经典附属卡，优先同组且不串到日记', () => {
+test('关联切换覆盖所有 JSON，同名优先本组并保留既有经典附属关系', () => {
   const cards = [card('base_extra', '小小法力'), card('diary', '小小法力')];
   assert.equal(relatedVariants(cards, { group: 'base' }, '小小法力')[0].group, 'base_extra');
   const same = card('base', '小小法力');
   assert.deepEqual(relatedVariants([...cards, same], { group: 'base' }, '小小法力'), [same]);
-  assert.deepEqual(relatedVariants(cards, { group: 'skill' }, '小小法力'), []);
+  assert.equal(relatedVariants(cards, { group: 'skill' }, '小小法力')[0].group, 'diary');
+  assert.equal(relatedVariants([card('diary', '日记目标')], { group: 'base' }, '日记目标')[0].group, 'diary');
+  assert.equal(relatedVariants([card('skill', '技能目标')], { group: 'base' }, '技能目标')[0].group, 'skill');
+  assert.deepEqual(relatedVariants(cards, { group: 'base' }, '不存在'), []);
+});
+
+test('跨组同名卡按固定分组顺序解析，不混合不同分组的星级', () => {
+  const first = card('diary', '同名目标', 1);
+  const second = card('skill', '同名目标', 2);
+  assert.deepEqual(relatedVariants([second, first], { group: 'ce' }, '同名目标'), [first]);
+  assert.deepEqual(relatedVariants([first, second], { group: 'ce' }, '同名目标'), [first]);
 });
 
 test('分组文件自动发现，拒绝文件名、group 和图片文件夹不一致', async () => {

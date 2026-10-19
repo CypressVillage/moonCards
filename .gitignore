@@ -16,3 +16,6 @@ wheels/
 node_modules/
 public/assets/
 public/thumbnails/
+
+# Local card-manager operation backups (never publish)
+.card-editor/
