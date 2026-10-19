@@ -32,6 +32,15 @@
 
 经过测试，使用300g铜版纸，正面覆亮膜、背面覆哑膜的工艺效果和性价比较好
 
+## 在线图鉴（GitHub Pages）
+
+访问地址：https://CypressVillage.github.io/moonCards/
+
+首次部署需要在仓库的 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。
+之后每次推送到 `master` 分支，都会自动运行测试、构建静态资源并发布；也可以在 **Actions → Deploy GitHub Pages → Run workflow** 手动部署。
+
+线上版本支持卡牌浏览、检索、下载，以及元数据编辑后导出 JSON；保存到源文件、上传和管理图片需要运行本地开发服务。仅发布 `dist/` 构建产物，不发布本地备份或后端接口。
+
 ## 本地部署服务
 
 本地部署服务可以在网页内方便地对卡牌元数据进行编辑。
