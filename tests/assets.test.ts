@@ -121,14 +121,22 @@ test('未收录图片移动不创建 JSON，已收录移动到新目录才显式
   assert.equal(JSON.parse(await readFile(`${root}/data/cards/skill.json`, 'utf8')).length, 2);
 }));
 
-test('同名文件和重复星级阻止移动，跨组关联不应再被误拒绝', async () => fixture(async (root) => {
+test('仅同名文件阻止覆盖，同名同星不同图片可以移动且保留已有记录', async () => fixture(async (root) => {
   await writeFile(`${root}/assets/card_diary/共享.png`, png);
   await assert.rejects(action(root, { action: 'move', path: source, targetGroup: 'diary' }), /目标图片已存在/);
   await unlink(`${root}/assets/card_diary/共享.png`);
   await writeFile(`${root}/data/cards/diary.json`, JSON.stringify([card('diary', 'A')]));
   await writeFile(`${root}/assets/card_diary/A.png`, png);
-  await assert.rejects(action(root, { action: 'move', path: source, targetGroup: 'diary' }), /重复/);
-  await writeFile(`${root}/data/cards/diary.json`, '[]');
+  await action(root, { action: 'move', path: source, targetGroup: 'diary' });
+  const destination = JSON.parse(await readFile(`${root}/data/cards/diary.json`, 'utf8'));
+  assert.deepEqual(destination.map((entry: Card) => [entry.name, entry.level, entry.image]), [
+    ['A', 1, 'assets/card_diary/A.png'], ['A', 1, 'assets/card_diary/共享.png'], ['A', 2, 'assets/card_diary/共享.png'],
+  ]);
+  assert.deepEqual(await readFile(`${root}/assets/card_diary/A.png`), png);
+  assert.deepEqual(await readFile(`${root}/assets/card_diary/共享.png`), png);
+}));
+
+test('移动保留跨组关联，不因目标名称离开本组而误拒绝', async () => fixture(async (root) => {
   const records = JSON.parse(await readFile(`${root}/data/cards/base.json`, 'utf8'));
   records.push({ ...card('base', '引用者'), relatedCards: ['A'] });
   await writeFile(`${root}/data/cards/base.json`, JSON.stringify(records));

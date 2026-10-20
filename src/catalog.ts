@@ -37,8 +37,8 @@ export const emptyFilters: Filters = {
 
 export { professionOrder } from './professions.ts';
 
-export const groupKey = (card: Pick<Card, 'group' | 'name'>) => JSON.stringify([card.group, card.name]);
-export const recordKey = (card: Card) => JSON.stringify([card.group, card.name, card.level]);
+export const groupKey = (card: Pick<Card, 'group' | 'name' | 'type'>) => JSON.stringify([card.group, card.name, card.type]);
+export const recordKey = (card: Card) => JSON.stringify([card.image, card.level]);
 
 export const selectedGroups = (filters: Filters): string[] => filters.group === 'all'
   ? [] : typeof filters.group === 'string' ? [filters.group] : filters.group;
@@ -63,9 +63,20 @@ export function matchesCard(card: Card, filters: Filters) {
 }
 
 export function filterGroups(cards: Card[], filters: Filters): CardGroup[] {
-  const groups = new Map<string, CardGroup>();
+  // Ambiguous same-level images must remain separate, not hide one another.
+  const levels = new Map<string, Set<Card['level']>>();
+  const separate = new Set<string>();
   for (const card of cards) {
     const key = groupKey(card);
+    const seen = levels.get(key) ?? new Set<Card['level']>();
+    if (seen.has(card.level)) separate.add(key);
+    seen.add(card.level);
+    levels.set(key, seen);
+  }
+  const groups = new Map<string, CardGroup>();
+  for (const card of cards) {
+    const baseKey = groupKey(card);
+    const key = separate.has(baseKey) ? JSON.stringify([baseKey, card.image]) : baseKey;
     let group = groups.get(key);
     if (!group) {
       group = { key, name: card.name, group: card.group, cards: [], matches: [] };

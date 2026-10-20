@@ -7,7 +7,6 @@ export function validateCards(cards) {
   if (!Array.isArray(cards)) return ['卡牌 JSON 必须是数组'];
   const identities = new Set();
   const names = new Set();
-  const groupVisibility = new Map();
   for (const [index, card] of cards.entries()) {
     const prefix = `第 ${index + 1} 条记录`;
     if (!card || typeof card !== 'object' || Array.isArray(card)) {
@@ -34,15 +33,10 @@ export function validateCards(cards) {
     }
     if (!stringArray(card.relatedCards)) errors.push(`${prefix} relatedCards 必须是字符串数组`);
     if (card.hidden !== undefined && typeof card.hidden !== 'boolean') errors.push(`${prefix} hidden 必须是布尔值`);
-    const groupKey = JSON.stringify([card.group, card.name]);
-    const identity = JSON.stringify([card.group, card.name, card.level]);
-    if (identities.has(identity)) errors.push(`${prefix} 分组、名称、等级重复：${card.name}`);
+    const identity = JSON.stringify([card.image, card.level]);
+    if (identities.has(identity)) errors.push(`${prefix} 图片路径、等级重复：${card.image}`);
     identities.add(identity);
     names.add(card.name);
-    if (groupVisibility.has(groupKey) && groupVisibility.get(groupKey) !== Boolean(card.hidden)) {
-      errors.push(`${prefix} 同一张卡的各等级必须使用一致的 hidden`);
-    }
-    groupVisibility.set(groupKey, Boolean(card.hidden));
   }
   for (const card of cards) {
     if (!card || !Array.isArray(card.relatedCards)) continue;

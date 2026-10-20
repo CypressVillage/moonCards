@@ -736,6 +736,17 @@
     "hidden": false
   },
   {
+    "name": "圣诞礼物",
+    "group": "monster",
+    "image": "assets/card_monster/圣诞礼物.png",
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
     "name": "先祖智慧",
     "group": "monster",
     "image": "assets/card_monster/先祖智慧.png",
@@ -2224,6 +2235,17 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "夺宝奇兵",
+    "group": "monster",
+    "image": "assets/card_monster/夺宝奇兵.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": true
   },
   {
     "name": "速度祈祷",

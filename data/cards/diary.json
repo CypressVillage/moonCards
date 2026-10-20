@@ -38,6 +38,19 @@
     "group": "diary"
   },
   {
+    "name": "发条骑士",
+    "group": "diary",
+    "image": "assets/card_diary/发条骑士.png",
+    "level": null,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "装备",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
     "name": "玩具长枪",
     "level": 1,
     "classes": [
@@ -410,7 +423,9 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_diary/冰激凌把戏.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "小雪花"
+    ],
     "group": "diary"
   },
   {
@@ -942,7 +957,9 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_diary/学徒笔记.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "小小法力"
+    ],
     "group": "diary"
   },
   {
@@ -954,7 +971,9 @@
     "type": "咒术",
     "cost": 5,
     "image": "assets/card_diary/寒冰咒文书.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "小雪花"
+    ],
     "group": "diary"
   },
   {
@@ -978,7 +997,9 @@
     "type": "咒术",
     "cost": 5,
     "image": "assets/card_diary/星象咒文书.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "杂门咒术"
+    ],
     "group": "diary"
   },
   {
@@ -1088,7 +1109,9 @@
     "type": "咒术",
     "cost": 3,
     "image": "assets/card_diary/涂毒刺针.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "恶作剧"
+    ],
     "group": "diary"
   },
   {
@@ -1116,15 +1139,60 @@
     "group": "diary"
   },
   {
-    "name": "发条骑士",
+    "name": "小小法力",
+    "level": null,
+    "classes": [],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_diary/小小法力.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "diary"
+  },
+  {
+    "name": "杂门咒术",
     "group": "diary",
-    "image": "assets/card_diary/发条骑士.png",
+    "image": "assets/card_diary/杂门咒术.png",
     "level": null,
     "classes": [
-      "女骑士"
+      "女骑士",
+      "游侠",
+      "狼人",
+      "机械师",
+      "小猪妖"
     ],
-    "type": "装备",
-    "cost": null,
+    "type": "咒术",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
+    "name": "小雪花",
+    "group": "diary",
+    "image": "assets/card_diary/小雪花.png",
+    "level": null,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
+    "name": "狂野烹调",
+    "group": "diary",
+    "image": "assets/card_diary/狂野烹调.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "游侠",
+      "药剂师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 0,
     "relatedCards": [],
     "hidden": true
   }

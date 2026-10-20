@@ -4,7 +4,7 @@ import { cards, cardCategories } from './card-data.ts';
 // @ts-expect-error Shared browser/Node group labels are plain JavaScript.
 import { groupLabel, groupMode } from '../scripts/card-groups.mjs';
 import {
-  costLabel, emptyFilters, filterGroups, groupKey, highestLevel, levelLabel,
+  costLabel, emptyFilters, filterGroups, highestLevel, levelLabel,
   readFilters, recordKey, relatedNames, relatedVariants, selectedGroups, sortLevels, writeFilters,
 } from './catalog.ts';
 import type { Card, CardGroup, Filters } from './catalog.ts';
@@ -20,10 +20,9 @@ const heroFront = cards.find((card) => !card.hidden && card.type === '装备') ?
 const heroBack = cards.find((card) => !card.hidden && card.type === '攻击') ?? cards[1] ?? cards[0];
 const assetUrl = (path: string) => import.meta.env.DEV ? `${import.meta.env.BASE_URL}__card-editor/image?path=${encodeURIComponent(path)}` : `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`;
 const thumbnailUrl = (card: Card) => assetUrl(import.meta.env.DEV ? card.image : `thumbnails/${card.image.replace(/\.[^.]+$/, '.webp')}`);
-const variantsByName = new Map<string, Card[]>();
-for (const card of cards) {
-  const key = groupKey(card);
-  variantsByName.set(key, [...(variantsByName.get(key) ?? []), card]);
+const variantsByImage = new Map<string, Card[]>();
+for (const group of filterGroups(cards, { ...emptyFilters, showHidden: true })) {
+  for (const card of group.cards) variantsByImage.set(card.image, group.cards);
 }
 
 function Icon({ name, size = 20 }: { name: 'moon' | 'search' | 'download' | 'close' | 'arrow' | 'book' | 'filter'; size?: number }) {
@@ -49,7 +48,7 @@ function CardImage({ card, large = false }: { card: Card; large?: boolean }) {
 }
 
 function Selectors({ root, selected, onSelect }: { root: CardGroup; selected: Card; onSelect: (card: Card) => void }) {
-  const variants = variantsByName.get(groupKey(selected)) ?? [selected];
+  const variants = variantsByImage.get(selected.image) ?? [selected];
   const related = relatedNames(root);
   return <div className="selectors">
     {related.length > 0 && <div className="related-buttons" aria-label="关联卡切换">
@@ -62,7 +61,7 @@ function Selectors({ root, selected, onSelect }: { root: CardGroup; selected: Ca
     </div>}
     <div className="level-buttons" aria-label={`${selected.name}等级切换`}>
       {sortLevels(variants).map((card) => <button type="button" key={recordKey(card)}
-        aria-pressed={selected.level === card.level} className={selected.level === card.level ? 'active' : ''}
+        aria-pressed={recordKey(selected) === recordKey(card)} className={recordKey(selected) === recordKey(card) ? 'active' : ''}
         onClick={() => onSelect(card)}>{levelLabel(card.level)}</button>)}
     </div>
   </div>;
@@ -170,7 +169,7 @@ function App() {
     <header className="site-header"><div className="header-inner">
       <a className="brand" href={import.meta.env.BASE_URL} aria-label="林间图鉴首页"><span className="brand-symbol"><Icon name="moon" size={25} /></span><span>林间图鉴<small>NIGHT OF FULL MOON</small></span></a>
       <nav aria-label="主导航"><a className="nav-active" href="#catalog">卡牌图鉴</a></nav>
-      <span className="header-label">非官方 · 持续收录中</span><a className="editor-entry" href="?editor">编辑卡牌</a>
+      <span className="header-label">非官方 · 持续收录中</span>{import.meta.env.DEV && <a className="editor-entry" href="?editor">编辑卡牌</a>}
     </div></header>
     <main>
       <section className="hero">

@@ -1,5 +1,28 @@
 [
   {
+    "name": "外婆的祝福",
+    "group": "story",
+    "image": "assets/card_story/外婆的祝福.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "狼人",
+      "契约师",
+      "机械师",
+      "调灵师",
+      "猎魔人"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
     "name": "上锁的日记",
     "group": "story",
     "image": "assets/card_story/上锁的日记.png",

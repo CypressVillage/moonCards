@@ -123,7 +123,7 @@ test('数据校验拒绝重复身份和错误字段', () => {
 });
 
 test('关联允许指向任意已加载 JSON，仅拒绝不存在的名称', () => {
-  const primary = makeCard({ relatedCards: ['附属卡'] });
+  const primary = makeCard({ image: 'assets/primary.png', relatedCards: ['附属卡'] });
   assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡', group: 'diary' })]), []);
   assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡' })]), []);
   assert.deepEqual(validateCards([primary, makeCard({ name: '附属卡', group: 'base_extra' })]), []);
@@ -131,6 +131,17 @@ test('关联允许指向任意已加载 JSON，仅拒绝不存在的名称', () 
   assert.match(validateCards([primary]).join(), /所有已加载 JSON 中不存在/);
 });
 
-test('各等级的隐藏状态必须保持一致', () => {
-  assert.match(validateCards([makeCard(), makeCard({ level: 2, hidden: true })]).join(), /hidden/);
+test('不同源图片允许同名同星级及不同隐藏状态，图片路径和星级重复仍报错', () => {
+  const cards = [makeCard(), makeCard({ image: 'assets/another.png', hidden: true })];
+  assert.deepEqual(validateCards(cards), []);
+  assert.deepEqual(validateCards([makeCard(), makeCard({ level: 2, hidden: true })]), []);
+  assert.match(validateCards([makeCard(), makeCard({ name: '另一名称' })]).join(), /图片路径、等级重复/);
+});
+
+test('同名同星不同图片分别展示，不同类型不混合，普通等级仍合并', () => {
+  const cards = [makeCard(), makeCard({ image: 'assets/another.png' }), makeCard({ type: '特殊', image: 'assets/special.png' })];
+  const groups = filterGroups(cards, emptyFilters);
+  assert.equal(groups.length, 3);
+  assert.deepEqual(groups.map((group) => group.cards[0].image), cards.map((card) => card.image));
+  assert.equal(filterGroups([makeCard(), makeCard({ level: 2, image: 'assets/level2.png' })], emptyFilters).length, 1);
 });

@@ -29,7 +29,7 @@ test('连续收录只追加草稿，保留已有修改，可排序、继续编�
   assert.deepEqual(drafts.map((entry) => entry.name), ['第二张', 'A', 'B']);
   assert.equal(drafts[1].cost, 2);
   assert.throws(() => appendRegistrationDraft(drafts, card('第二张')), /重复收录/);
-  assert.throws(() => appendRegistrationDraft(drafts, { ...card('A'), image: 'assets/card_base/另一张.png' }), /相同分组/);
+  assert.equal(appendRegistrationDraft(drafts, { ...card('A'), image: 'assets/card_base/另一张.png' }).length, drafts.length + 1);
   assert.throws(() => withdrawRegistrationDraft(drafts, saved[0].image, saved), /不能删除已保存/);
   assert.equal(pendingRegistrationImages(drafts, drafts).size, 0);
 });
@@ -117,7 +117,7 @@ test('重命名仅修改当前等级，其他等级仍存在时保持旧名称�
   assert.deepEqual(updated.map((entry) => entry.name), ['新名称', 'A', 'B', 'A']);
   assert.deepEqual(updated[2].relatedCards, ['A']);
   assert.equal(updated[0].image, cards[0].image);
-  assert.throws(() => editCardIdentity(cards, 0, { name: 'B' }), /相同类别、名称和星级/);
+  assert.equal(editCardIdentity(cards, 0, { name: 'B' })[0].name, 'B');
   assert.throws(() => editCardIdentity(cards, 0, { name: ' ' }), /不能为空/);
 });
 
@@ -135,7 +135,7 @@ test('同名一二三星允许共存，重命名不会修改其他记录', () =>
   assert.deepEqual(updated.map((entry) => [entry.name, entry.level]), [['普通攻击', 1], ['普通攻击', 2], ['普通攻击', 3]]);
   assert.equal(updated[0], cards[0]);
   assert.equal(updated[1], cards[1]);
-  assert.throws(() => editCardIdentity([card('A', 3), card('B', 3)], 1, { name: 'A' }), /相同类别、名称和星级/);
+  assert.equal(editCardIdentity([card('A', 3), card('B', 3)], 1, { name: 'A' })[1].name, 'A');
 });
 
 test('旧名称最后一条记录重命名时更新引用，并移除合并后的自身关联', () => {

@@ -1,4 +1,4 @@
-import { groupKey, recordKey } from './catalog.ts';
+import { groupKey } from './catalog.ts';
 import type { Card } from './catalog.ts';
 
 export function moveCard(cards: Card[], from: number, to: number): Card[] {
@@ -18,7 +18,6 @@ export function editCard(cards: Card[], index: number, patch: Partial<Card>): Ca
 
 export function appendRegistrationDraft(cards: Card[], candidate: Card): Card[] {
   if (cards.some((card) => card.image === candidate.image)) throw new Error('该图片已在当前卡牌列表中，不要重复收录');
-  if (cards.some((card) => recordKey(card) === recordKey(candidate))) throw new Error('已存在相同分组、名称和星级的记录');
   return [...cards, structuredClone(candidate)];
 }
 
@@ -60,14 +59,10 @@ export function editCardIdentity(cards: Card[], index: number, patch: Pick<Parti
   const original = cards[index];
   const name = (patch.name ?? original.name).trim();
   if (!name) throw new Error('卡牌名称不能为空');
-  const originalKey = groupKey(original);
   const updated = { ...original, name };
-  if (cards.some((card, position) => position !== index && recordKey(card) === recordKey(updated))) {
-    throw new Error(`已存在相同类别、名称和星级的记录：${name}（${original.level === null ? '无星级' : `${original.level}星`}）。不同星级可以使用相同名称。`);
-  }
   // Keep references to the old name while any other level still uses it.
   const renameReferences = name !== original.name
-    && !cards.some((card, position) => position !== index && groupKey(card) === originalKey);
+    && !cards.some((card, position) => position !== index && card.group === original.group && card.name === original.name);
   return cards.map((card, position) => {
     const result = position === index ? updated : card;
     const relatedCards = renameReferences && card.group === original.group && card.relatedCards.includes(original.name)

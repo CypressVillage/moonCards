@@ -11,10 +11,6 @@
     "label": "怪物卡牌",
     "mode": "classic"
   },
-  "base_extra": {
-    "label": "隐藏卡牌",
-    "mode": "classic"
-  },
   "diary_extra": {
     "label": "日记初始卡",
     "mode": "diary"

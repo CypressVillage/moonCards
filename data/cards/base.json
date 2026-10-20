@@ -5703,6 +5703,19 @@
     "group": "base"
   },
   {
+    "name": "流星镖",
+    "group": "base",
+    "image": "assets/card_base/流星镖.png",
+    "level": null,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
     "name": "预言",
     "level": null,
     "classes": [
@@ -13213,6 +13226,19 @@
     "group": "base"
   },
   {
+    "name": "魔法反射",
+    "group": "base",
+    "image": "assets/card_base/魔法反射.png",
+    "level": 3,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "反制",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
     "name": "寻迹追踪",
     "level": null,
     "classes": [
@@ -13392,7 +13418,9 @@
     "type": "特殊",
     "cost": null,
     "image": "assets/card_base/卡牌包.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "卡牌包（行动牌）"
+    ],
     "group": "base"
   },
   {
@@ -13414,7 +13442,9 @@
     "type": "特殊",
     "cost": null,
     "image": "assets/card_base/商品订单.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "商品订单（攻击牌）"
+    ],
     "group": "base"
   },
   {
@@ -13438,5 +13468,31 @@
     "relatedCards": [],
     "hidden": true,
     "group": "base"
+  },
+  {
+    "name": "卡牌包（行动牌）",
+    "group": "base",
+    "image": "assets/card_base/卡牌包（行动牌）.png",
+    "level": null,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
+    "name": "商品订单（攻击牌）",
+    "group": "base",
+    "image": "assets/card_base/商品订单（攻击牌）.png",
+    "level": null,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
   }
 ]
