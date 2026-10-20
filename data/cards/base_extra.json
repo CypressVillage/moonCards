@@ -171,6 +171,17 @@
     "hidden": false
   },
   {
+    "name": "震慑",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/震慑.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
     "name": "奖赏",
     "group": "base_extra",
     "image": "assets/card_base_extra/奖赏.png",
@@ -189,28 +200,6 @@
     "classes": [],
     "type": "行动",
     "cost": 1,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "招财符",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/招财符.png",
-    "level": null,
-    "classes": [],
-    "type": "祷告",
-    "cost": null,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "驱妖符",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/驱妖符.png",
-    "level": null,
-    "classes": [],
-    "type": "祷告",
-    "cost": null,
     "relatedCards": [],
     "hidden": false
   }

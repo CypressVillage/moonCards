@@ -17,11 +17,12 @@
 - `card_base_extra`：经典模式图鉴中未出现且游戏中能遇到的部分卡牌
 - `card_ce`：通过 CE 修改出的部分废稿卡牌
 - `card_ce_41`：官方愚人节动态中发布的 7 张卡牌，没想到真的做到了游戏里，通过 CE 获得
-- `card_ce_ok`：卡面完整、效果完整的 CE 卡牌
 - `card_diary`：小红帽日记模式图鉴中“全部”选项收录的卡牌
 - `card_diary_extra`：小红帽日记模式中可以获得的 14 张初始怪物卡牌，图鉴中未出现
 - `card_monster`：经典模式/小红帽日记图鉴中“怪物”选项收录的卡牌
+- `card_newyear`：官方新年活动限时卡牌
 - `card_skill`：部分角色的局内技能卡牌，共 17 张
+- `card_story`：剧情卡牌
 - `excel`：群友通过逆向整理的卡牌信息 Excel 文件
 - `kra_prjs`：使用 krita 制作的牌背文件
 - `paints`：游戏中的 DLC 立绘
