@@ -7,20 +7,24 @@
     "label": "小红帽日记",
     "mode": "diary"
   },
-  "base_extra": {
-    "label": "经典附属卡",
-    "mode": "classic"
-  },
   "monster": {
     "label": "怪物卡牌",
     "mode": "classic"
+  },
+  "base_extra": {
+    "label": "附属卡",
+    "mode": "classic"
+  },
+  "diary_extra": {
+    "label": "日记初始卡",
+    "mode": "diary"
   },
   "ce_41": {
     "label": "愚人节彩蛋",
     "mode": "classic"
   },
-  "diary_extra": {
-    "label": "日记初始牌",
-    "mode": "diary"
+  "newyear": {
+    "label": "春节限时",
+    "mode": "classic"
   }
 }

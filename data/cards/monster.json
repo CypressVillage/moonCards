@@ -67,6 +67,26 @@
   },
   {
     "name": "熊甲",
+    "level": 1,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_monster/熊甲1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "熊甲",
+    "level": 2,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_monster/熊甲2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "熊甲",
     "group": "monster",
     "image": "assets/card_monster/熊甲.png",
     "level": 3,
@@ -97,6 +117,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "铁臂",
+    "level": 1,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_monster/铁臂1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "铁臂",
@@ -155,6 +185,16 @@
   },
   {
     "name": "火焰攻击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/火焰攻击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "火焰攻击",
     "group": "monster",
     "image": "assets/card_monster/火焰攻击.png",
     "level": 2,
@@ -163,6 +203,26 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "缠绕攻击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/缠绕攻击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "缠绕攻击",
+    "level": 2,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/缠绕攻击2.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "缠绕攻击",
@@ -177,6 +237,16 @@
   },
   {
     "name": "雷霆震击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/雷霆震击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "雷霆震击",
     "group": "monster",
     "image": "assets/card_monster/雷霆震击.png",
     "level": 2,
@@ -185,6 +255,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "头骨破裂",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/头骨破裂1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "头骨破裂",
@@ -210,6 +290,16 @@
   },
   {
     "name": "碎盾",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/碎盾1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "碎盾",
     "group": "monster",
     "image": "assets/card_monster/碎盾.png",
     "level": 2,
@@ -218,6 +308,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "烧伤",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/烧伤1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "烧伤",
@@ -232,6 +332,26 @@
   },
   {
     "name": "爪击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/爪击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "爪击",
+    "level": 2,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/爪击2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "爪击",
     "group": "monster",
     "image": "assets/card_monster/爪击.png",
     "level": 3,
@@ -243,6 +363,16 @@
   },
   {
     "name": "狂暴攻击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/狂暴攻击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "狂暴攻击",
     "group": "monster",
     "image": "assets/card_monster/狂暴攻击.png",
     "level": 2,
@@ -251,6 +381,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "孢子增殖",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/孢子增殖1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "孢子增殖",
@@ -273,6 +413,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "愤怒头槌",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/愤怒头槌1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "愤怒头槌",
@@ -320,6 +470,16 @@
   },
   {
     "name": "灵巧",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/灵巧1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "灵巧",
     "group": "monster",
     "image": "assets/card_monster/灵巧.png",
     "level": 2,
@@ -328,6 +488,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "利爪",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/利爪1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "利爪",
@@ -342,6 +512,16 @@
   },
   {
     "name": "闪击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/闪击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "闪击",
     "group": "monster",
     "image": "assets/card_monster/闪击.png",
     "level": 2,
@@ -350,6 +530,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "咬碎",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/咬碎1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "咬碎",
@@ -364,6 +554,16 @@
   },
   {
     "name": "粉碎",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/粉碎1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "粉碎",
     "group": "monster",
     "image": "assets/card_monster/粉碎.png",
     "level": 2,
@@ -372,6 +572,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "松果攻击",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/松果攻击1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "松果攻击",
@@ -386,6 +596,16 @@
   },
   {
     "name": "尾袭",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/尾袭1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "尾袭",
     "group": "monster",
     "image": "assets/card_monster/尾袭.png",
     "level": 2,
@@ -394,6 +614,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "前滚翻",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/前滚翻1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "前滚翻",
@@ -408,6 +638,16 @@
   },
   {
     "name": "一箭双雕",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/一箭双雕1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "一箭双雕",
     "group": "monster",
     "image": "assets/card_monster/一箭双雕.png",
     "level": 2,
@@ -416,6 +656,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "愚拙",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/愚拙1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "愚拙",
@@ -430,6 +680,16 @@
   },
   {
     "name": "粉碎掌",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/粉碎掌1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "粉碎掌",
     "group": "monster",
     "image": "assets/card_monster/粉碎掌.png",
     "level": 2,
@@ -438,6 +698,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "寄生",
+    "level": 1,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_monster/寄生1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "寄生",
@@ -463,6 +733,16 @@
   },
   {
     "name": "混乱攻击",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/混乱攻击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "混乱攻击",
     "group": "monster",
     "image": "assets/card_monster/混乱攻击.png",
     "level": 2,
@@ -485,6 +765,26 @@
   },
   {
     "name": "猛击",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/猛击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "猛击",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/猛击2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "猛击",
     "group": "monster",
     "image": "assets/card_monster/猛击.png",
     "level": 3,
@@ -493,6 +793,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "荆棘缠绕",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/荆棘缠绕1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "荆棘缠绕",
@@ -507,6 +817,16 @@
   },
   {
     "name": "爪",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/爪1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "爪",
     "group": "monster",
     "image": "assets/card_monster/爪.png",
     "level": 2,
@@ -515,6 +835,26 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "吸血",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/吸血1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "吸血",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/吸血2.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "吸血",
@@ -573,6 +913,16 @@
   },
   {
     "name": "窒息",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/窒息1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "窒息",
     "group": "monster",
     "image": "assets/card_monster/窒息.png",
     "level": 2,
@@ -592,6 +942,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "蛛网",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/蛛网1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "蛛网",
@@ -628,6 +988,26 @@
   },
   {
     "name": "骨盾",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/骨盾1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "骨盾",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/骨盾2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "骨盾",
     "group": "monster",
     "image": "assets/card_monster/骨盾.png",
     "level": 3,
@@ -636,6 +1016,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "掠夺",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/掠夺1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "掠夺",
@@ -782,6 +1172,16 @@
   },
   {
     "name": "喷火",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/喷火1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "喷火",
     "group": "monster",
     "image": "assets/card_monster/喷火.png",
     "level": 2,
@@ -815,6 +1215,16 @@
   },
   {
     "name": "雷雨",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/雷雨1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "雷雨",
     "group": "monster",
     "image": "assets/card_monster/雷雨.png",
     "level": 2,
@@ -834,6 +1244,26 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "毒刺",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/毒刺1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "毒刺",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/毒刺2.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "毒刺",
@@ -958,6 +1388,26 @@
   },
   {
     "name": "碎石冲击",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_monster/碎石冲击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "碎石冲击",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_monster/碎石冲击2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "碎石冲击",
     "group": "monster",
     "image": "assets/card_monster/碎石冲击.png",
     "level": 3,
@@ -966,6 +1416,26 @@
     "cost": 2,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "抓挠",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/抓挠1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "抓挠",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/抓挠2.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "抓挠",
@@ -991,6 +1461,26 @@
   },
   {
     "name": "迷魂粉",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/迷魂粉1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "迷魂粉",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/迷魂粉2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "迷魂粉",
     "group": "monster",
     "image": "assets/card_monster/迷魂粉.png",
     "level": 3,
@@ -999,6 +1489,26 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "杂技飞刀",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/杂技飞刀1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "杂技飞刀",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/杂技飞刀2.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "杂技飞刀",
@@ -1076,6 +1586,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "咔嚓",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/咔嚓1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "咔嚓",
@@ -1178,6 +1698,26 @@
   },
   {
     "name": "刺杀",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/刺杀1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "刺杀",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/刺杀2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "刺杀",
     "group": "monster",
     "image": "assets/card_monster/刺杀.png",
     "level": 3,
@@ -1200,6 +1740,26 @@
   },
   {
     "name": "石头",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/石头1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "石头",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/石头2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "石头",
     "group": "monster",
     "image": "assets/card_monster/石头.png",
     "level": 3,
@@ -1208,6 +1768,26 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "醉酒闹事",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/醉酒闹事1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "醉酒闹事",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/醉酒闹事2.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "醉酒闹事",
@@ -1222,6 +1802,26 @@
   },
   {
     "name": "狂饮",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/狂饮1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "狂饮",
+    "level": 2,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/狂饮2.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "狂饮",
     "group": "monster",
     "image": "assets/card_monster/狂饮.png",
     "level": 3,
@@ -1233,6 +1833,16 @@
   },
   {
     "name": "刺球",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/刺球1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "刺球",
     "group": "monster",
     "image": "assets/card_monster/刺球.png",
     "level": 2,
@@ -1241,6 +1851,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "飞刺",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/飞刺1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "飞刺",
@@ -1398,6 +2018,16 @@
   },
   {
     "name": "啄击",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/啄击1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "啄击",
     "group": "monster",
     "image": "assets/card_monster/啄击.png",
     "level": 2,
@@ -1406,6 +2036,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "践踏",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/践踏1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "践踏",
@@ -1420,6 +2060,16 @@
   },
   {
     "name": "掠食",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/掠食1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "掠食",
     "group": "monster",
     "image": "assets/card_monster/掠食.png",
     "level": 2,
@@ -1428,6 +2078,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "障眼法",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/障眼法1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "障眼法",
@@ -1442,6 +2102,16 @@
   },
   {
     "name": "蛇行",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/蛇行1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "蛇行",
     "group": "monster",
     "image": "assets/card_monster/蛇行.png",
     "level": 2,
@@ -1453,6 +2123,16 @@
   },
   {
     "name": "求饶",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/求饶1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "求饶",
     "group": "monster",
     "image": "assets/card_monster/求饶.png",
     "level": 2,
@@ -1461,6 +2141,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "御风术",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/御风术1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "御风术",
@@ -1483,6 +2173,16 @@
     "cost": 1,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "壮胆",
+    "level": 1,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_monster/壮胆1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "壮胆",
@@ -1530,6 +2230,16 @@
   },
   {
     "name": "饮血",
+    "level": 1,
+    "classes": [],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_monster/饮血1.png",
+    "relatedCards": [],
+    "group": "monster"
+  },
+  {
+    "name": "饮血",
     "group": "monster",
     "image": "assets/card_monster/饮血.png",
     "level": 2,
@@ -1549,6 +2259,16 @@
     "cost": 3,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "骨刺",
+    "level": 1,
+    "classes": [],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_monster/骨刺1.png",
+    "relatedCards": [],
+    "group": "monster"
   },
   {
     "name": "骨刺",

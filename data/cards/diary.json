@@ -37,6 +37,18 @@
   },
   {
     "name": "玩具长枪",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/玩具长枪1.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "玩具长枪",
     "level": 2,
     "classes": [
       "女骑士"
@@ -140,6 +152,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_diary/利刃.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "袖剑",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_diary/袖剑1.png",
     "relatedCards": [],
     "group": "diary"
   },
@@ -382,6 +406,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_diary/冰激凌把戏.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "未鉴定的药瓶",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_diary/未鉴定的药瓶1.png",
     "relatedCards": [],
     "group": "diary"
   },
@@ -715,6 +751,18 @@
   },
   {
     "name": "宝石匕首",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/宝石匕首1.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "宝石匕首",
     "level": 2,
     "classes": [
       "游侠"
@@ -722,6 +770,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_diary/宝石匕首2.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "金匕首",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/金匕首1.png",
     "relatedCards": [],
     "group": "diary"
   },
@@ -770,6 +830,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_diary/拓印.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "旅行包裹",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/旅行包裹1.png",
     "relatedCards": [],
     "group": "diary"
   },
@@ -830,6 +902,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_diary/实验工具.png",
+    "relatedCards": [],
+    "group": "diary"
+  },
+  {
+    "name": "魔术假面",
+    "level": 1,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_diary/魔术假面1.png",
     "relatedCards": [],
     "group": "diary"
   },

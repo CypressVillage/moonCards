@@ -26,6 +26,34 @@
   },
   {
     "name": "圆盾",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "猎魔人",
+      "小猪妖"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/圆盾1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "圆盾",
+    "level": 2,
+    "classes": [
+      "女骑士",
+      "猎魔人",
+      "小猪妖"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/圆盾2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "圆盾",
     "level": 3,
     "classes": [
       "女骑士",
@@ -35,6 +63,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/圆盾.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "发条马",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/发条马1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -110,6 +150,21 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/捕兽夹.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "古怪符文",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "魔术师",
+      "猎魔人"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/古怪符文1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -292,6 +347,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/箭袋.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵巧护符",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/灵巧护符1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -495,6 +562,18 @@
   },
   {
     "name": "冰霜护符",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/冰霜护符1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冰霜护符",
     "level": 2,
     "classes": [
       "小女巫"
@@ -544,6 +623,18 @@
   },
   {
     "name": "燃烧果实",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/燃烧果实1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "燃烧果实",
     "level": 2,
     "classes": [
       "小女巫"
@@ -565,6 +656,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/法力翡翠.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "月光法典",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/月光法典1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -601,6 +704,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/生命护符.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "忏悔录",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/忏悔录1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -665,6 +780,19 @@
     "image": "assets/card_base/银色披风.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "魔术棒",
+    "group": "base",
+    "image": "assets/card_base/魔术棒1.png",
+    "level": 1,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "魔术棒",
@@ -939,6 +1067,18 @@
   },
   {
     "name": "审判者",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/审判者1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "审判者",
     "level": 2,
     "classes": [
       "契约师"
@@ -1135,6 +1275,18 @@
   },
   {
     "name": "自然仪杖",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/自然仪杖1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "自然仪杖",
     "level": 2,
     "classes": [
       "调灵师"
@@ -1142,6 +1294,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/自然仪杖.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵刀",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/灵刀1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1171,6 +1335,18 @@
   },
   {
     "name": "往事书",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/往事书1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "往事书",
     "level": 2,
     "classes": [
       "调灵师"
@@ -1178,6 +1354,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/往事书.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "犬牙护符",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/犬牙护符1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1214,6 +1402,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/观者面具.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "鹰翎神帽",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/鹰翎神帽1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1302,6 +1502,18 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/猩红吊坠.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "淬毒箭头",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/淬毒箭头1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1453,6 +1665,18 @@
   },
   {
     "name": "袖箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "装备",
+    "cost": null,
+    "image": "assets/card_base/袖箭1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "袖箭",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -1587,6 +1811,30 @@
   },
   {
     "name": "穿刺攻击",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/穿刺攻击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "穿刺攻击",
+    "level": 2,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/穿刺攻击2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "穿刺攻击",
     "level": 3,
     "classes": [
       "女骑士"
@@ -1594,6 +1842,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/穿刺攻击.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "怒火攻击",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/怒火攻击1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1611,6 +1871,18 @@
   },
   {
     "name": "灵魂打击",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/灵魂打击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵魂打击",
     "level": 2,
     "classes": [
       "女骑士"
@@ -1618,6 +1890,19 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/灵魂打击.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "风暴攻击",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/风暴攻击1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1636,6 +1921,19 @@
   },
   {
     "name": "神圣攻击",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "修女"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/神圣攻击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "神圣攻击",
     "level": 2,
     "classes": [
       "女骑士",
@@ -1644,6 +1942,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/神圣攻击.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "蓄力一击",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/蓄力一击1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1661,6 +1971,18 @@
   },
   {
     "name": "舍命相搏",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/舍命相搏1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "舍命相搏",
     "level": 2,
     "classes": [
       "女骑士"
@@ -1668,6 +1990,38 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/舍命相搏.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "刺伤",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/刺伤1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "刺伤",
+    "level": 2,
+    "classes": [
+      "女骑士",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/刺伤2.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1744,6 +2098,20 @@
   },
   {
     "name": "迅捷攻击",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/迅捷攻击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "迅捷攻击",
     "level": 2,
     "classes": [
       "女骑士",
@@ -1758,6 +2126,18 @@
   },
   {
     "name": "尖刺盾牌",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/尖刺盾牌1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "尖刺盾牌",
     "level": 2,
     "classes": [
       "女骑士"
@@ -1765,6 +2145,22 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/尖刺盾牌.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "应急干粮",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "机械师",
+      "调灵师",
+      "猎魔人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/应急干粮1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1799,6 +2195,34 @@
   },
   {
     "name": "千刀万剐",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/千刀万剐1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "千刀万剐",
+    "level": 2,
+    "classes": [
+      "女骑士",
+      "小女巫",
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/千刀万剐2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "千刀万剐",
     "level": 3,
     "classes": [
       "女骑士",
@@ -1825,6 +2249,18 @@
   },
   {
     "name": "猛劈",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/猛劈1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "猛劈",
     "level": 2,
     "classes": [
       "女骑士"
@@ -1837,6 +2273,18 @@
   },
   {
     "name": "盾牌格挡",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/盾牌格挡1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "盾牌格挡",
     "level": 2,
     "classes": [
       "女骑士"
@@ -1844,6 +2292,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/盾牌格挡.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "粉碎",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/粉碎1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1924,6 +2384,30 @@
   },
   {
     "name": "感染",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/感染1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "感染",
+    "level": 2,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/感染2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "感染",
     "level": 3,
     "classes": [
       "游侠"
@@ -1931,6 +2415,30 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/感染.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "割破钱袋",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/割破钱袋1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "割破钱袋",
+    "level": 2,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/割破钱袋2.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -1955,6 +2463,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/背刺.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "流血箭",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/流血箭1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2005,6 +2525,20 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/普通攻击3（小女巫）.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "痛苦打击",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "魔术师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/痛苦打击1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2311,6 +2845,18 @@
   },
   {
     "name": "圆月的召唤",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/圆月的召唤1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "圆月的召唤",
     "level": 2,
     "classes": [
       "狼人"
@@ -2318,6 +2864,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/圆月的召唤.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "斜掠爪击",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/斜掠爪击1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2335,6 +2893,18 @@
   },
   {
     "name": "咬碎",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/咬碎1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "咬碎",
     "level": 2,
     "classes": [
       "狼人"
@@ -2342,6 +2912,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/咬碎.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "锐利目光",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/锐利目光1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2359,6 +2941,18 @@
   },
   {
     "name": "狼之怒火",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/狼之怒火1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "狼之怒火",
     "level": 2,
     "classes": [
       "狼人"
@@ -2366,6 +2960,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/狼之怒火.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "恐惧之咬",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/恐惧之咬1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2395,6 +3001,18 @@
   },
   {
     "name": "狂奔",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/狂奔1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "狂奔",
     "level": 2,
     "classes": [
       "狼人"
@@ -2402,6 +3020,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/狂奔.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "肌肉记忆",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/肌肉记忆1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2426,6 +3056,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/疾步夜行.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "亢奋",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/亢奋1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2555,6 +3197,18 @@
   },
   {
     "name": "能量积蓄",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/能量积蓄1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "能量积蓄",
     "level": 2,
     "classes": [
       "机械师"
@@ -2562,6 +3216,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/能量积蓄.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "能量释放",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/能量释放1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2579,6 +3245,18 @@
   },
   {
     "name": "维修手臂",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/维修手臂1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "维修手臂",
     "level": 2,
     "classes": [
       "机械师"
@@ -2586,6 +3264,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/维修手臂.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "弹药装填",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/弹药装填1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -2777,6 +3467,18 @@
   },
   {
     "name": "防御要塞",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/防御要塞1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "防御要塞",
     "level": 2,
     "classes": [
       "机械师"
@@ -2851,6 +3553,18 @@
   },
   {
     "name": "降灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/降灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "降灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -2899,6 +3613,18 @@
   },
   {
     "name": "左侧连袭",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/左侧连袭1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "左侧连袭",
     "level": 2,
     "classes": [
       "猎魔人"
@@ -2906,6 +3632,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/左侧连袭.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "右侧旋斩",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/右侧旋斩1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3039,6 +3777,30 @@
   },
   {
     "name": "普通攻击（小猪妖）",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/普通攻击（小猪妖）1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "普通攻击（小猪妖）",
+    "level": 2,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/普通攻击（小猪妖）2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "普通攻击（小猪妖）",
     "level": 3,
     "classes": [
       "小猪妖"
@@ -3046,6 +3808,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/普通攻击3（猪妖）.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冷箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/冷箭1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3063,6 +3837,18 @@
   },
   {
     "name": "羽毛箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/羽毛箭1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "羽毛箭",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3070,6 +3856,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/羽毛箭.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "粗制箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/粗制箭1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3087,6 +3885,18 @@
   },
   {
     "name": "投掷箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/投掷箭1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "投掷箭",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3094,6 +3904,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/投掷箭.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "疾风箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/疾风箭1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3111,6 +3933,18 @@
   },
   {
     "name": "火焰箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/火焰箭1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "火焰箭",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3123,6 +3957,18 @@
   },
   {
     "name": "飞去来",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/飞去来1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "飞去来",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3130,6 +3976,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/飞去来.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "凌空闪",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/凌空闪1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3159,6 +4017,18 @@
   },
   {
     "name": "钻心箭",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/钻心箭1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "钻心箭",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3183,6 +4053,18 @@
   },
   {
     "name": "獠牙冲",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/獠牙冲1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "獠牙冲",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3190,6 +4072,18 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/獠牙冲.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "千斤踏",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/千斤踏1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3207,6 +4101,18 @@
   },
   {
     "name": "飞沙",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "攻击",
+    "cost": null,
+    "image": "assets/card_base/飞沙1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "飞沙",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -3214,6 +4120,27 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_base/飞沙.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "炸弹",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "狼人",
+      "契约师",
+      "机械师",
+      "猎魔人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/炸弹1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3279,6 +4206,19 @@
   },
   {
     "name": "绝妙收藏",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/绝妙收藏1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "绝妙收藏",
     "level": 2,
     "classes": [
       "女骑士",
@@ -3292,6 +4232,18 @@
   },
   {
     "name": "绝对防御",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/绝对防御1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "绝对防御",
     "level": 2,
     "classes": [
       "女骑士"
@@ -3299,6 +4251,19 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/绝对防御.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "天使庇护",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "修女"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/天使庇护1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3329,6 +4294,18 @@
   },
   {
     "name": "撞击",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/撞击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "撞击",
     "level": 2,
     "classes": [
       "女骑士"
@@ -3336,6 +4313,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/撞击.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "石化皮肤",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/石化皮肤1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3360,6 +4349,23 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/忠诚.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "突发奇想",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "小女巫",
+      "魔术师",
+      "药剂师",
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_base/突发奇想1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3533,6 +4539,20 @@
   },
   {
     "name": "虚晃",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "狼人",
+      "猎魔人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/虚晃1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "虚晃",
     "level": 2,
     "classes": [
       "女骑士",
@@ -3590,6 +4610,19 @@
   },
   {
     "name": "贪婪",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/贪婪1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "贪婪",
     "level": 2,
     "classes": [
       "女骑士",
@@ -3615,6 +4648,18 @@
   },
   {
     "name": "苦守",
+    "level": 1,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/苦守1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "苦守",
     "level": 2,
     "classes": [
       "女骑士"
@@ -3622,6 +4667,21 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/苦守.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "耐力补给",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "药剂师",
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_base/耐力补给1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3637,6 +4697,21 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/耐力补给.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "死守",
+    "level": 1,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "魔术师",
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/死守1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3723,6 +4798,18 @@
   },
   {
     "name": "激励",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/激励1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "激励",
     "level": 2,
     "classes": [
       "游侠"
@@ -3730,6 +4817,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/激励.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "窃取",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/窃取1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3747,6 +4846,30 @@
   },
   {
     "name": "毒液",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/毒液1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "毒液",
+    "level": 2,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/毒液2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "毒液",
     "level": 3,
     "classes": [
       "游侠"
@@ -3754,6 +4877,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/毒液.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "仓促治疗",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/仓促治疗1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3771,6 +4906,30 @@
   },
   {
     "name": "精准打击",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/精准打击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "精准打击",
+    "level": 2,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/精准打击2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "精准打击",
     "level": 3,
     "classes": [
       "游侠"
@@ -3783,6 +4942,18 @@
   },
   {
     "name": "侧踢",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/侧踢1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "侧踢",
     "level": 2,
     "classes": [
       "游侠"
@@ -3790,6 +4961,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/侧踢.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "躲闪",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/躲闪1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3819,6 +5002,18 @@
   },
   {
     "name": "灵魂冲击",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/灵魂冲击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵魂冲击",
     "level": 2,
     "classes": [
       "游侠"
@@ -3826,6 +5021,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/灵魂冲击.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "兴奋",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/兴奋1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -3869,6 +5076,18 @@
   },
   {
     "name": "飞踢",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/飞踢1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "飞踢",
     "level": 2,
     "classes": [
       "游侠"
@@ -3895,6 +5114,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/躁动.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "出血",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/出血1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -4013,6 +5244,18 @@
   },
   {
     "name": "预备攻击",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/预备攻击1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "预备攻击",
     "level": 2,
     "classes": [
       "游侠"
@@ -4020,6 +5263,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/预备攻击.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "预备治疗",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/预备治疗1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -4050,6 +5305,18 @@
   },
   {
     "name": "疯狂",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/疯狂1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "疯狂",
     "level": 2,
     "classes": [
       "游侠"
@@ -4069,6 +5336,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/敏捷.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "致命伤",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/致命伤1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -4431,6 +5710,20 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/预言.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "烧焦",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "机械师",
+      "魔术师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/烧焦1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -4887,6 +6180,18 @@
   },
   {
     "name": "披荆斩棘",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/披荆斩棘1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "披荆斩棘",
     "level": 2,
     "classes": [
       "狼人"
@@ -4894,6 +6199,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/披荆斩棘.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "狼人血脉",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/狼人血脉1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -4923,6 +6240,18 @@
   },
   {
     "name": "伤口自愈",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/伤口自愈1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "伤口自愈",
     "level": 2,
     "classes": [
       "狼人"
@@ -4930,6 +6259,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/伤口自愈.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "绕后",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/绕后1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -4954,6 +6295,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/异变.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "体温上升",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/体温上升1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -5055,6 +6408,18 @@
   },
   {
     "name": "力量增幅",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/力量增幅1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "力量增幅",
     "level": 2,
     "classes": [
       "狼人"
@@ -5074,6 +6439,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/强袭.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "超强耐力",
+    "level": 1,
+    "classes": [
+      "狼人"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_base/超强耐力1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -5469,6 +6846,18 @@
   },
   {
     "name": "能量轰炸",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_base/能量轰炸1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "能量轰炸",
     "level": 2,
     "classes": [
       "机械师"
@@ -5476,6 +6865,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/能量轰炸.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "机械犬",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 4,
+    "image": "assets/card_base/机械犬1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -5769,6 +7170,18 @@
   },
   {
     "name": "炸药研发",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/炸药研发1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "炸药研发",
     "level": 2,
     "classes": [
       "机械师"
@@ -5865,6 +7278,18 @@
     "type": "行动",
     "cost": 5,
     "image": "assets/card_base/机械鼹鼠.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "烟雾弹",
+    "level": 1,
+    "classes": [
+      "机械师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/烟雾弹1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6089,6 +7514,18 @@
   },
   {
     "name": "灵能流转",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/灵能流转1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵能流转",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6096,6 +7533,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/灵能流转.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵媒术",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_base/灵媒术1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6113,6 +7562,18 @@
   },
   {
     "name": "自然循环",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/自然循环1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "自然循环",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6125,6 +7586,18 @@
   },
   {
     "name": "冷风",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/冷风1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冷风",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6132,6 +7605,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/冷风.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "捕梦网",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/捕梦网1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6161,6 +7646,18 @@
   },
   {
     "name": "快速调灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/快速调灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "快速调灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6168,6 +7665,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/快速调灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "信仰自然",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/信仰自然1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6185,6 +7694,18 @@
   },
   {
     "name": "心如止水",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/心如止水1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "心如止水",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6192,6 +7713,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/心如止水.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "掌控自然",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/掌控自然1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6209,6 +7742,18 @@
   },
   {
     "name": "星罗棋布",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/星罗棋布1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "星罗棋布",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6216,6 +7761,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/星罗棋布.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "请灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/请灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6233,6 +7790,18 @@
   },
   {
     "name": "洞悉万物",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/洞悉万物1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "洞悉万物",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6245,6 +7814,18 @@
   },
   {
     "name": "神谕术",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/神谕术1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "神谕术",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6252,6 +7833,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/神谕术.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "仰观宇宙",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/仰观宇宙1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6281,6 +7874,18 @@
   },
   {
     "name": "三生万物",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/三生万物1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "三生万物",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6288,6 +7893,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/三生万物.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "滋养",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/滋养1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6317,6 +7934,18 @@
   },
   {
     "name": "灵兽呼唤",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/灵兽呼唤1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵兽呼唤",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6341,6 +7970,18 @@
   },
   {
     "name": "预言未来",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/预言未来1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "预言未来",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6348,6 +7989,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/预言未来.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "万物归一",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_base/万物归一1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6365,6 +8018,18 @@
   },
   {
     "name": "占星",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/占星1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "占星",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6377,6 +8042,18 @@
   },
   {
     "name": "放归",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/放归1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "放归",
     "level": 2,
     "classes": [
       "调灵师"
@@ -6384,6 +8061,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/放归.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "狩猎姿态",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/狩猎姿态1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6439,6 +8128,18 @@
   },
   {
     "name": "厚皮",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/厚皮1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "厚皮",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6451,6 +8152,18 @@
   },
   {
     "name": "钢鬃",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/钢鬃1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "钢鬃",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6458,6 +8171,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/钢鬃.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "走为上策",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/走为上策1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6482,6 +8207,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/妈妈的水葫芦.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "卜筮术",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/卜筮术1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6523,6 +8260,18 @@
   },
   {
     "name": "削尖",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/削尖1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "削尖",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6547,6 +8296,18 @@
   },
   {
     "name": "娴熟",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 6,
+    "image": "assets/card_base/娴熟1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "娴熟",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6554,6 +8315,18 @@
     "type": "行动",
     "cost": 5,
     "image": "assets/card_base/娴熟.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "家传秘术",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 3,
+    "image": "assets/card_base/家传秘术1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6595,6 +8368,18 @@
   },
   {
     "name": "瑟缩",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/瑟缩1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "瑟缩",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6602,6 +8387,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/瑟缩.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "贴身护甲",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/贴身护甲1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6619,6 +8416,18 @@
   },
   {
     "name": "滑行",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/滑行1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "滑行",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6626,6 +8435,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/滑行.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "顽抗",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/顽抗1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6643,6 +8464,18 @@
   },
   {
     "name": "猪猪滚球",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/猪猪滚球1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "猪猪滚球",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6650,6 +8483,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/猪猪滚球.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "土遁术",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/土遁术1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6667,6 +8512,18 @@
   },
   {
     "name": "透视术",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/透视术1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "透视术",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6674,6 +8531,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/透视术.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "泥浆浴",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/泥浆浴1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6691,6 +8560,18 @@
   },
   {
     "name": "飞身踢",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_base/飞身踢1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "飞身踢",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6698,6 +8579,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/飞身踢.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "舍身冲撞",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 0,
+    "image": "assets/card_base/舍身冲撞1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6715,6 +8608,18 @@
   },
   {
     "name": "蓄势",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/蓄势1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "蓄势",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6727,6 +8632,18 @@
   },
   {
     "name": "妙蹄空空",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/妙蹄空空1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "妙蹄空空",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6734,6 +8651,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/妙蹄空空.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "悍勇",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_base/悍勇1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6787,6 +8716,18 @@
   },
   {
     "name": "窥查",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/窥查1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "窥查",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6794,6 +8735,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/窥查.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "装神弄鬼",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "image": "assets/card_base/装神弄鬼1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6811,6 +8764,18 @@
   },
   {
     "name": "名字很长的独门绝技",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_base/名字很长的独门绝技1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "名字很长的独门绝技",
     "level": 2,
     "classes": [
       "小猪妖"
@@ -6818,6 +8783,18 @@
     "type": "行动",
     "cost": 1,
     "image": "assets/card_base/名字很长的独门绝技.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "仿造术",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_base/仿造术1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6854,6 +8831,18 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/灵敏嗅觉.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "瞌睡咒",
+    "level": 1,
+    "classes": [
+      "小猪妖"
+    ],
+    "type": "行动",
+    "cost": 2,
+    "image": "assets/card_base/瞌睡咒1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6956,6 +8945,18 @@
   },
   {
     "name": "酸性喷雾",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/酸性喷雾1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "酸性喷雾",
     "level": 2,
     "classes": [
       "小女巫"
@@ -6963,6 +8964,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/酸性喷雾.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "火焰冲击",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/火焰冲击1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -6980,6 +8993,18 @@
   },
   {
     "name": "风之石",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/风之石1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "风之石",
     "level": 2,
     "classes": [
       "小女巫"
@@ -6992,6 +9017,18 @@
   },
   {
     "name": "寒流",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/寒流1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "寒流",
     "level": 2,
     "classes": [
       "小女巫"
@@ -6999,6 +9036,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/寒流.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "火球",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 6,
+    "image": "assets/card_base/火球1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7036,6 +9085,18 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/火墙.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冰盾",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/冰盾1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7116,6 +9177,18 @@
   },
   {
     "name": "酸性炸弹",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_base/酸性炸弹1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "酸性炸弹",
     "level": 2,
     "classes": [
       "小女巫"
@@ -7123,6 +9196,18 @@
     "type": "咒术",
     "cost": 6,
     "image": "assets/card_base/酸性炸弹.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "炎爆术",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 8,
+    "image": "assets/card_base/炎爆术1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7173,6 +9258,18 @@
     "type": "咒术",
     "cost": 5,
     "image": "assets/card_base/雷云.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "暴风雪",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 7,
+    "image": "assets/card_base/暴风雪1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7368,6 +9465,18 @@
   },
   {
     "name": "治疗药",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/治疗药1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "治疗药",
     "level": 2,
     "classes": [
       "修女"
@@ -7375,6 +9484,19 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/治疗药.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "治愈",
+    "level": 1,
+    "classes": [
+      "修女",
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/治愈1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7393,6 +9515,18 @@
   },
   {
     "name": "圣盾",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/圣盾1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "圣盾",
     "level": 2,
     "classes": [
       "修女"
@@ -7400,6 +9534,18 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/圣盾.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "忏悔",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/忏悔1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7476,6 +9622,18 @@
     "relatedCards": [
       "忏悔"
     ],
+    "group": "base"
+  },
+  {
+    "name": "净化之光",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/净化之光1.png",
+    "relatedCards": [],
     "group": "base"
   },
   {
@@ -7640,6 +9798,18 @@
   },
   {
     "name": "生命吸取",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "咒术",
+    "cost": 20,
+    "image": "assets/card_base/生命吸取1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "生命吸取",
     "level": 2,
     "classes": [
       "修女"
@@ -7671,6 +9841,18 @@
     "type": "咒术",
     "cost": 20,
     "image": "assets/card_base/神圣权杖.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "扑克飞镖",
+    "level": 1,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/扑克飞镖1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7784,6 +9966,30 @@
   },
   {
     "name": "冰冷药水",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/冰冷药水1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冰冷药水",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/冰冷药水2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冰冷药水",
     "level": 3,
     "classes": [
       "药剂师"
@@ -7791,6 +9997,30 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/冰冷药水.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "燃烧药水",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/燃烧药水1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "燃烧药水",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/燃烧药水2.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7808,6 +10038,30 @@
   },
   {
     "name": "粘性药水",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/粘性药水1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "粘性药水",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/粘性药水2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "粘性药水",
     "level": 3,
     "classes": [
       "药剂师"
@@ -7815,6 +10069,30 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/粘性药水.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "暗影药水",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/暗影药水1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "暗影药水",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/暗影药水2.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7832,6 +10110,30 @@
   },
   {
     "name": "闪电链接",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/闪电链接1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "闪电链接",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/闪电链接2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "闪电链接",
     "level": 3,
     "classes": [
       "药剂师"
@@ -7844,6 +10146,30 @@
   },
   {
     "name": "加护",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/加护1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "加护",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/加护2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "加护",
     "level": 3,
     "classes": [
       "药剂师"
@@ -7851,6 +10177,18 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/加护.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "翻腾",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/翻腾1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -7880,6 +10218,30 @@
   },
   {
     "name": "暗影炼制",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/暗影炼制1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "暗影炼制",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/暗影炼制2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "暗影炼制",
     "level": 3,
     "classes": [
       "药剂师"
@@ -7894,6 +10256,30 @@
   },
   {
     "name": "玩火",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/玩火1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "玩火",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/玩火2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "玩火",
     "level": 3,
     "classes": [
       "药剂师"
@@ -7904,6 +10290,30 @@
     "relatedCards": [
       "燃烧药水"
     ],
+    "group": "base"
+  },
+  {
+    "name": "雷暴药水",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/雷暴药水1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "雷暴药水",
+    "level": 2,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/雷暴药水2.png",
+    "relatedCards": [],
     "group": "base"
   },
   {
@@ -7927,6 +10337,18 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/闪电爆破.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "血瓶",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/血瓶1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8043,6 +10465,18 @@
   },
   {
     "name": "充电",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/充电1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "充电",
     "level": 2,
     "classes": [
       "药剂师"
@@ -8119,6 +10553,18 @@
   },
   {
     "name": "引魂术",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/引魂术1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "引魂术",
     "level": 2,
     "classes": [
       "契约师"
@@ -8126,6 +10572,18 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/引魂术.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "溃散",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/溃散1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8145,6 +10603,18 @@
   },
   {
     "name": "灵魂榨取",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/灵魂榨取1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵魂榨取",
     "level": 2,
     "classes": [
       "契约师"
@@ -8152,6 +10622,18 @@
     "type": "咒术",
     "cost": 3,
     "image": "assets/card_base/灵魂榨取.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "虚无之审判",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/虚无之审判1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8171,6 +10653,18 @@
   },
   {
     "name": "死亡收割",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/死亡收割1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "死亡收割",
     "level": 2,
     "classes": [
       "契约师"
@@ -8178,6 +10672,18 @@
     "type": "咒术",
     "cost": 3,
     "image": "assets/card_base/死亡收割.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "恐惧障壁",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/恐惧障壁1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8193,6 +10699,18 @@
     "relatedCards": [
       "恐惧"
     ],
+    "group": "base"
+  },
+  {
+    "name": "冥火",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/冥火1.png",
+    "relatedCards": [],
     "group": "base"
   },
   {
@@ -8271,6 +10789,18 @@
   },
   {
     "name": "血色之审判",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/血色之审判1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "血色之审判",
     "level": 2,
     "classes": [
       "契约师"
@@ -8292,6 +10822,18 @@
     "type": "咒术",
     "cost": 6,
     "image": "assets/card_base/魂飞魄散.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "恐惧来袭",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_base/恐惧来袭1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8330,6 +10872,18 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/签订契约.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "消逝",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/消逝1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8385,6 +10939,18 @@
   },
   {
     "name": "炼狱之审判",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/炼狱之审判1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "炼狱之审判",
     "level": 2,
     "classes": [
       "契约师"
@@ -8395,6 +10961,18 @@
     "relatedCards": [
       "死神降临"
     ],
+    "group": "base"
+  },
+  {
+    "name": "寒冷之审判",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_base/寒冷之审判1.png",
+    "relatedCards": [],
     "group": "base"
   },
   {
@@ -8425,6 +11003,18 @@
   },
   {
     "name": "幽闭恐惧症",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/幽闭恐惧症1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "幽闭恐惧症",
     "level": 2,
     "classes": [
       "契约师"
@@ -8435,6 +11025,18 @@
     "relatedCards": [
       "恐惧"
     ],
+    "group": "base"
+  },
+  {
+    "name": "招魂水晶",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/招魂水晶1.png",
+    "relatedCards": [],
     "group": "base"
   },
   {
@@ -8491,6 +11093,30 @@
   },
   {
     "name": "石灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/石灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "石灵",
+    "level": 2,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/石灵2.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "石灵",
     "level": 3,
     "classes": [
       "调灵师"
@@ -8498,6 +11124,18 @@
     "type": "咒术",
     "cost": 1,
     "image": "assets/card_base/石灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "草灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/草灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8515,6 +11153,18 @@
   },
   {
     "name": "冰灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/冰灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "冰灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8522,6 +11172,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/冰灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "水灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/水灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8539,6 +11201,18 @@
   },
   {
     "name": "地灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/地灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "地灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8546,6 +11220,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/地灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "雪灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/雪灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8563,6 +11249,18 @@
   },
   {
     "name": "海灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/海灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "海灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8570,6 +11268,18 @@
     "type": "咒术",
     "cost": 2,
     "image": "assets/card_base/海灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "风灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/风灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8587,6 +11297,18 @@
   },
   {
     "name": "毒灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 6,
+    "image": "assets/card_base/毒灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "毒灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8594,6 +11316,18 @@
     "type": "咒术",
     "cost": 6,
     "image": "assets/card_base/毒灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "树灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/树灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8611,6 +11345,18 @@
   },
   {
     "name": "先灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/先灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "先灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8618,6 +11364,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/先灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "亡灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "image": "assets/card_base/亡灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8635,6 +11393,18 @@
   },
   {
     "name": "光灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/光灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "光灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8642,6 +11412,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/光灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "星灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 7,
+    "image": "assets/card_base/星灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8659,6 +11441,18 @@
   },
   {
     "name": "影灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/影灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "影灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8666,6 +11460,18 @@
     "type": "咒术",
     "cost": 3,
     "image": "assets/card_base/影灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "月灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 5,
+    "image": "assets/card_base/月灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8683,6 +11489,18 @@
   },
   {
     "name": "日灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/日灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "日灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8690,6 +11508,18 @@
     "type": "咒术",
     "cost": 4,
     "image": "assets/card_base/日灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "花灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/花灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8707,6 +11537,18 @@
   },
   {
     "name": "火灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/火灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "火灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8714,6 +11556,18 @@
     "type": "咒术",
     "cost": 3,
     "image": "assets/card_base/火灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "雾灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/雾灵1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8731,6 +11585,18 @@
   },
   {
     "name": "生灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "咒术",
+    "cost": 10,
+    "image": "assets/card_base/生灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "生灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -8738,6 +11604,18 @@
     "type": "咒术",
     "cost": 10,
     "image": "assets/card_base/生灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "初试锋芒",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "咒术",
+    "cost": 3,
+    "image": "assets/card_base/初试锋芒1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -8907,6 +11785,18 @@
   },
   {
     "name": "暗器袋",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "咒术",
+    "cost": 4,
+    "image": "assets/card_base/暗器袋1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "暗器袋",
     "level": 2,
     "classes": [
       "猎魔人"
@@ -9013,6 +11903,20 @@
   },
   {
     "name": "法术预言",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "魔术师",
+      "药剂师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法术预言1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法术预言",
     "level": 2,
     "classes": [
       "小女巫",
@@ -9027,6 +11931,18 @@
   },
   {
     "name": "法师警戒",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法师警戒1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法师警戒",
     "level": 2,
     "classes": [
       "小女巫"
@@ -9034,6 +11950,22 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/法师警戒.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "智慧",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "猎魔人"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/智慧1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9055,6 +11987,18 @@
   },
   {
     "name": "法力贯穿",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力贯穿1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力贯穿",
     "level": 2,
     "classes": [
       "小女巫"
@@ -9062,6 +12006,24 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/法力贯穿.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力结界",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "魔术师",
+      "契约师",
+      "药剂师",
+      "调灵师",
+      "猎魔人"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力结界1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9085,6 +12047,18 @@
   },
   {
     "name": "法力烈焰",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力烈焰1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力烈焰",
     "level": 2,
     "classes": [
       "小女巫"
@@ -9097,6 +12071,18 @@
   },
   {
     "name": "法力冰霜",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力冰霜1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力冰霜",
     "level": 2,
     "classes": [
       "小女巫"
@@ -9104,6 +12090,34 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/法力冰霜.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "治疗药膏",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "药剂师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/治疗药膏1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "治疗药膏",
+    "level": 2,
+    "classes": [
+      "小女巫",
+      "修女",
+      "药剂师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/治疗药膏2.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9123,6 +12137,22 @@
   },
   {
     "name": "着魔",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/着魔1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "着魔",
     "level": 2,
     "classes": [
       "小女巫",
@@ -9134,6 +12164,19 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/着魔.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "惊奇卷轴",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "猎魔人"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/惊奇卷轴1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9164,6 +12207,20 @@
   },
   {
     "name": "法力之潮",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力之潮1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力之潮",
     "level": 2,
     "classes": [
       "小女巫",
@@ -9173,6 +12230,22 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/法力之潮.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "灵感",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/灵感1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9189,6 +12262,22 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/灵感.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "移动施法",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/移动施法1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9217,6 +12306,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/法力沉淀.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力护盾",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力护盾1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9255,6 +12356,21 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/传送门.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "能量饮料",
+    "level": 1,
+    "classes": [
+      "小女巫",
+      "魔术师",
+      "药剂师",
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/能量饮料1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9303,6 +12419,18 @@
   },
   {
     "name": "法力源泉",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/法力源泉1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "法力源泉",
     "level": 2,
     "classes": [
       "小女巫"
@@ -9310,6 +12438,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/法力源泉.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "虔诚",
+    "level": 1,
+    "classes": [
+      "修女"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/虔诚1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9399,6 +12539,18 @@
   },
   {
     "name": "稀释",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/稀释1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "稀释",
     "level": 2,
     "classes": [
       "药剂师"
@@ -9423,6 +12575,18 @@
   },
   {
     "name": "克隆",
+    "level": 1,
+    "classes": [
+      "药剂师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/克隆1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "克隆",
     "level": 2,
     "classes": [
       "药剂师"
@@ -9442,6 +12606,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/死神硬币.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "能量流动",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/能量流动1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9537,6 +12713,18 @@
   },
   {
     "name": "唤灵",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/唤灵1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "唤灵",
     "level": 2,
     "classes": [
       "调灵师"
@@ -9544,6 +12732,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/唤灵.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "万物生长",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/万物生长1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9561,6 +12761,18 @@
   },
   {
     "name": "亲近自然",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/亲近自然1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "亲近自然",
     "level": 2,
     "classes": [
       "调灵师"
@@ -9568,6 +12780,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/亲近自然.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "复苏",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/复苏1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9585,6 +12809,18 @@
   },
   {
     "name": "回旋",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/回旋1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "回旋",
     "level": 2,
     "classes": [
       "调灵师"
@@ -9592,6 +12828,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/回旋.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "自然冥想",
+    "level": 1,
+    "classes": [
+      "调灵师"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/自然冥想1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9633,6 +12881,18 @@
   },
   {
     "name": "休整",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/休整1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "休整",
     "level": 2,
     "classes": [
       "猎魔人"
@@ -9657,6 +12917,18 @@
   },
   {
     "name": "魔法启迪",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/魔法启迪1.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "魔法启迪",
     "level": 2,
     "classes": [
       "猎魔人"
@@ -9664,6 +12936,18 @@
     "type": "法力",
     "cost": null,
     "image": "assets/card_base/魔法启迪.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "全神贯注",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "法力",
+    "cost": null,
+    "image": "assets/card_base/全神贯注1.png",
     "relatedCards": [],
     "group": "base"
   },
@@ -9787,6 +13071,18 @@
     "type": "反制",
     "cost": null,
     "image": "assets/card_base/误导.png",
+    "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "下马威",
+    "level": 1,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_base/下马威1.png",
     "relatedCards": [],
     "group": "base"
   },
