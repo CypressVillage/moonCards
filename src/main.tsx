@@ -58,7 +58,7 @@ function Selectors({ root, selected, onSelect }: { root: CardGroup; selected: Ca
         onClick={() => {
           const options = relatedVariants(cards, root, name);
           if (options?.length) onSelect(highestLevel(name === root.name ? root.matches : options));
-        }}>{name === root.name ? '本卡' : name}</button>)}
+        }}>{name}</button>)}
     </div>}
     <div className="level-buttons" aria-label={`${selected.name}等级切换`}>
       {sortLevels(variants).map((card) => <button type="button" key={recordKey(card)}
@@ -83,7 +83,7 @@ function CardTile({ group, onOpen }: { group: CardGroup; onOpen: (root: CardGrou
       <CardImage card={selected} />
     </button>
     <div className="card-title-row"><h3>{selected.name}</h3><DownloadLink card={selected} /></div>
-    <p className="card-profession">{professionText(selected.classes, groupMode(selected.group)) || '职业待补充'}<span>·</span>{costLabel(selected.cost)}</p>
+    <p className="card-profession">{professionText(selected.classes, groupMode(selected.group))}<span>·</span>{costLabel(selected.cost)}</p>
     <Selectors root={group} selected={selected} onSelect={setSelected} />
   </article>;
 }
@@ -108,7 +108,7 @@ function DetailDialog({ root, initial, onClose }: { root: CardGroup; initial: Ca
         <span className="detail-mode">{groupLabel(selected.group)}</span>
         <h2 id="detail-title">{selected.name}</h2>
         <dl><div><dt>卡牌类型</dt><dd>{selected.type}牌</dd></div><div><dt>卡牌等级</dt><dd>{levelLabel(selected.level)}</dd></div>
-          <div><dt>能耗</dt><dd>{costLabel(selected.cost)}</dd></div><div><dt>可获得职业</dt><dd>{professionText(selected.classes, groupMode(selected.group)) || '待补充'}</dd></div></dl>
+          <div><dt>能耗</dt><dd>{costLabel(selected.cost)}</dd></div><div><dt>可获得职业</dt><dd>{professionText(selected.classes, groupMode(selected.group))}</dd></div></dl>
         <Selectors root={root} selected={selected} onSelect={setSelected} />
         <DownloadLink card={selected} full />
         <p className="detail-note">下载保留原始图片尺寸，可用于个人整理及打印。卡牌图片版权归游戏权利方所有。</p>
@@ -162,8 +162,8 @@ function App() {
   if (filters.type && !types.includes(filters.type)) types.push(filters.type);
   if (filters.cost && !costs.includes(filters.cost)) costs.push(filters.cost);
   if (filters.level && !levels.includes(filters.level)) levels.push(filters.level);
-  const totalCount = filterGroups(cards, emptyFilters).length;
-  const categories = cardCategories.map((category) => ({ ...category, count: filterGroups(cards, { ...emptyFilters, group: category.id }).length }));
+  const totalCount = filterGroups(cards, { ...emptyFilters, showHidden: filters.showHidden }).length;
+  const categories = cardCategories.map((category) => ({ ...category, count: filterGroups(cards, { ...emptyFilters, showHidden: filters.showHidden, group: category.id }).length }));
   const hasFilters = signature.length > 0;
 
   return <>
@@ -198,10 +198,11 @@ function App() {
               </div>
             </div>
             <div className="filter-row">
-              <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{professionLabel(name, professionMode)}</option>)}<option value="__unknown">未标注职业</option></FilterSelect>
+              <FilterSelect label="职业" value={filters.profession} onChange={(value) => update('profession', value)}><option value="">全部职业</option>{classes.map((name) => <option key={name} value={name}>{professionLabel(name, professionMode)}</option>)}<option value="__unknown">无职业</option></FilterSelect>
               <FilterSelect label="类型" value={filters.type} onChange={(value) => update('type', value)}><option value="">全部类型</option>{types.map((type) => <option key={type} value={type}>{type}牌</option>)}</FilterSelect>
               <FilterSelect label="能耗" value={filters.cost} onChange={(value) => update('cost', value)}><option value="">全部能耗</option>{costs.map((cost) => <option key={cost} value={cost}>{cost === 'null' ? '无能耗' : `${cost} 费`}</option>)}</FilterSelect>
               <FilterSelect label="等级" value={filters.level} onChange={(value) => update('level', value)}><option value="">全部等级</option>{levels.map((level) => <option key={level} value={level}>{level === 'null' ? '无星级' : `${level} 星`}</option>)}</FilterSelect>
+              <button type="button" className="hidden-toggle" aria-pressed={filters.showHidden} onClick={() => setFilters((previous) => ({ ...previous, showHidden: !previous.showHidden }))}>显示隐藏卡牌</button>
               <button type="button" className="reset-button" onClick={reset} disabled={!hasFilters}>重置筛选 ↺</button>
             </div>
           </div>

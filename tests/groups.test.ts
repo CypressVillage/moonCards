@@ -11,8 +11,20 @@ import { readCardStore } from '../scripts/card-store.mjs';
 import { splitLegacyCards } from '../scripts/migrate-card-groups.mjs';
 // @ts-expect-error Shared validator is plain JavaScript.
 import { validateCards } from '../scripts/validate-cards.mjs';
+// @ts-expect-error Shared browser/Node group definitions are plain JavaScript.
+import { sortGroupIds } from '../scripts/card-groups.mjs';
 
 const card = (group: string, name = '同名卡', level = 1): Card => ({ group, name, level, classes: [], type: '攻击', cost: 1, image: `assets/card_${group}/${name}${level}.png`, relatedCards: [] });
+
+test('筛选分组按 groups.json 顺序排列，未配置分组按名称追加且不修改输入', async () => {
+  const settings = JSON.parse(await readFile(new URL('../data/groups.json', import.meta.url), 'utf8'));
+  const configured = Object.keys(settings);
+  const ids = ['zzz_unconfigured', ...[...configured].reverse(), 'aaa_unconfigured'];
+  const original = [...ids];
+  assert.deepEqual(sortGroupIds(ids), [...configured, 'aaa_unconfigured', 'zzz_unconfigured']);
+  assert.deepEqual(ids, original);
+  assert.deepEqual(sortGroupIds(['newyear', 'monster', 'base']), ['base', 'monster', 'newyear']);
+});
 
 test('旧数据仅按现有图片目录拆分，保留元数据和组内顺序', () => {
   const legacy = [

@@ -12,19 +12,23 @@
     "mode": "classic"
   },
   "base_extra": {
-    "label": "附属卡",
+    "label": "隐藏卡牌",
     "mode": "classic"
   },
   "diary_extra": {
     "label": "日记初始卡",
     "mode": "diary"
   },
+  "newyear": {
+    "label": "春节限时卡",
+    "mode": "classic"
+  },
   "ce_41": {
     "label": "愚人节彩蛋",
     "mode": "classic"
   },
-  "newyear": {
-    "label": "春节限时",
+  "story": {
+    "label": "剧情卡牌",
     "mode": "classic"
   }
 }

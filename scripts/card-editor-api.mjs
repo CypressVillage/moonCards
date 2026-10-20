@@ -5,6 +5,7 @@ import { readCardStore } from './card-store.mjs';
 import { performAssetAction, readAssetImage, scanCardAssets } from './card-assets.mjs';
 import { commitChanges, fingerprint, jsonText, managedPath, optionalRead, problem, recoverTransactions } from './managed-files.mjs';
 import { validateCardBatch } from './card-save.mjs';
+import { sortCardProfessions } from './card-professions.mjs';
 
 const revision = (text) => fingerprint(text);
 
@@ -101,7 +102,7 @@ export function cardEditorApi(root) {
         for (const image of newImages) {
           if (fingerprint(await optionalRead(await managedPath(root, image.path))) !== fingerprint(image.bytes)) throw problem(`待收录图片已变化，请核对后重试：${image.path}`, 409);
         }
-        const text = jsonText(payload.cards);
+        const text = jsonText(sortCardProfessions(payload.cards, latest.groups.find((group) => group.id === groupId)?.mode));
         await commitChanges(root, [{ path: relativeFile, before: previousBytes, after: Buffer.from(text) }]);
         const previousCounts = new Map();
         const nextCounts = new Map();

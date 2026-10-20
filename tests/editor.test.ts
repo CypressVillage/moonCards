@@ -214,6 +214,9 @@ test('本地 API 保存、冲突、校验和跨域保护（仅使用临时文件
     const changed = await post({ cards: renamed, revision: savedData.revision }, 'https://openchamber-preview.localhost:5422', saveToken, 'same-origin');
     assert.equal(changed.status, 200);
     const changedData = await changed.json();
+    // The API normalizes click order to the default profession order on disk.
+    assert.deepEqual(renamed[0].classes, ['游侠', '女骑士']);
+    renamed[0] = { ...renamed[0], classes: ['女骑士', '游侠'] };
     assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), renamed);
     // Force a chunk boundary inside the Chinese image path, independent of TCP buffering.
     const nextCards = renamed.map((entry) => ({ ...entry, cost: 2 }));

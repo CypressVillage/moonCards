@@ -1,19 +1,8 @@
 [
   {
-    "name": "恶作剧",
+    "name": "外婆的祝福",
     "group": "base_extra",
-    "image": "assets/card_base_extra/恶作剧.png",
-    "level": null,
-    "classes": [],
-    "type": "特殊",
-    "cost": null,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "减速",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/减速.png",
+    "image": "assets/card_base_extra/外婆的祝福.png",
     "level": null,
     "classes": [
       "女骑士",
@@ -21,107 +10,15 @@
       "小女巫",
       "修女",
       "魔术师",
+      "药剂师",
       "狼人",
       "契约师",
-      "药剂师",
-      "调灵师",
       "机械师",
+      "调灵师",
       "猎魔人"
     ],
     "type": "行动",
-    "cost": 1,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "死神降临",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/死神降临.png",
-    "level": null,
-    "classes": [
-      "契约师"
-    ],
-    "type": "咒术",
-    "cost": 1,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "枯竭",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/枯竭.png",
-    "level": null,
-    "classes": [],
-    "type": "咒术",
-    "cost": 2,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "恐惧",
-    "level": null,
-    "classes": [],
-    "type": "咒术",
-    "cost": 2,
-    "image": "assets/card_base_extra/恐惧.png",
-    "relatedCards": [],
-    "hidden": false,
-    "group": "base_extra"
-  },
-  {
-    "name": "狂化",
-    "level": null,
-    "classes": [],
-    "type": "咒术",
-    "cost": 2,
-    "image": "assets/card_base_extra/狂化.png",
-    "relatedCards": [],
-    "hidden": false,
-    "group": "base_extra"
-  },
-  {
-    "name": "精准格挡",
-    "level": null,
-    "classes": [],
-    "type": "反制",
-    "cost": null,
-    "image": "assets/card_base_extra/精准格挡.png",
-    "relatedCards": [],
-    "hidden": false,
-    "group": "base_extra"
-  },
-  {
-    "name": "追猎",
-    "level": null,
-    "classes": [],
-    "type": "特殊",
-    "cost": null,
-    "image": "assets/card_base_extra/追猎.png",
-    "relatedCards": [],
-    "hidden": false,
-    "group": "base_extra"
-  },
-  {
-    "name": "尖刺羽毛",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/尖刺羽毛.png",
-    "level": null,
-    "classes": [],
-    "type": "特殊",
-    "cost": null,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "魔法反射",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/魔法反射.png",
-    "level": 3,
-    "classes": [
-      "魔术师"
-    ],
-    "type": "反制",
-    "cost": null,
+    "cost": 0,
     "relatedCards": [],
     "hidden": false
   },
@@ -135,6 +32,19 @@
     ],
     "type": "行动",
     "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "魔法反射",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/魔法反射.png",
+    "level": 3,
+    "classes": [
+      "魔术师"
+    ],
+    "type": "反制",
+    "cost": null,
     "relatedCards": [],
     "hidden": false
   },
@@ -170,7 +80,7 @@
     "classes": [],
     "type": "法力",
     "cost": null,
-    "image": "assets/card_base_extra/egg_小小法力.png",
+    "image": "assets/card_base_extra/小小法力.png",
     "relatedCards": [],
     "hidden": false,
     "group": "base_extra"
@@ -202,40 +112,6 @@
     ],
     "type": "行动",
     "cost": 1,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "外婆的祝福",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/外婆的祝福.png",
-    "level": null,
-    "classes": [
-      "女骑士",
-      "游侠",
-      "小女巫",
-      "修女",
-      "魔术师",
-      "药剂师",
-      "狼人",
-      "契约师",
-      "机械师",
-      "调灵师",
-      "猎魔人"
-    ],
-    "type": "行动",
-    "cost": 0,
-    "relatedCards": [],
-    "hidden": false
-  },
-  {
-    "name": "震击",
-    "group": "base_extra",
-    "image": "assets/card_base_extra/震击.png",
-    "level": null,
-    "classes": [],
-    "type": "攻击",
-    "cost": null,
     "relatedCards": [],
     "hidden": false
   },
@@ -273,13 +149,68 @@
     "hidden": false
   },
   {
-    "name": "醒酒",
+    "name": "噬魂刀",
     "group": "base_extra",
-    "image": "assets/card_base_extra/醒酒.png",
+    "image": "assets/card_base_extra/噬魂刀.png",
+    "level": null,
+    "classes": [],
+    "type": "装备",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "混乱化",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/混乱化.png",
     "level": null,
     "classes": [],
     "type": "行动",
-    "cost": 0,
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "奖赏",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/奖赏.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "拳击",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/拳击.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "招财符",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/招财符.png",
+    "level": null,
+    "classes": [],
+    "type": "祷告",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "驱妖符",
+    "group": "base_extra",
+    "image": "assets/card_base_extra/驱妖符.png",
+    "level": null,
+    "classes": [],
+    "type": "祷告",
+    "cost": null,
     "relatedCards": [],
     "hidden": false
   }

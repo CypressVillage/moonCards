@@ -20,6 +20,7 @@ export interface Filters {
   type: string;
   cost: string;
   level: string;
+  showHidden: boolean;
 }
 
 export interface CardGroup {
@@ -31,7 +32,7 @@ export interface CardGroup {
 }
 
 export const emptyFilters: Filters = {
-  query: '', group: 'all', profession: '', type: '', cost: '', level: '',
+  query: '', group: 'all', profession: '', type: '', cost: '', level: '', showHidden: false,
 };
 
 export { professionOrder } from './professions.ts';
@@ -71,8 +72,8 @@ export function filterGroups(cards: Card[], filters: Filters): CardGroup[] {
       groups.set(key, group);
     }
     group.cards.push(card);
-    // Hidden cards remain accessible through related-card selectors, not catalog searches.
-    if (!card.hidden && matchesCard(card, filters)) group.matches.push(card);
+    // Related-card selectors can always access hidden cards; catalog inclusion is opt-in.
+    if ((!card.hidden || filters.showHidden) && matchesCard(card, filters)) group.matches.push(card);
   }
   return [...groups.values()].filter((group) => group.matches.length > 0);
 }
@@ -89,6 +90,7 @@ export function readFilters(search: string): Filters {
     [key, params.get(key) ?? fallback])) as unknown as Filters;
   const groups = [...new Set(params.getAll('group'))].filter((group) => group && group !== 'all');
   filters.group = groups.length > 1 ? groups : groups[0] ?? 'all';
+  filters.showHidden = params.get('showHidden') === 'true';
   return filters;
 }
 
@@ -97,7 +99,7 @@ export function writeFilters(filters: Filters) {
   for (const key of Object.keys(emptyFilters) as (keyof Filters)[]) {
     if (key === 'group') {
       for (const group of selectedGroups(filters)) params.append(key, group);
-    } else if (filters[key] !== emptyFilters[key]) params.set(key, filters[key]);
+    } else if (filters[key] !== emptyFilters[key]) params.set(key, String(filters[key]));
   }
   return params.toString();
 }

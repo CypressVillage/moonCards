@@ -11,7 +11,7 @@ import './editor.css';
 import { AssetDialog, UnregisteredGallery, UploadImages, sourcePreviewUrl } from './asset-manager.tsx';
 import type { AssetAction, CardAsset } from './asset-manager.tsx';
 import { isErrorMessage, isTransientMessage } from './editor-feedback.ts';
-import { professionChoices, professionLabel } from './professions.ts';
+import { professionChoices, professionLabel, sortedCardProfessions } from './professions.ts';
 import { GroupSettingsDialog } from './group-settings.tsx';
 
 const endpoint = `${import.meta.env.BASE_URL}__card-editor/cards`;
@@ -131,10 +131,11 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
       const access = await authorization.json();
       if (!authorization.ok) throw new Error(access.error);
       if (access.editorApiVersion !== 6) throw new Error('开发服务仍在运行旧版保存接口。请先导出 JSON 备份，再重启 npm run dev。');
-      const response = await fetch(groupEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': access.saveToken }, body: JSON.stringify({ cards, revision }) });
+      const orderedCards = sortedCardProfessions(cards, professionMode);
+      const response = await fetch(groupEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Card-Editor-Token': access.saveToken }, body: JSON.stringify({ cards: orderedCards, revision }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
-      setRevision(data.revision); setCatalogCards([...access.catalogCards.filter((entry: Card) => entry.group !== groupId), ...cards]);
+      setCards(orderedCards); setRevision(data.revision); setCatalogCards([...access.catalogCards.filter((entry: Card) => entry.group !== groupId), ...orderedCards]);
       setDirty(false); setMessage(`已保存到本地 data/cards/${groupId}.json，其他组文件未修改`);
       try { await refreshInventory(); }
       catch (error) { setMessage(`元数据已保存，但扫描刷新失败：${String(error)}。请刷新扫描后再操作图片文件。`); }
@@ -205,7 +206,7 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
     setDetailOpen(false); setCandidate(null); setCandidateDirty(false);
   }
   function download() {
-    const url = URL.createObjectURL(new Blob([`${JSON.stringify(cards, null, 2)}\n`], { type: 'application/json' }));
+    const url = URL.createObjectURL(new Blob([`${JSON.stringify(sortedCardProfessions(cards, professionMode), null, 2)}\n`], { type: 'application/json' }));
     const link = document.createElement('a'); link.href = url; link.download = `${groupId}.json`; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     setMessage('已导出 JSON；尚未写入项目文件。');
@@ -269,7 +270,7 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
         <fieldset key={`${card.image}:${revision}`} disabled={busy} className="editor-fields"><legend>元数据</legend>
           {!candidate && <div className="editor-position"><button disabled={busy || selected === 0} onClick={() => move(selected, selected - 1)}>↑ 上移</button><button disabled={busy || selected === cards.length - 1} onClick={() => move(selected, selected + 1)}>↓ 下移</button><label>移至第 <input key={`position-${selected}`} type="number" min="1" max={cards.length} defaultValue={selected + 1} onBlur={(event) => { const value = Number(event.target.value); if (Number.isInteger(value) && value >= 1 && value <= cards.length) move(selected, value - 1); }} /> 条</label></div>}
           <label className="editor-wide">卡牌名称（仅修改当前记录，离开输入框时应用）<input key={`name-${selected}-${card.name}`} defaultValue={card.name} onChange={() => candidate ? setCandidateDirty(true) : setDirty(true)} onBlur={(event) => { const name = event.target.value.trim(); event.target.value = name === card.name || updateIdentity({ name }) ? name : card.name; }} onKeyDown={(event) => { if (event.key === 'Enter') event.currentTarget.blur(); }} /></label>
-          <fieldset className="editor-options editor-wide"><legend>可获得职业（可多选，不勾选表示未标注）</legend><div className="editor-choice-grid">
+          <fieldset className="editor-options editor-wide"><legend>可获得职业（可多选，不勾选表示无职业）</legend><div className="editor-choice-grid">
             {professions.map((profession) => <label className="editor-choice" key={profession}><input type="checkbox" value={profession} checked={card.classes.includes(profession)} onChange={(event) => update({ classes: event.target.checked ? [...card.classes, profession] : card.classes.filter((name) => name !== profession) })} />{professionLabel(profession, professionMode)}</label>)}
           </div>{card.classes.some((name) => !professions.includes(name)) && <p className="editor-hint">其他已有职业（保留原值）：{card.classes.filter((name) => !professions.includes(name)).join('、')}</p>}</fieldset>
           <fieldset className="editor-options editor-wide"><legend>星级（单选）</legend><div className="editor-choice-grid">
@@ -279,7 +280,7 @@ export function CardEditor({ initialCards, categories }: { initialCards: Card[];
             {cardTypes.map((type) => <label className="editor-choice" key={type}><input type="radio" name="card-type" checked={card.type === type} onChange={() => update({ type })} />{type}</label>)}
           </div></fieldset>
           <label>能耗（空为无能耗）<input key={`cost-${selected}`} defaultValue={card.cost ?? ''} placeholder="0、1、2… 或 X" onChange={(event) => { const value = event.target.value.trim().toUpperCase(); update({ cost: value === '' ? null : value === 'X' ? 'X' : /^\d+$/.test(value) ? Number(value) : NaN }); }} /></label>
-          <label className="editor-check"><input type="checkbox" checked={!card.hidden} onChange={(event) => update({ hidden: !event.target.checked })} />在图鉴和搜索结果中显示</label>
+          <label className="editor-check"><input type="checkbox" checked={!!card.hidden} onChange={(event) => update({ hidden: event.target.checked })} />隐藏</label>
           <div className="editor-wide"><p className="editor-field-label">关联卡牌（全部分组，可多选）</p><div className="related-selected">{card.relatedCards.map((name) => <button key={name} onClick={() => update({ relatedCards: card.relatedCards.filter((value) => value !== name) })}>{name} ×</button>)}{!card.relatedCards.length && <span>暂无关联卡牌</span>}</div>
             <input type="search" aria-label="搜索关联卡牌" placeholder="输入名称搜索所有 JSON 中的卡牌…" value={relatedQuery} onChange={(event) => setRelatedQuery(event.target.value)} />
             {relatedQuery.trim() && <div className="editor-related-matches" aria-label="关联卡牌搜索结果">{related.length ? related.map((name) => {

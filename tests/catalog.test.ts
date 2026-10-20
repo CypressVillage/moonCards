@@ -64,6 +64,21 @@ test('隐藏附属卡不占默认卡位，也不出现在名称搜索中', () =>
   assert.equal(filterGroups(cards, { ...emptyFilters, query: '附属' }).length, 0);
 });
 
+test('显示隐藏卡牌包含普通卡和隐藏卡，仍应用名称、职业和分组筛选', () => {
+  const cards = [makeCard(), makeCard({ name: '附属卡', hidden: true }), makeCard({ name: '日记附属卡', group: 'diary', hidden: true })];
+  const filters = { ...emptyFilters, showHidden: true };
+  assert.equal(filterGroups(cards, filters).length, 3);
+  assert.deepEqual(filterGroups(cards, { ...filters, query: '附属', group: 'base', profession: '职业A' }).map((group) => group.name), ['附属卡']);
+  assert.equal(filterGroups(cards, { ...filters, profession: '不存在' }).length, 0);
+  assert.equal(filterGroups(cards, emptyFilters).length, 1);
+});
+
+test('隐藏卡牌开关可通过 URL 往返，默认关闭且忽略无效值', () => {
+  const filters = { ...emptyFilters, showHidden: true, query: '附属卡' };
+  assert.deepEqual(readFilters(writeFilters(filters)), filters);
+  for (const search of ['', '?showHidden=false', '?showHidden=1']) assert.equal(readFilters(search).showHidden, false);
+});
+
 test('搜索忽略大小写和两侧空格', () => {
   assert.equal(filterGroups([makeCard({ name: 'Moon' })], { ...emptyFilters, query: ' MOON ' }).length, 1);
 });

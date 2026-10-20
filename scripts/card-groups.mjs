@@ -1,6 +1,6 @@
 import settings from '../data/groups.json' with { type: 'json' };
-// Preserve the original main-page categories, then append additional groups.
-const preferredOrder = ['base', 'diary', 'base_extra'];
+// Follow the configuration order, then append unconfigured groups.
+const preferredOrder = Object.keys(settings);
 
 export const validGroupId = (id) => typeof id === 'string' && /^[a-z][a-z0-9_]*$/.test(id) && id !== 'all';
 export function groupLabel(id, overrides = settings) {

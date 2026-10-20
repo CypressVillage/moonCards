@@ -242,7 +242,9 @@
     "type": "攻击",
     "cost": null,
     "image": "assets/card_monster/雷霆震击1.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "震击"
+    ],
     "group": "monster"
   },
   {
@@ -253,8 +255,21 @@
     "classes": [],
     "type": "攻击",
     "cost": null,
-    "relatedCards": [],
+    "relatedCards": [
+      "震击"
+    ],
     "hidden": false
+  },
+  {
+    "name": "震击",
+    "group": "monster",
+    "image": "assets/card_monster/震击.png",
+    "level": null,
+    "classes": [],
+    "type": "攻击",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
   },
   {
     "name": "头骨破裂",
@@ -1638,8 +1653,21 @@
     "classes": [],
     "type": "行动",
     "cost": 1,
-    "relatedCards": [],
+    "relatedCards": [
+      "醒酒"
+    ],
     "hidden": false
+  },
+  {
+    "name": "醒酒",
+    "group": "monster",
+    "image": "assets/card_monster/醒酒.png",
+    "level": null,
+    "classes": [],
+    "type": "行动",
+    "cost": 0,
+    "relatedCards": [],
+    "hidden": true
   },
   {
     "name": "黑暗之翼",
@@ -1649,7 +1677,9 @@
     "classes": [],
     "type": "行动",
     "cost": 1,
-    "relatedCards": [],
+    "relatedCards": [
+      "尖刺羽毛"
+    ],
     "hidden": false
   },
   {
@@ -2322,8 +2352,21 @@
     "classes": [],
     "type": "咒术",
     "cost": 2,
-    "relatedCards": [],
+    "relatedCards": [
+      "枯竭"
+    ],
     "hidden": false
+  },
+  {
+    "name": "枯竭",
+    "group": "monster",
+    "image": "assets/card_monster/枯竭.png",
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "relatedCards": [],
+    "hidden": true
   },
   {
     "name": "诅咒玩偶",
@@ -2390,5 +2433,16 @@
     "cost": null,
     "relatedCards": [],
     "hidden": false
+  },
+  {
+    "name": "尖刺羽毛",
+    "group": "monster",
+    "image": "assets/card_monster/尖刺羽毛.png",
+    "level": null,
+    "classes": [],
+    "type": "特殊",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
   }
 ]

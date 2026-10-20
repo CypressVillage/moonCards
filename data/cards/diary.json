@@ -32,7 +32,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_diary/沉睡的发条骑士.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "发条骑士"
+    ],
     "group": "diary"
   },
   {
@@ -188,7 +190,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_diary/雪克壶.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "鸡尾酒"
+    ],
     "group": "diary"
   },
   {
@@ -1110,5 +1114,18 @@
     "image": "assets/card_diary/底牌.png",
     "relatedCards": [],
     "group": "diary"
+  },
+  {
+    "name": "发条骑士",
+    "group": "diary",
+    "image": "assets/card_diary/发条骑士.png",
+    "level": null,
+    "classes": [
+      "女骑士"
+    ],
+    "type": "装备",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
   }
 ]

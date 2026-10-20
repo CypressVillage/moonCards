@@ -341,8 +341,8 @@
     "name": "箭袋",
     "level": null,
     "classes": [
-      "猎魔人",
-      "游侠"
+      "游侠",
+      "猎魔人"
     ],
     "type": "装备",
     "cost": null,
@@ -716,7 +716,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/忏悔录1.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "忏悔"
+    ],
     "group": "base"
   },
   {
@@ -796,7 +798,7 @@
   },
   {
     "name": "魔术棒",
-    "level": null,
+    "level": 2,
     "classes": [
       "魔术师"
     ],
@@ -1514,7 +1516,9 @@
     "type": "装备",
     "cost": null,
     "image": "assets/card_base/淬毒箭头1.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "追猎"
+    ],
     "group": "base"
   },
   {
@@ -2335,8 +2339,8 @@
     "name": "二次打击",
     "level": null,
     "classes": [
-      "猎魔人",
-      "女骑士"
+      "女骑士",
+      "猎魔人"
     ],
     "type": "攻击",
     "cost": null,
@@ -5065,8 +5069,8 @@
     "name": "模仿",
     "level": null,
     "classes": [
-      "小猪妖",
-      "游侠"
+      "游侠",
+      "小猪妖"
     ],
     "type": "行动",
     "cost": 1,
@@ -5102,8 +5106,8 @@
     "name": "躁动",
     "level": null,
     "classes": [
-      "小女巫",
       "游侠",
+      "小女巫",
       "魔术师",
       "药剂师",
       "狼人",
@@ -5160,8 +5164,8 @@
     "level": null,
     "classes": [
       "游侠",
-      "猎魔人",
-      "魔术师"
+      "魔术师",
+      "猎魔人"
     ],
     "type": "行动",
     "cost": 1,
@@ -5368,8 +5372,8 @@
     "level": null,
     "classes": [
       "游侠",
-      "猎魔人",
-      "魔术师"
+      "魔术师",
+      "猎魔人"
     ],
     "type": "行动",
     "cost": 1,
@@ -5381,8 +5385,8 @@
     "name": "迷幻",
     "level": null,
     "classes": [
-      "狼人",
-      "游侠"
+      "游侠",
+      "狼人"
     ],
     "type": "行动",
     "cost": 1,
@@ -5600,8 +5604,8 @@
     "level": null,
     "classes": [
       "游侠",
-      "机械师",
-      "魔术师"
+      "魔术师",
+      "机械师"
     ],
     "type": "行动",
     "cost": 1,
@@ -5718,8 +5722,8 @@
     "level": 1,
     "classes": [
       "小女巫",
-      "机械师",
-      "魔术师"
+      "魔术师",
+      "机械师"
     ],
     "type": "行动",
     "cost": 1,
@@ -5732,8 +5736,8 @@
     "level": 2,
     "classes": [
       "小女巫",
-      "机械师",
-      "魔术师"
+      "魔术师",
+      "机械师"
     ],
     "type": "行动",
     "cost": 1,
@@ -6005,6 +6009,29 @@
     "image": "assets/card_base/冥想.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "减速",
+    "group": "base",
+    "image": "assets/card_base/减速.png",
+    "level": null,
+    "classes": [
+      "女骑士",
+      "游侠",
+      "小女巫",
+      "修女",
+      "魔术师",
+      "药剂师",
+      "狼人",
+      "契约师",
+      "机械师",
+      "调灵师",
+      "猎魔人"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
   },
   {
     "name": "鸡尾酒",
@@ -10602,6 +10629,17 @@
     "group": "base"
   },
   {
+    "name": "恐惧",
+    "level": null,
+    "classes": [],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/恐惧.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base"
+  },
+  {
     "name": "灵魂榨取",
     "level": 1,
     "classes": [
@@ -10650,6 +10688,19 @@
       "死神降临"
     ],
     "group": "base"
+  },
+  {
+    "name": "死神降临",
+    "group": "base",
+    "image": "assets/card_base/死神降临.png",
+    "level": null,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": true
   },
   {
     "name": "死亡收割",
@@ -11720,6 +11771,19 @@
     "group": "base"
   },
   {
+    "name": "狂化",
+    "level": null,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "咒术",
+    "cost": 2,
+    "image": "assets/card_base/狂化.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base"
+  },
+  {
     "name": "诱敌",
     "level": null,
     "classes": [
@@ -11852,8 +11916,8 @@
     "level": 1,
     "classes": [
       "小女巫",
-      "魔术师",
       "修女",
+      "魔术师",
       "药剂师",
       "契约师",
       "调灵师",
@@ -11891,9 +11955,9 @@
       "修女",
       "魔术师",
       "药剂师",
-      "猎魔人",
+      "契约师",
       "调灵师",
-      "契约师"
+      "猎魔人"
     ],
     "type": "法力",
     "cost": null,
@@ -12016,8 +12080,8 @@
       "小女巫",
       "修女",
       "魔术师",
-      "契约师",
       "药剂师",
+      "契约师",
       "调灵师",
       "猎魔人"
     ],
@@ -12034,8 +12098,8 @@
       "小女巫",
       "修女",
       "魔术师",
-      "契约师",
       "药剂师",
+      "契约师",
       "调灵师",
       "猎魔人"
     ],
@@ -13189,6 +13253,17 @@
     "group": "base"
   },
   {
+    "name": "精准格挡",
+    "level": null,
+    "classes": [],
+    "type": "反制",
+    "cost": null,
+    "image": "assets/card_base/精准格挡.png",
+    "relatedCards": [],
+    "hidden": true,
+    "group": "base"
+  },
+  {
     "name": "生命祈祷",
     "level": null,
     "classes": [
@@ -13308,11 +13383,11 @@
       "修女",
       "魔术师",
       "药剂师",
-      "猎魔人",
-      "调灵师",
-      "机械师",
+      "狼人",
       "契约师",
-      "狼人"
+      "机械师",
+      "调灵师",
+      "猎魔人"
     ],
     "type": "特殊",
     "cost": null,
@@ -13325,21 +13400,43 @@
     "level": null,
     "classes": [
       "女骑士",
-      "狼人",
       "游侠",
-      "契约师",
-      "机械师",
       "小女巫",
       "修女",
       "魔术师",
       "药剂师",
-      "猎魔人",
-      "调灵师"
+      "狼人",
+      "契约师",
+      "机械师",
+      "调灵师",
+      "猎魔人"
     ],
     "type": "特殊",
     "cost": null,
     "image": "assets/card_base/商品订单.png",
     "relatedCards": [],
+    "group": "base"
+  },
+  {
+    "name": "恶作剧",
+    "group": "base",
+    "image": "assets/card_base/恶作剧.png",
+    "level": null,
+    "classes": [],
+    "type": "特殊",
+    "cost": null,
+    "relatedCards": [],
+    "hidden": true
+  },
+  {
+    "name": "追猎",
+    "level": null,
+    "classes": [],
+    "type": "特殊",
+    "cost": null,
+    "image": "assets/card_base/追猎.png",
+    "relatedCards": [],
+    "hidden": true,
     "group": "base"
   }
 ]
