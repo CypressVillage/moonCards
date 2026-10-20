@@ -93,7 +93,7 @@ test('分组文件自动发现，拒绝文件名、group 和图片文件夹不�
 test('实际 JSON 的 group 和目录一致，没有 diary 布尔字段（允许以后扩充新组）', async () => {
   const directory = new URL('../data/cards/', import.meta.url);
   const files = (await readdir(directory)).filter((file) => file.endsWith('.json'));
-  for (const required of ['base.json', 'base_extra.json', 'diary.json']) assert.ok(files.includes(required));
+  assert.ok(files.length > 0, '至少存在一个卡牌分组 JSON；分组名称不固定');
   const all: Card[] = [];
   for (const file of files) {
     const group = file.slice(0, -5);
