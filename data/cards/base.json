@@ -5175,7 +5175,20 @@
   },
   {
     "name": "毒伤",
-    "level": null,
+    "group": "base",
+    "image": "assets/card_base/毒伤1.png",
+    "level": 1,
+    "classes": [
+      "游侠"
+    ],
+    "type": "行动",
+    "cost": 1,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "毒伤",
+    "level": 2,
     "classes": [
       "游侠"
     ],
@@ -6020,7 +6033,9 @@
     "type": "行动",
     "cost": 0,
     "image": "assets/card_base/冥想.png",
-    "relatedCards": [],
+    "relatedCards": [
+      "减速"
+    ],
     "group": "base"
   },
   {
@@ -9351,7 +9366,20 @@
   },
   {
     "name": "冰霜新星",
-    "level": null,
+    "group": "base",
+    "image": "assets/card_base/冰霜新星1.png",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 5,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "冰霜新星",
+    "level": 2,
     "classes": [
       "小女巫"
     ],
@@ -9430,7 +9458,20 @@
   },
   {
     "name": "灾难",
-    "level": null,
+    "group": "base",
+    "image": "assets/card_base/灾难1.png",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 20,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "灾难",
+    "level": 2,
     "classes": [
       "小女巫"
     ],
@@ -9438,7 +9479,8 @@
     "cost": 20,
     "image": "assets/card_base/灾难.png",
     "relatedCards": [],
-    "group": "base"
+    "group": "base",
+    "hidden": false
   },
   {
     "name": "枯萎",
@@ -9466,7 +9508,20 @@
   },
   {
     "name": "致死霜冻",
-    "level": null,
+    "group": "base",
+    "image": "assets/card_base/致死霜冻1.png",
+    "level": 1,
+    "classes": [
+      "小女巫"
+    ],
+    "type": "咒术",
+    "cost": 12,
+    "relatedCards": [],
+    "hidden": false
+  },
+  {
+    "name": "致死霜冻",
+    "level": 2,
     "classes": [
       "小女巫"
     ],
@@ -10839,7 +10894,22 @@
   },
   {
     "name": "瘟疫之审判",
-    "level": null,
+    "group": "base",
+    "image": "assets/card_base/瘟疫之审判1.png",
+    "level": 1,
+    "classes": [
+      "契约师"
+    ],
+    "type": "咒术",
+    "cost": 5,
+    "relatedCards": [
+      "死神降临"
+    ],
+    "hidden": false
+  },
+  {
+    "name": "瘟疫之审判",
+    "level": 2,
     "classes": [
       "契约师"
     ],
@@ -11833,6 +11903,19 @@
     "image": "assets/card_base/袭剿.png",
     "relatedCards": [],
     "group": "base"
+  },
+  {
+    "name": "战斗冲动",
+    "group": "base",
+    "image": "assets/card_base/战斗冲动1.png",
+    "level": 1,
+    "classes": [
+      "猎魔人"
+    ],
+    "type": "咒术",
+    "cost": 6,
+    "relatedCards": [],
+    "hidden": false
   },
   {
     "name": "战斗冲动",
